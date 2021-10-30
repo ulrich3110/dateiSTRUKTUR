@@ -24,4 +24,4 @@ Datei-Strukturen dokumentieren und vergleichen
 * Die Entwicklung laufend veröffentlichen
 
 # Projekt Webseite
-[erasand.ch / Python Coach](https://www.erasand.ch/pycoach)
+<a href="https://www.erasand.ch/pycoach" target="_blank">erasand.ch - Python Coach</a>
