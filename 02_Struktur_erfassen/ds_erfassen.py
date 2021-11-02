@@ -111,33 +111,95 @@ class DateiStruktur():
                 ob_verz.m_set_dc(dc_verz, False)
                 self.ls_verz.append(ob_verz)
 
-    def m_read(self):
+    def m_lesen(self):
         ''' Dateistruktur mit os.walk lesen'''
-        print("# {0}.m_read #".format(self.tx_objname))
+        print("# {0}.m_lesen #".format(self.tx_objname))
         # Listen leeren
         self.ls_dateien = []
         self.ls_verzeich = []
         # Struktur erfassen
         for tx_root, ob_dirs, ob_files in os.walk(
-            tx_pfad,
+            self.tx_stammpfad,
             topdown=False
         ):
             for tx_name in ob_files:
-                '''
                 self.ls_dateien.append(
                     os.path.join(tx_root, tx_name)
                 )
-                '''
-                self.ls_dateien.append(tx_name)
             for tx_name in ob_dirs:
-                '''
                 self.ls_verzeich.append(os.path.join(
                     tx_root, tx_name)
                 )
-                '''
-                self.ls_verzeich.append(tx_name)
         # Datum speichern
         self.ob_datetime = time.localtime()
+
+    def m_ordnen(self):
+        ''' Ordnet die Struktur von .m_lesen() '''
+        print("# {0}.m_ordnen #".format(self.tx_objname))
+        # Ordnungs Dictionairy
+        dc_ord = {}
+        # Root Verzeichnis erzeugen
+        ob_verz = Verzeichnis()
+        ob_verz.tx_pfad = self.tx_stammpfad
+        self.ls_verz = [ob_verz]
+        # Dem Ordnungsdictionairy hinzufügen
+        dc_ord[ob_verz.tx_pfad] = ob_verz
+        # Andere Verzeichnis erzeugen
+        for tx_i in self.ls_verzeich:
+            # Verzeichnis erzeugen, Pfad eintragen, in Liste speichern
+            ob_verz = Verzeichnis()
+            ob_verz.tx_pfad = tx_i
+            self.ls_verz.append(ob_verz)
+            # Dem Ordnungsdictionairy hinzufügen
+            dc_ord[ob_verz.tx_pfad] = ob_verz
+        # Verzichnisse einordnen
+        for tx_i in self.ls_verzeich:
+            if tx_i != self.tx_stammpfad:
+                # Nach übergeordnetem Verzeichnis suchen
+                tx_diri = os.path.dirname(tx_i)
+                ob_verz = dc_ord[tx_diri]
+                # Dem Verzeichnis als Unerverzeichnis hinzufügen
+                tx_basei = os.path.basename(tx_i)
+                ob_verz.ls_verz.append(tx_basei)
+        for tx_i in self.ls_dateien:
+            # DateiInfo erzeugen
+            ob_dat = DateiInfo()
+            # Dateipfad, Dateiname.Typ
+            tx_diri = os.path.dirname(tx_i)
+            tx_basei = os.path.basename(tx_i)
+            # Dateiname und Typ
+            ls_basei = os.path.splitext(tx_basei)
+            ob_dat.tx_name = ls_basei[0]
+            ob_dat.tx_typ = ls_basei[1]
+            # Datum und Grösse lesen
+            ob_dat.ob_datetime = time.localtime(os.path.getmtime(tx_i))
+            ob_dat.in_groesse = os.path.getsize(tx_i)
+            # Nach Verzeichnis suchen
+            ob_verz = dc_ord[tx_diri]
+            # Dem Verzeichnis als Datei hinzufügen
+            ob_verz.ls_dat.append(ob_dat)
+
+    def m_total(self):
+        ''' Zusammenfassung erstellen '''
+        print("# {0}.m_total #".format(self.tx_objname))
+        # Anzahl Verzeichnisse und Dateien
+        self.in_anzverz = len(self.ls_verzeich) + 1
+        self.in_anzdat = len(self.ls_dateien)
+        # Anzahl Dateitypen
+        mn_typtot = set()
+        # Pro Verzeichnis
+        for ob_verz in self.ls_verz:
+            # Anzahl Verzeichnisse und Dateien
+            ob_verz.in_anzverz = len(ob_verz.ls_verz)
+            ob_verz.in_anzdat = len(ob_verz.ls_dat)
+            # Anzahl Dateitypen
+            mn_typ = set()
+            for ob_dat in ob_verz.ls_dat:
+                mn_typtot.add(ob_dat.tx_typ)
+                mn_typ.add(ob_dat.tx_typ)
+            ob_verz.in_anztyp = len(mn_typ)
+        # Total Anzahl Dateitypen
+        self.in_anztyp = len(mn_typtot)
 
 
 class Verzeichnis():
@@ -324,6 +386,14 @@ if __name__ == '__main__':
     ob_ds2 = DateiStruktur()
     ob_ds2.m_set_dc(dc_ds, False)
     print(ob_ds2)
+    # DateiStruktur lesen testen
+    ob_ds3 = DateiStruktur()
+    ob_ds3.tx_stammpfad = ".."
+    ob_ds3.m_lesen()
+    ob_ds3.m_ordnen()
+    ob_ds3.m_total()
+    print(ob_ds3)
+
     '''
     STRUKTUR ERFASSEN
     - Struktur erfassen wie bei pyOsTools
