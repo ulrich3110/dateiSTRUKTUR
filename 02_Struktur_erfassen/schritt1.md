@@ -37,11 +37,11 @@ STRUKTUR ERFASSEN
 
 * Kontrolle der gespeicherten JSON
 
-'' JSON = {
+``JSON = {
 
   "STAMMPFAD": 'absoluter Pfad',
 
-  "VERZEICHNISANZAHL": zahl,
+  "VERZEICHNISANZAHL": zahl
 
   "DATEIANZAHL": zahl,
 
@@ -83,4 +83,4 @@ STRUKTUR ERFASSEN
 
   ]
 
-}''
+}``
