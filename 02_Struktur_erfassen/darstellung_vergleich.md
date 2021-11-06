@@ -1,30 +1,21 @@
-# Darstellung Dateistruktur
+# Darstellung Vergleich
 
-### Zusammenfassung Struktur {Pfad absolut}
+### Zusammenfassung Vergleich
 
-Anzahl Verzeichnisse: `x`
+| Kategorie | Quelle | Ziel | Unterschied |
+| Anzahl Verzeichnisse | `q` | `z` | `z - q` |
+| Anzahl Dateien | `q` | `z` | `z - q` |
+| Anzahl Dateitypen | `q` | `z` | `z - q` |
 
-Anzahl Dateien: `x`
+### Verzeichnis `Pfad relativ`
 
-Anzahl Dateitypen: `x`
-
-### Verzeichnis {Pfad relativ}
-
-Anzahl Verzeichnisse: `x`
-
-| Verzeichnisnamen |
-| --- |
-| `Verzeichnis` |
-| `...` |
-
-Anzahl Dateien: `x`
-
-Anzahl Dateitypen: `x`
-
-| Dateityp `x` |
-| Dateiname | Änderungsdatum | Dateigrösse |
-| --- | --- | --- |
-| `Name` | `Datum` | `Grösse` |
-| `...` | `...` | `...` |
-
-`Weitere Auflistung nach Dateityp und Name sortiert`
+| _Kategorie_ | _Quelle_ | _Ziel_ | _Unterschied_ |
+| Anzahl Verzeichnisse | `q` | `z` | `z - q` |
+| Unterschiede | `Verzeichnis` | `Verzeichnis` | |
+| | `...` | `...` | |
+| Anzahl Dateien | `q` | `z` | `z - q` |
+| Anzahl Dateitypen | `q` | `z` | `z - q` |
+| Unerschiede Typ `x` | `Name` | `Name` | |
+| | `...` | `...` | |
+| `Weitere Unterschiede` | `..` | `..` | |
+| `nach Dateityp sortiert` | `..` | `..` | |
