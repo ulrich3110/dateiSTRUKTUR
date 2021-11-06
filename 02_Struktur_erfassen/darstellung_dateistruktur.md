@@ -24,7 +24,6 @@ Anzahl Dateitypen: `x`
 | Dateityp `x` | | |
 | --- | --- | --- |
 | Dateiname | Änderungsdatum | Dateigrösse |
-| --- | --- | --- |
 | `Name` | `Datum` | `Grösse` |
 | `...` | `...` | `...` |
 
