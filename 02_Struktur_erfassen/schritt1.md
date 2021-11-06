@@ -40,7 +40,7 @@ STRUKTUR ERFASSEN
 ```python
 JSON = {
   "STAMMPFAD": 'absoluter Pfad',
-  "VERZEICHNISANZAHL": zahl
+  "VERZEICHNISANZAHL": zahl,
   "DATEIANZAHL": zahl,
   "TYPANZAHL": zahl,
   "VERZEICHNISSE": [
