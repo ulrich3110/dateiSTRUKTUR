@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-dx_struktur.py - [d]atei[s]struktur
+ds_struktur.py - [d]atei[s]struktur
 Copyright (c) Oktober 2021: Andreas Ulrich
 <http://erasand.ch>, <andreas@erasand.ch>
 
