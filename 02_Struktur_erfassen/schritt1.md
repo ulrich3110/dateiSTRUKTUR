@@ -1,5 +1,4 @@
-# 1. Schritt
-STRUKTUR ERFASSEN
+# 1. Schritt: Struktur erfassen
 
 * Struktur erfassen wie bei pyOsTools
 
@@ -37,7 +36,7 @@ STRUKTUR ERFASSEN
 
 * Kontrolle der gespeicherten JSON
 
---python
+```python
 JSON = {
   "STAMMPFAD": 'absoluter Pfad',
   "VERZEICHNISANZAHL": zahl,
@@ -62,4 +61,4 @@ JSON = {
     }
   ]
 }
---
+```
