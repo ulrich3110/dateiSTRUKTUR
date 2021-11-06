@@ -12,7 +12,7 @@ Anzahl Dateitypen: `x`
 
 Anzahl Verzeichnisse: `x`
 
- Verzeichnisnamen |
+| _Verzeichnisnamen_ |
 | --- |
 | `Verzeichnis` |
 | `...` |
@@ -23,7 +23,7 @@ Anzahl Dateitypen: `x`
 
 | Dateityp `x` | | |
 | --- | --- | --- |
-| Dateiname | Änderungsdatum | Dateigrösse |
+| _Dateiname_ | _Änderungsdatum_ | _Dateigrösse_ |
 | `Name` | `Datum` | `Grösse` |
 | `...` | `...` | `...` |
 
