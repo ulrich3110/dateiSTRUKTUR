@@ -4,6 +4,7 @@
 
 | _Kategorie_ | _Quelle_ | _Ziel_ | _Unterschied_ |
 | --- | --- | --- | --- |
+| Strukturpfad | `q` | `z` | |
 | Anzahl Verzeichnisse | `q` | `z` | `z - q` |
 | Anzahl Dateien | `q` | `z` | `z - q` |
 | Anzahl Dateitypen | `q` | `z` | `z - q` |
@@ -17,7 +18,7 @@
 | | `...` | `...` | |
 | Anzahl Dateien | `q` | `z` | `z - q` |
 | Anzahl Dateitypen | `q` | `z` | `z - q` |
-| Unerschiede Typ `x` | `Name` | `Name` | |
+| Unerschiede Typ `x` | `Name` | `Name` | `z - q` |
 | | `...` | `...` | |
-| `Weitere Unterschiede` | `..` | `..` | |
-| `nach Dateityp sortiert` | `..` | `..` | |
+| `Weitere Unterschiede` | `...` | `...` | `z - q` |
+| `nach Dateityp sortiert` | `...` | `...` | |
