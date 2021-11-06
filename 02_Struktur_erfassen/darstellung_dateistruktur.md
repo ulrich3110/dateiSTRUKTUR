@@ -1,6 +1,6 @@
 # Darstellung Dateistruktur
 
-### Zusammenfassung Struktur {Pfad absolut}
+### Zusammenfassung Struktur `Pfad absolut`
 
 Anzahl Verzeichnisse: `x`
 
