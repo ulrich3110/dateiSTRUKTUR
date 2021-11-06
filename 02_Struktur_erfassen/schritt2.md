@@ -1,6 +1,4 @@
-# 2. Schritt
-
-STRUKTUR IN TEXTFORM UND ALS TABELLE SPEICHERN
+# 2. Schritt: Struktur in Textform und als Tabelle speichern
 
 - JSON laden
 
