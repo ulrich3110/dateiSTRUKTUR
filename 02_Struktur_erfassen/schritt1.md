@@ -38,26 +38,49 @@ STRUKTUR ERFASSEN
 * Kontrolle der gespeicherten JSON
 
 * JSON = {
-    "STAMMPFAD": 'absoluter Pfad',
-    "VERZEICHNISANZAHL": zahl,
-    "DATEIANZAHL": zahl,
-    "TYPANZAHL": zahl,
-    "VERZEICHNISSE": [
+
+  "STAMMPFAD": 'absoluter Pfad',
+
+  "VERZEICHNISANZAHL": zahl,
+
+  "DATEIANZAHL": zahl,
+
+  "TYPANZAHL": zahl,
+
+  "VERZEICHNISSE": [
+
+    {
+
+      "PFAD": 'relativer pfad zum absolutem Stammpfad'
+
+      "DATUM": 'tt.mm.jjjj hh:mm:ss'
+
+      "VERZEICHNISANZAHL": zahl,
+
+      "VERZEICHNISLISTE": ['Verzeichnisname', ],
+
+      "DATEIANZAHL": zahl,
+
+      "TYPANZAHL": zahl,
+
+      "DATEILISTE": [
+
         {
-            "PFAD": 'relativer pfad zum absolutem Stammpfad'
-            "DATUM": 'tt.mm.jjjj hh:mm:ss'
-            "VERZEICHNISANZAHL": zahl,
-            "VERZEICHNISLISTE": ['Verzeichnisname', ],
-            "DATEIANZAHL": zahl,
-            "TYPANZAHL": zahl,
-            "DATEILISTE": [
-                {
-                    "NAME": 'dateiname',
-                    "TYP": 'erw',
-                    "DATUM": 'tt.mm.jjjj hh:mm:ss'
-                    "GROESSE": zahl
-                },
-            ]
-        }
-    ]
+
+          "NAME": 'dateiname',
+
+          "TYP": 'erw',
+
+          "DATUM": 'tt.mm.jjjj hh:mm:ss'
+
+          "GROESSE": zahl
+
+        },
+
+      ]
+
+    }
+
+  ]
+
 }
