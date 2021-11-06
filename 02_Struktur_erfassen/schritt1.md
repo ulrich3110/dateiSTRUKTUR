@@ -37,7 +37,7 @@ STRUKTUR ERFASSEN
 
 * Kontrolle der gespeicherten JSON
 
-* JSON = {
+'' JSON = {
 
   "STAMMPFAD": 'absoluter Pfad',
 
@@ -83,4 +83,4 @@ STRUKTUR ERFASSEN
 
   ]
 
-}
+}''
