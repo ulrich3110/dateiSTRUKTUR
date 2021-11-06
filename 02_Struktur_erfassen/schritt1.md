@@ -37,7 +37,7 @@ STRUKTUR ERFASSEN
 
 * Kontrolle der gespeicherten JSON
 
-```python
+--python
 JSON = {
   "STAMMPFAD": 'absoluter Pfad',
   "VERZEICHNISANZAHL": zahl,
@@ -62,4 +62,4 @@ JSON = {
     }
   ]
 }
-```
+--
