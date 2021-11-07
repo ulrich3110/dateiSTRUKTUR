@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
+import datetime
 import json
 import os
 import time
@@ -27,6 +28,54 @@ DEUTSCHE ÜBERSETZUNG: <http://www.gnu.de/documents/gpl-3.0.de.html>
 '''
 
 
+def f_loadjson(tx_pfad):
+    '''
+    Lädt eine JSON Datei und gibt diese zurück als Wörterbuch
+    - tx_pfad = Pfad
+    - dc_verz = Wörterbuch
+    '''
+    print("# f_loadjson #")
+    # Pfad normalisieren
+    tx_pfad = os.path.normcase(os.path.normpath(tx_pfad))
+    # Json laden
+    try:
+        with open(tx_pfad) as ob_f:
+            dc_verz = json.load(ob_f)
+    except Exception as ob_err:
+        # Fehlermeldung ausgeben und leeres Wörterbuch erzeugen
+        tx_t = "FEHLER -- PFAD: {0} -- ERROR: {1}".format(
+            tx_pfad,
+            str(ob_err)
+        )
+        print(tx_t)
+        dc_verz = {}
+    return(dc_verz)
+
+
+def f_savejson(tx_pfad, dc_verz):
+    '''
+    Speichert ein Wörterbuch als JSON Datei unter dem Pfad ab.
+    - dc_verz = Wörterbuch
+    - tx_pfad = Pfad
+    '''
+    print("# f_savejson #")
+    # Pfad normalisieren
+    tx_pfad = os.path.normcase(os.path.normpath(tx_pfad))
+    # JSON speichern
+    try:
+        with open(tx_pfad, 'w', encoding='utf-8',
+                  errors='ignore') as ob_jsonfile:
+            json.dump(dc_verz, ob_jsonfile, indent=2, sort_keys=True)
+    except Exception as ob_err:
+        # Fehlermeldung ausgeben
+        tx_t = "FEHLER -- PFAD: {0} -- ERROR: {1}".format(
+            tx_pfad,
+            str(ob_err)
+        )
+        print(tx_t)
+    return()
+
+
 class DateiStruktur():
     ''' Datei-Struktur Inhalt '''
 
@@ -50,7 +99,7 @@ class DateiStruktur():
             "DATEILISTE": [],
             "VERZEICHNISLISTE": [],
             "STAMMPFAD": '',
-            "DATUM": None,
+            "DATUM": '',
             "VERZEICHNISANZAHL": 0,
             "DATEIANZAHL": 0,
             "TYPANZAHL": 0,
@@ -60,16 +109,16 @@ class DateiStruktur():
 
     def m_get_dc(self, bl_objekte):
         '''
-        Dateistruktur in einem Verzeichnis zurückgeben
+        Dateistruktur in einem Wörterbuch zurückgeben
         bl_objekte = True:  Objekte zurückgeben
-                   = False: Als Verzeichnisse zurückgeben
+                   = False: Als Wörterbücher zurückgeben
         '''
         print("# {0}.m_get_dc #".format(self.tx_objname))
         dc_daten = {
             "DATEILISTE": self.ls_dateien,
             "VERZEICHNISLISTE": self.ls_verzeich,
             "STAMMPFAD": self.tx_stammpfad,
-            "DATUM": self.ob_datetime,
+            "DATUM": self.tx_datum,
             "VERZEICHNISANZAHL": self.in_anzverz,
             "DATEIANZAHL": self.in_anzdat,
             "TYPANZAHL": self.in_anztyp,
@@ -78,7 +127,7 @@ class DateiStruktur():
             # Mit Objekten
             dc_daten["VERZEICHNISSE"] = self.ls_verz
         else:
-            # Mit Werten in einem Verzeichnis
+            # Mit Werten in einem Wörterbuch
             dc_daten["VERZEICHNISSE"] = []
             for ob_verz in self.ls_verz:
                 dc_daten["VERZEICHNISSE"].append(
@@ -88,15 +137,15 @@ class DateiStruktur():
 
     def m_set_dc(self, dc_daten, bl_objekte):
         '''
-        Dateistruktur aus einem Verzeichnis hinzufügen
+        Dateistruktur aus einem Wörterbuch hinzufügen
         bl_objekte = True:  Aus Objekten
-                   = False: Aus Verzeichnissen
+                   = False: Aus Wörterbüchern
         '''
         print("# {0}.m_set_dc #".format(self.tx_objname))
         self.ls_dateien = dc_daten["DATEILISTE"]
         self.ls_verzeich = dc_daten["VERZEICHNISLISTE"]
         self.tx_stammpfad = dc_daten["STAMMPFAD"]
-        self.ob_datetime = dc_daten["DATUM"]
+        self.tx_datum = dc_daten["DATUM"]
         self.in_anzverz = dc_daten["VERZEICHNISANZAHL"]
         self.in_anzdat = dc_daten["DATEIANZAHL"]
         self.in_anztyp = dc_daten["TYPANZAHL"]
@@ -104,7 +153,7 @@ class DateiStruktur():
             # Verzeichnis Objekte
             self.ls_verz = dc_daten["VERZEICHNISSE"]
         else:
-            # Stattdessen Werte aus Verzeichnissen
+            # Stattdessen Werte aus Wörterrbücher
             self.ls_verz = []
             for dc_verz in dc_daten["VERZEICHNISSE"]:
                 ob_verz = Verzeichnis()
@@ -131,7 +180,8 @@ class DateiStruktur():
                     tx_root, tx_name)
                 )
         # Datum speichern
-        self.ob_datetime = time.localtime()
+        ob_now = datetime.datetime.today()
+        self.tx_datum = ob_now.strftime('%d.%m.%Y %H:%M:%S')
 
     def m_ordnen(self):
         ''' Ordnet die Struktur von .m_lesen() '''
@@ -172,8 +222,13 @@ class DateiStruktur():
             ob_dat.tx_name = ls_basei[0]
             ob_dat.tx_typ = ls_basei[1]
             # Datum und Grösse lesen
-            ob_dat.ob_datetime = time.localtime(os.path.getmtime(tx_i))
-            ob_dat.in_groesse = os.path.getsize(tx_i)
+            if os.path.isfile(tx_i):
+                ob_datum = os.path.getmtime(tx_i)
+                ob_dat.tx_datum = time.strftime(
+                    '%d.%m.%Y %H:%M:%S',
+                    time.localtime(ob_datum)
+                )
+                ob_dat.in_groesse = os.path.getsize(tx_i)
             # Nach Verzeichnis suchen
             ob_verz = dc_ord[tx_diri]
             # Dem Verzeichnis als Datei hinzufügen
@@ -233,9 +288,9 @@ class Verzeichnis():
 
     def m_get_dc(self, bl_objekte):
         '''
-        Verzeichnis in einem Dictionairy zurückgeben
+        Verzeichnis in einem Wörterbuch zurückgeben
         bl_objekte = True:  Als Objekte zurückgeben
-                   = False: Als Verzeichnisse zurückgeben
+                   = False: Als Wörterbücher zurückgeben
         '''
         print("# {0}.m_get_dc #".format(self.tx_objname))
         dc_daten = {
@@ -249,7 +304,7 @@ class Verzeichnis():
             # Mit Objekten
             dc_daten["DATEILISTE"] = self.ls_dat
         else:
-            # Mit Werten in einem Verzeichnis
+            # Mit Werten in einem Wörterbuch
             dc_daten["DATEILISTE"] = []
             for ob_dat in self.ls_dat:
                 dc_daten["DATEILISTE"].append(ob_dat.m_get_dc())
@@ -257,9 +312,9 @@ class Verzeichnis():
 
     def m_set_dc(self, dc_daten, bl_objekte):
         '''
-        Verzeichnis aus einem Dictionariy hinzufügen
+        Verzeichnis aus einem Wörterbuch hinzufügen
         bl_objekte = True:  Aus Objekten
-                   = False: Aus Verzeichnissen
+                   = False: Aus Wörterbüchern
         '''
         print("# {0}.m_set_dc #".format(self.tx_objname))
         self.tx_pfad = dc_daten["PFAD"]
@@ -271,7 +326,7 @@ class Verzeichnis():
             # DateiInfo Objekte
             self.ls_dat = dc_daten["DATEILISTE"]
         else:
-            # Stattdessen Werte aus Verzeichnissen
+            # Stattdessen Werte aus Wörterbücher
             self.ls_dat = []
             for dc_dat in dc_daten["DATEILISTE"]:
                 ob_dat = DateiInfo()
@@ -301,286 +356,173 @@ class DateiInfo():
         dc_clear = {
             "NAME": '',
             "TYP": '',
-            "DATUM": None,
+            "DATUM": '',
             "GROESSE": 0
         }
         self.m_set_dc(dc_clear)
 
     def m_get_dc(self):
-        ''' Dateiinfo in einem Verzeichnis zurückgeben '''
+        ''' Dateiinfo in einem Wörterbuch zurückgeben '''
         print("# {0}.m_get_dc #".format(self.tx_objname))
         dc_daten = {
             "NAME": self.tx_name,
             "TYP": self.tx_typ,
-            "DATUM": self.ob_datetime,
+            "DATUM": self.tx_datum,
             "GROESSE": self.in_groesse
         }
         return(dc_daten)
 
     def m_set_dc(self, dc_daten):
-        ''' Dateiinfo aus einem Verzeichnis hinzufügen '''
+        ''' Dateiinfo aus einem Wörterbuch hinzufügen '''
         print("# {0}.m_set_dc #".format(self.tx_objname))
         self.tx_name = dc_daten["NAME"]
         self.tx_typ = dc_daten["TYP"]
-        self.ob_datetime = dc_daten["DATUM"]
+        self.tx_datum = dc_daten["DATUM"]
         self.in_groesse = dc_daten["GROESSE"]
 
 
-if __name__ == '__main__':
-    # 1. Schritt
-    # Test DateiInfo
-    print("\nDATEIINFO TEST")
-    # Leeres DateiInfo Objekt
-    ob_datinf = DateiInfo()
-    print(ob_datinf)
-    # Mit Werten
-    dc_test = {
-        "NAME": "Testdatei",
-        "TYP": "TXT",
-        "DATUM": time.localtime(),
-        "GROESSE": 1234
-    }
-    ob_datinf.m_set_dc(dc_test)
-    print(ob_datinf)
-    # Test Verzeichnis
-    print("\nVERZEICHNIS TEST")
-    # Leeres Verzeichnis Objekt
-    ob_verz = Verzeichnis()
-    print(ob_verz)
-    # Mit Werten und Objekten
-    dc_test = {
-        "PFAD": './',
-        "VERZEICHNISANZAHL": 1,
-        "VERZEICHNISLISTE": ['muster'],
-        "DATEIANZAHL": 1,
-        "TYPANZAHL": 1,
-        "DATEILISTE": [ob_datinf]
-    }
-    ob_verz.m_set_dc(dc_test, True)
-    print(ob_verz)
-    # Nur mit JSON Werten
-    dc_verz = ob_verz.m_get_dc(False)
-    ob_verz2 = Verzeichnis()
-    ob_verz2.m_set_dc(dc_verz, False)
-    print(ob_verz2)
-    # Test DateiStruktur
-    print("\nDATEISTRUKTUR TEST")
-    # Leeres DateiStruktur Objekt
-    ob_ds = DateiStruktur()
-    print(ob_ds)
-    # Mit Werten und Objekten
-    dc_test = {
-        "DATEILISTE": [],
-        "VERZEICHNISLISTE": [],
-        "STAMMPFAD": '',
-        "DATUM": None,
-        "VERZEICHNISANZAHL": 2,
-        "DATEIANZAHL": 2,
-        "TYPANZAHL": 1,
-        "VERZEICHNISSE": [ob_verz, ob_verz2]
-    }
-    ob_ds.m_set_dc(dc_test, True)
-    print(ob_ds)
-    # Nur mit JSON Werten
-    dc_ds = ob_ds.m_get_dc(False)
-    ob_ds2 = DateiStruktur()
-    ob_ds2.m_set_dc(dc_ds, False)
-    print(ob_ds2)
-    # DateiStruktur lesen testen
-    ob_ds3 = DateiStruktur()
-    ob_ds3.tx_stammpfad = ".."
-    ob_ds3.m_lesen()
-    ob_ds3.m_ordnen()
-    ob_ds3.m_total()
-    print(ob_ds3)
+class RunJson():
+    ''' Befehle aus einer JSON Datei ausführen '''
 
-    '''
-    STRUKTUR ERFASSEN
-    - Struktur erfassen wie bei pyOsTools
-    - Datum und Grösse der Dateien erfassen
-    - Dateistruktur ordnen
-        - Stammverzeichnis
-            - Pfad absolut
-            - Anzahl Verzeichnisse
-            - Anzahl Dateien
-            - Anzahl Dateitypen
-        - Unterverzeichnisse
-            - Pfad relativ
-            - Pfad absolut
-            - Anzahl Verzeichnisse
-            - Liste mit Verzeichnisnamen
-            - Anzahl Dateien
-            - Anzahl Dateitypen
-            - Dateien als Verzeichnis
-              {Dateityp: Dateinamen, Dateidatum, Dateigrösse}
-    - Alles zusammen als JSON speichern in einem lesbaren Format
-    - Kontrolle der gespeicherten JSON
-    - JSON = {
-        "STAMMPFAD": 'absoluter Pfad',
-        "VERZEICHNISANZAHL": zahl,
-        "DATEIANZAHL": zahl,
-        "TYPANZAHL": zahl,
-        "VERZEICHNISSE": [
-            {
-                "PFAD": 'relativer pfad zum absolutem Stammpfad'
-                "DATUM": Python.time()
-                "VERZEICHNISANZAHL": zahl,
-                "VERZEICHNISLISTE": ['Verzeichnisname', ],
-                "DATEIANZAHL": zahl,
-                "TYPANZAHL": zahl,
-                "DATEILISTE": [
+    def __init__(self):
+        ''' Initieren '''
+        self.tx_objname = "RunJson"
+        print("# {0}.__init__ #".format(self.tx_objname))
+
+    def __str__(self):
+        ''' Informationen als Text zurückgeben '''
+        print("# {0}.__str__ #".format(self.tx_objname))
+        dc_info = self.m_get_dc()
+        tx_info = json.dumps(dc_info, indent=2)
+        return(tx_info)
+
+    def m_reset_befehle(self):
+        print("# {0}.m_reset_befehle #".format(self.tx_objname))
+        ''' Wörterbuch mit Befehlen zurücksetzen '''
+        self.dc_befehle = {
+            "TESTMODUS": True,
+            "BEFEHLE": [
+                (
+                    "STRUKTUR ERFASSEN",
                     {
-                        "NAME": 'dateiname',
-                        "TYP": 'erw',
-                        "DATUM": Python.time()
-                        "GROESSE": zahl
-                    },
-                ]
-            }
-        ]
-    }
-    '''
-    # 2. Schritt
-    '''
-    STRUKTUR IN TEXTFORM UND ALS TABELLE SPEICHERN
-    - JSON laden
-    - HTML generieren für Textdarstellung
-    - CSV generieren für Tabellendarstellung
-    '''
-    # Darstellung
-    '''
-    DARSTELLUNG DATEISTRUKTUR
-Zusammenfassung Struktur {Pfad absolut}
----------------------------------------
-Anzahl Verzeichnisse: {x}
-Anzahl Dateien: {x}
-Anzahl Dateitypen: {x}
+                        "ZIEL": ".",
+                        "JSON": "./reset.json"
+                    }
+                )
+            ]
+        }
+
+    def m_load(self):
+        '''
+        JSON Befehle laden
+        '''
+        print("# {0}.m_load #".format(self.tx_objname))
+        # Json laden
+        self.dc_befehle = f_loadjson("./ds_erfassen.json")
+        if not self.dc_befehle:
+            # Fehler beim Laden, Einstellungen erzeugen
+            self.m_reset_befehle()
+            # Einstellungen sichern
+            f_savejson("./ds_erfassen.json", self.dc_befehle)
+
+    def m_run(self):
+        ''' JSON Aktionen ausführen '''
+        print("# {0}.m_run #".format(self.tx_objname))
+        # Befehlsliste holen
+        ls_befehle = self.dc_befehle["BEFEHLE"]
+        # Befehlsliste durchlaufen
+        for tp_aktion in ls_befehle:
+            # Aktion und Werte Wörterbuch
+            tx_befehl = tp_aktion[0]
+            dc_argumente = tp_aktion[1]
+            # Aktionen wählen
+            if tx_befehl == "STRUKTUR ERFASSEN":
+                # Struktur erzeugen
+                ob_ds = DateiStruktur()
+                # Ziel Verzeichnis setzen
+                ob_ds.tx_stammpfad = dc_argumente["ZIEL"]
+                # Datei-Struktur lesen, ordnen und zusammenfassen
+                ob_ds.m_lesen()
+                ob_ds.m_ordnen()
+                ob_ds.m_total()
+                # Wörterbuch für JSON erzeugen
+                dc_json = ob_ds.m_get_dc(False)
+                # JSON speichern
+                f_savejson(dc_argumente["JSON"], dc_json)
 
 
-Verzeichnis {Pfad relativ}
---------------------------
-Anzahl Verzeichnisse: {x}
-- {Verzeichnisnamen}
-Anzahl Dateien: {x}
-Anzahl Dateitypen: {x}
-Dateityp {x}
-- {Dateiname}, {Änderungsdatum}, {Grösse}
-{Weitere Auflistung nach Dateityp und Name sortiert}
-    '''
-    # 3. Schritt
-    '''
-    STRUKTUR VERGLEICHEN
-    - Quellstruktur aus JSON laden
-    - Zielstruktur aus JSON laden
-    - Zusammenfassung vergleichen
-        - Anzahl Dateien
-            - Quelle als Zahl
-            - Ziel als Zahl
-            - Differenz Ziel zu Quelle als Zahl
-        - Anzahl Verzeichnisse
-            - Quelle als Zahl
-            - Ziel als Zahl
-            - Differenz Ziel zu Quelle als Zahl
-        - Anzahl Dateitypen
-            - Quelle als Zahl
-            - Ziel als Zahl
-            - Differenz Ziel zu Quelle als Zahl
-    - Verzeichnisse vergleichen
-        - Anzahl Verzeichnisse
-            - Quelle als Zahl
-            - Ziel als Zahl
-            - Differenz Ziel zu Quelle als Zahl
-        - Verzeichnislisten
-            - Unterschiede Verzeichnisse als Verzeichnis
-                                  Ziel  Quelle
-              {Verzeichnisnamen: (True, True)}
-        - Anzahl Dateien
-            - Quelle als Zahl
-            - Ziel als Zahl
-            - Differenz Ziel zu Quelle als Zahl
-        - Anzahl Dateitypen
-            - Quelle als Zahl
-            - Ziel als Zahl
-            - Differenz Ziel zu Quelle als Zahl
-        - Dateien
-            - Unterschiede Dateien als Verzeichnis
-              {Dateityp: Dateinamen, Dateidatum, "neuer/älter",
-                                     Dateigrösse, "grösser/kleiner"}
-    - Alles zusammen als JSON speichern in einem lesbaren Format
-    - Kontrolle der gespeicherten JSON
-    '''
-    # 4. Schritt
-    '''
-    - HTML generieren für Textdarstellung
-    - CSV generieren für Tabellendarstellung
-    '''
-    # Darstellung
-    '''
-    DARSTELLUNG VERGLEICH
-< 32                           >  < 10     >  < 10     >  < 12       >
-Zusammenfassung
----------------
-Quelle: {absoluter Pfad}
-Ziel:   {absoluter Pfad}
-                                  Quelle      Ziel        Unterschiede
-Struktur                          {absolut}   {absolut}
-Verzeichnisse                     {x}         {x}         +{x} / -{x}
-Dateien                           {x}         {x}         +{x} / -{x}
-Dateitypen                        {x}         {x}         +{x} / -{x}
-
-Verzeichnis {Pfad relativ}
---------------------------
-Quelle: {absoluter Pfad}
-Ziel:   {absoluter Pfad}
-                                  Quelle      Ziel        Unterschiede
-Verzeichnisse                     {x}         {x}         +{x} / -{x}
-- {Unterschied Verze.}            ja / nein    ja / nein
-Anzahl Dateien                    {x}         {x}         +{x} / -{x}
-Anzahl Dateitypen                 {x}         {x}         +{x} / -{x}
-Dateityp {x}
-- {Unterschied Datei}             ja / nein   ja / nein
-  {tt.mm.jjjj hh:mm}                          älter / neuer
-  {Grösse}                                    kleiner / grösser
-{Weitere Auflistung nach Dateityp und Name sortiert}
-    '''
-    # 5. Schritt GUI Entwicklung
-    '''
-    Tkinter
-    Entwicklungsschritte 1 - 4 als Grundlage
-    Funktionen und Objekte übernehemen
-    ---
-    Strukturerstellung
-    Pfadeingabe für Erfassung (Dateidialog Verzeichnis)
-    JSON speichern (Dateidialog Speichern)
-    ---
-    Dokumente erstellen
-    JSON öffnen (Dateidialog öffnen)
-    HTML speichern (Dateidialog Speichern)
-    CSV speichern (Dateidialog Speichern)
-    ---
-    Strukturen vergleichen
-    Quellstruktur JSON öffnen (Dateidialog öffnen)
-    Zielstruktur JSON öffnen (Dateidialog öffnen)
-    Unterschiede ermitteln
-    Unterschiede anzeigen
-    Unterschiede als HTML speichern (Dateidialog Speichern)
-    Unterschiede als CSV speichern (Dateidialog Speichern)
-    '''
-    # 6. Schritt Web Entwicklung
-    '''
-    Django
-    Entwicklungsschritte 1 - 4 als Grundlage
-    Funktionen und Objekte übernehemen
-    ---
-    Strukturen lokal als JSON erstellen
-    ---
-    Seite Struktur anzeigen
-    Struktur als JSON hochladen
-    Anzeige als HTML Text / Tabelle
-    ---
-    Seite Strukturen vergleichen
-    Quellstruktur als JSON hochladen
-    Zielstruktur als JSON hochladen
-    Unterschiede als HTML Text / Tabelle
-    '''
-    # Fertig
+if __name__ == '__main__':
+    # RunJson Objekt und Befehle laden
+    ob_rj = RunJson()
+    ob_rj.m_load()
+    # Testmodus prüfen
+    if not ob_rj.dc_befehle["TESTMODUS"]:
+        ob_rj.m_run()
+    else:
+        # Test DateiInfo
+        print("\nDATEIINFO TEST")
+        # Leeres DateiInfo Objekt
+        ob_datinf = DateiInfo()
+        print(ob_datinf)
+        # Mit Werten
+        ob_now = datetime.datetime.today()
+        dc_test = {
+            "NAME": "Testdatei",
+            "TYP": "TXT",
+            "DATUM": ob_now.strftime('%d.%m.%Y %H:%M:%S'),
+            "GROESSE": 1234
+        }
+        ob_datinf.m_set_dc(dc_test)
+        print(ob_datinf)
+        # Test Verzeichnis
+        print("\nVERZEICHNIS TEST")
+        # Leeres Verzeichnis Objekt
+        ob_verz = Verzeichnis()
+        print(ob_verz)
+        # Mit Werten und Objekten
+        dc_test = {
+            "PFAD": './',
+            "VERZEICHNISANZAHL": 1,
+            "VERZEICHNISLISTE": ['muster'],
+            "DATEIANZAHL": 1,
+            "TYPANZAHL": 1,
+            "DATEILISTE": [ob_datinf]
+        }
+        ob_verz.m_set_dc(dc_test, True)
+        print(ob_verz)
+        # Nur mit JSON Werten
+        dc_verz = ob_verz.m_get_dc(False)
+        ob_verz2 = Verzeichnis()
+        ob_verz2.m_set_dc(dc_verz, False)
+        print(ob_verz2)
+        # Test DateiStruktur
+        print("\nDATEISTRUKTUR TEST")
+        # Leeres DateiStruktur Objekt
+        ob_ds = DateiStruktur()
+        print(ob_ds)
+        # Mit Werten und Objekten
+        ob_now = datetime.datetime.today()
+        dc_test = {
+            "DATEILISTE": [],
+            "VERZEICHNISLISTE": [],
+            "STAMMPFAD": '',
+            "DATUM": ob_now.strftime('%d.%m.%Y %H:%M:%S'),
+            "VERZEICHNISANZAHL": 2,
+            "DATEIANZAHL": 2,
+            "TYPANZAHL": 1,
+            "VERZEICHNISSE": [ob_verz, ob_verz2]
+        }
+        ob_ds.m_set_dc(dc_test, True)
+        print(ob_ds)
+        # Nur mit JSON Werten
+        dc_ds = ob_ds.m_get_dc(False)
+        ob_ds2 = DateiStruktur()
+        ob_ds2.m_set_dc(dc_ds, False)
+        print(ob_ds2)
+        # DateiStruktur lesen testen
+        ob_ds3 = DateiStruktur()
+        ob_ds3.tx_stammpfad = ".."
+        ob_ds3.m_lesen()
+        ob_ds3.m_ordnen()
+        ob_ds3.m_total()
+        print(ob_ds3)
