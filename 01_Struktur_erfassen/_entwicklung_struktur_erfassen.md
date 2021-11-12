@@ -38,27 +38,29 @@
 
 ```python
 JSON = {
-  "STAMMPFAD": 'absoluter Pfad',
-  "VERZEICHNISANZAHL": zahl,
   "DATEIANZAHL": zahl,
+  "DATEILISTE": ['Dateipfade', ],
+  "DATUM": 'TT.MM.JJJJ hh:mm:ss',
+  "STAMMPFAD": 'absoluter Pfad',
   "TYPANZAHL": zahl,
+  "VERZEICHNISANZAHL": zahl,
+  "VERZEICHNISLISTE": ['Verzeichnispfade', ],
   "VERZEICHNISSE": [
     {
-      "PFAD": 'relativer pfad zum absolutem Stammpfad'
-      "DATUM": 'tt.mm.jjjj hh:mm:ss'
-      "VERZEICHNISANZAHL": zahl,
-      "VERZEICHNISLISTE": ['Verzeichnisname', ],
       "DATEIANZAHL": zahl,
-      "TYPANZAHL": zahl,
       "DATEILISTE": [
         {
+          "DATUM": 'tt.mm.jjjj hh:mm:ss',
+          "GROESSE": zahl,
           "NAME": 'dateiname',
-          "TYP": 'erw',
-          "DATUM": 'tt.mm.jjjj hh:mm:ss'
-          "GROESSE": zahl
+          "TYP": 'erw'
         },
-      ]
-    }
+      ],
+      "PFAD": 'relativer pfad zum absolutem Stammpfad',
+      "TYPANZAHL": zahl,
+      "VERZEICHNISANZAHL": zahl,
+      "VERZEICHNISLISTE": ['Verzeichnisname', ]
+    },
   ]
 }
 ```
