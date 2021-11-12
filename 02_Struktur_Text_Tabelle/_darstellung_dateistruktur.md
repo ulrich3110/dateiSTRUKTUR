@@ -1,6 +1,6 @@
 # Darstellung Dateistruktur
 
-### Zusammenfassung Struktur `Pfad absolut`
+### Zusammenfassung `Pfad absolut`
 
 Anzahl Verzeichnisse: `x`
 
@@ -28,3 +28,34 @@ Anzahl Dateitypen: `x`
 | `...` | `...` | `...` |
 
 `Weitere Auflistung nach Dateityp und Name sortiert`
+
+# Format der JSON Datei-Struktur
+
+```python
+JSON = {
+  "DATEIANZAHL": zahl,
+  "DATEILISTE": ['Dateipfade', ],
+  "DATUM": 'TT.MM.JJJJ hh:mm:ss',
+  "STAMMPFAD": 'absoluter Pfad',
+  "TYPANZAHL": zahl,
+  "VERZEICHNISANZAHL": zahl,
+  "VERZEICHNISLISTE": ['Verzeichnispfade', ],
+  "VERZEICHNISSE": [
+    {
+      "DATEIANZAHL": zahl,
+      "DATEILISTE": [
+        {
+          "DATUM": 'tt.mm.jjjj hh:mm:ss',
+          "GROESSE": zahl,
+          "NAME": 'dateiname',
+          "TYP": 'erw'
+        },
+      ],
+      "PFAD": 'relativer pfad zum absolutem Stammpfad',
+      "TYPANZAHL": zahl,
+      "VERZEICHNISANZAHL": zahl,
+      "VERZEICHNISLISTE": ['Verzeichnisname', ]
+    },
+  ]
+}
+```
