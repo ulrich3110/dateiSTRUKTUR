@@ -1,0 +1,26 @@
+{
+  "BEFEHLE": [
+    [
+      "STRUKTUR ERFASSEN",
+      {
+        "JSON": "./reset.json",
+        "ZIEL": "."
+      }
+    ],
+    [
+      "ZU HTML",
+      {
+        "HTML": "./reset.html",
+        "JSON": "./reset.json"
+      }
+    ],
+    [
+      "ZU CSV",
+      {
+        "HTML": "./reset.csv",
+        "JSON": "./reset.json"
+      }
+    ]
+  ],
+  "TESTMODUS": true
+}

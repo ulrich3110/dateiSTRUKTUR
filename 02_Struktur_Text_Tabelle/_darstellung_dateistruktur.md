@@ -12,7 +12,7 @@ Anzahl Dateitypen: `x`
 
 Anzahl Verzeichnisse: `x`
 
-| _Verzeichnisnamen_ |
+| Verzeichnisnamen |
 | --- |
 | `Verzeichnis` |
 | `...` |
@@ -21,13 +21,10 @@ Anzahl Dateien: `x`
 
 Anzahl Dateitypen: `x`
 
-| Dateityp `x` | | |
-| --- | --- | --- |
-| _Dateiname_ | _Änderungsdatum_ | _Dateigrösse_ |
-| `Name` | `Datum` | `Grösse` |
-| `...` | `...` | `...` |
-
-`Weitere Auflistung nach Dateityp und Name sortiert`
+| --- | --- | --- | --- |
+| Dateiname | Typ | Änderungsdatum | Dateigrösse |
+| `Name` | `Typ` | `Datum` | `Grösse` |
+| `...` | `...` | `...` | `...` |
 
 # Format der JSON Datei-Struktur
 
