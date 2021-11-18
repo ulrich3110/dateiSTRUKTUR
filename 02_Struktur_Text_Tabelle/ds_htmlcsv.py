@@ -487,10 +487,13 @@ class HtmlStruktur():
         self.tx_html = "".join([
             '<!DOCTYPE html><html>',
             '<head>',
-            '<style>th, td {padding: 3px;}',
+            '<style>table, th, td ',
+            '{padding: 3px; ',
+            'border: 1px solid black; '
+            'border-collapse: collapse;}',
             '#left {text-align: left;}',
-            '#right {text-align: right;}</style>',
-            '</head>',
+            '#right {text-align: right;}',
+            '</style></head>',
             '<body>',
             "<h1>", self.tx_titel, "<br>",
             "<small>", self.tx_text, "</small></h1><br>"
@@ -533,31 +536,39 @@ class HtmlStruktur():
         # Verzeichnisliste durchlaufen
         for ls_ver in self.ls_ausgabe[5]:
             # Verzeichnis: Pfad, Anzahl Verzeichnisse
+            if ls_ver[0] == ".":
+                # Stammverzeichnis
+                tx_verpfad = '<i>Hauptverzeichnis</i>'
+            else:
+                # Ein Unterverzeichnis
+                tx_verpfad = ls_ver[0]
             self.tx_html = "".join([
                 self.tx_html,
-                '<h2>Verzeichnis: ', ls_ver[0],
+                '<h2>Verzeichnis: ', tx_verpfad,
                 '</h2>',
                 '<p>Anzahl Verzeichnisse: ', str(ls_ver[1]),
                 '</p>'
             ])
-            # Mit Verzeichnisliste Tabelle beginnen
-            self.tx_html = "".join([
-                self.tx_html,
-                '<table><tr>',
-                '<th id="left">Verzeichnisname</th>',
-                '</tr>'
-            ])
-            # Verzeichnisliste durchlaufen
-            for tx_verz in ls_ver[2]:
-                # Verzeichnisnamen
+            # Prüfen ob Subverzeichnisse vorhanden sind
+            if ls_ver[2]:
+                # Mit Verzeichnisliste Tabelle beginnen
                 self.tx_html = "".join([
                     self.tx_html,
-                    '<tr>',
-                    '<td id="left">', tx_verz, '</td>',
+                    '<table><tr>',
+                    '<th id="left">Verzeichnisname</th>',
                     '</tr>'
                 ])
-            # Tabellen Ende Verzeichnisliste
-            self.tx_html = "".join([self.tx_html, "</table>"])
+                # Verzeichnisliste durchlaufen
+                for tx_verz in ls_ver[2]:
+                    # Verzeichnisnamen
+                    self.tx_html = "".join([
+                        self.tx_html,
+                        '<tr>',
+                        '<td id="left">', tx_verz, '</td>',
+                        '</tr>'
+                    ])
+                # Tabellen Ende Verzeichnisliste
+                self.tx_html = "".join([self.tx_html, "</table>"])
             # Anzahl Dateien, Anzahl Dateitypen
             self.tx_html = "".join([
                 self.tx_html,
@@ -566,32 +577,34 @@ class HtmlStruktur():
                 '<p>Anzahl Dateitypen: ', ls_ver[4],
                 '</p>'
             ])
-            # Mit Dateilisten Tabelle beginnen
-            self.tx_html = "".join([
-                self.tx_html,
-                '<table><tr>',
-                '<th id="left">Dateiname</th>',
-                '<th id="left">Dateityp</th>',
-                '<th id="left"><small>Datum/Uhrzeit</small></th>',
-                '<th id="right"><small>Grösse (bytes)</small></th>',
-                '</tr>'
-            ])
-            # Dateiliste durchlaufen
-            for ls_dat in ls_ver[5]:
-                # Dateiname mit Informationen
+            # Prüfen ob Dateien vorhanden sind
+            if ls_ver[5]:
+                # Mit Dateilisten Tabelle beginnen
                 self.tx_html = "".join([
                     self.tx_html,
-                    '<tr>',
-                    '<td id="left">', ls_dat[0], '</td>',
-                    '<td id="left">', ls_dat[1], '</td>',
-                    '<td id="left"><small>', ls_dat[2],
-                    '</small></td>',
-                    '<td id="right"><small>', ls_dat[3],
-                    '</small></td>',
+                    '<table><tr>',
+                    '<th id="left">Dateiname</th>',
+                    '<th id="left">Dateityp</th>',
+                    '<th id="left"><small>Datum/Uhrzeit</small></th>',
+                    '<th id="right"><small>Grösse (bytes)</small></th>',
                     '</tr>'
                 ])
-            # Tabellen Ende
-            self.tx_html = "".join([self.tx_html, "</table>"])
+                # Dateiliste durchlaufen
+                for ls_dat in ls_ver[5]:
+                    # Dateiname mit Informationen
+                    self.tx_html = "".join([
+                        self.tx_html,
+                        '<tr>',
+                        '<td id="left">', ls_dat[0], '</td>',
+                        '<td id="left">', ls_dat[1], '</td>',
+                        '<td id="left"><small>', ls_dat[2],
+                        '</small></td>',
+                        '<td id="right"><small>', ls_dat[3],
+                        '</small></td>',
+                        '</tr>'
+                    ])
+                # Tabellen Ende
+                self.tx_html = "".join([self.tx_html, "</table>"])
 
 
 class StrukturAusgabe():
@@ -693,15 +706,20 @@ class StrukturAusgabe():
             #  x (anzahl dateien), x (anzahl typen),
             #  [["typ", [dateien, ]]
             # Verzeichnisliste sortieren
-            ls_verz = dc_verz["VERZEICHNISLISTE"]
-            ls_verz.sort()
+            ls_subverz = dc_verz["VERZEICHNISLISTE"]
+            ls_subverz.sort()
             # Dateiliste erzeugen und sortieren
             ls_dat = self.m_dateiliste(dc_verz["DATEILISTE"])
+            # Verzeichnispfad relativ zum Stammpfad setzen
+            tx_relpath = os.path.relpath(
+                dc_verz['PFAD'],
+                start=self.dc_struktur['STAMMPFAD']
+            )
             # Zur Verzeichnisliste hinzufügen
             ls_verzsort.append([
-                dc_verz['PFAD'],
+                tx_relpath,
                 dc_verz['VERZEICHNISANZAHL'],
-                ls_verz,
+                ls_subverz,
                 str(dc_verz['DATEIANZAHL']),
                 str(dc_verz['TYPANZAHL']),
                 ls_dat
