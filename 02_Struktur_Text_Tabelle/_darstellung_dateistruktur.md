@@ -48,7 +48,6 @@ Anzahl Dateitypen: `x`
 | Datei #1 | | | `Name` | `Typ` | `Datum` | `x` |
 | Datei #.. | | | `...` | `...` | `...` | `...` |
 | | | | | | | |
-| weitere Verzeichnisse | | `relativer Pfad` | | | | |
 | weitere Verzeichnisse | | `...` | `...` | `...` | `...` | `...` |
 
 # Format der JSON Datei-Struktur
