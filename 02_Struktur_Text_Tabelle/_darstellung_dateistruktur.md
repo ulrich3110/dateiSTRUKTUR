@@ -21,8 +21,8 @@ Anzahl Dateien: `x`
 
 Anzahl Dateitypen: `x`
 
-| --- | --- | --- | --- |
 | Dateiname | Typ | Änderungsdatum | Dateigrösse |
+| --- | --- | --- | --- |
 | `Name` | `Typ` | `Datum` | `Grösse` |
 | `...` | `...` | `...` | `...` |
 
