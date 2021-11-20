@@ -32,7 +32,7 @@ Anzahl Dateitypen: `x`
 | --- | --- | --- | --- | --- | --- | --- |
 | `Titel` | | | | | | |
 | `Beschrieb` | | | | | | |
-| Übericht Hauptverzeichnis | | `absoluter Pfad` | | | | |
+| Zusammenfassung | | `absoluter Pfad` | | | | |
 | Datum / Uhrzeit | | | | | `Datum` | |
 | Anzahl Verzeichnisse | `x` | | | | | |
 | Anzahl Dateien | `x` | | | | | |
