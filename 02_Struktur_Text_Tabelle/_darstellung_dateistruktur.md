@@ -1,4 +1,4 @@
-# Darstellung Dateistruktur
+# Darstellung Dateistruktur als Text
 
 ### Zusammenfassung `Pfad absolut`
 
@@ -25,6 +25,25 @@ Anzahl Dateitypen: `x`
 | --- | --- | --- | --- |
 | `Name` | `Typ` | `Datum` | `Grösse` |
 | `...` | `...` | `...` | `...` |
+
+# Darstellung Dateistruktur als Tabelle
+
+| Kategorie | Anzahl | Verzeichnisnamen | Dateiname | Dateityp | Datum/Uhrzeit | Grösse (bytes) |
+| --- | --- | --- | --- | --- | --- | --- |
+| Übericht Hauptverzeichnis | | `absoluter Pfad` | | | | |
+| Datum / Uhrzeit | | | | | `Datum` | |
+| Anzahl Verzeichnisse | `x` | | | | | |
+| Anzahl Dateien | `x` | | | | | |
+| Anzahl Dateitypen | `x` | | | | | |
+| Verzeichnis | | `relativer Pfad` | | | | |
+| Anzahl Verzeichnisse | `x` | | | | | |
+| Verzeichnisliste | `x` | | | | | |
+| Verzeichnis #1 | | `Name` | | | | |
+| Verzeichnis #.. | | `Name` | | | | |
+| Anzahl Dateien | `x` | | | | | |
+| Anzahl Dateitypen | `x` | | | | | |
+| Datei #1 | | | `Name` | `Typ` | `Datum` | `x` |
+| Datei #.. | | | `Name` | `Typ` | `Datum` | `x` |
 
 # Format der JSON Datei-Struktur
 
