@@ -37,16 +37,19 @@ Anzahl Dateitypen: `x`
 | Anzahl Verzeichnisse | `x` | | | | | |
 | Anzahl Dateien | `x` | | | | | |
 | Anzahl Dateitypen | `x` | | | | | |
-|  | | | | | | |
+| | | | | | | |
 | Verzeichnis | | `relativer Pfad` | | | | |
 | Anzahl Verzeichnisse | `x` | | | | | |
 | Verzeichnisliste | `x` | | | | | |
 | Verzeichnis #1 | | `Name` | | | | |
-| Verzeichnis #.. | | `Name` | | | | |
+| Verzeichnis #.. | | `...` | | | | |
 | Anzahl Dateien | `x` | | | | | |
 | Anzahl Dateitypen | `x` | | | | | |
 | Datei #1 | | | `Name` | `Typ` | `Datum` | `x` |
-| Datei #.. | | | `Name` | `Typ` | `Datum` | `x` |
+| Datei #.. | | | `...` | `...` | `...` | `...` |
+| | | | | | | |
+| weitere Verzeichnisse | | `relativer Pfad` | | | | |
+| weitere Verzeichnisse | | `...` | `...` | `...` | `...` | `...` |
 
 # Format der JSON Datei-Struktur
 
