@@ -30,6 +30,8 @@ Anzahl Dateitypen: `x`
 
 | Kategorie | Anzahl | Verzeichnisnamen | Dateiname | Dateityp | Datum/Uhrzeit | Grösse (bytes) |
 | --- | --- | --- | --- | --- | --- | --- |
+| `Titel` | | | | | | |
+| `Beschrieb` | | | | | | |
 | Übericht Hauptverzeichnis | | `absoluter Pfad` | | | | |
 | Datum / Uhrzeit | | | | | `Datum` | |
 | Anzahl Verzeichnisse | `x` | | | | | |
