@@ -40,7 +40,6 @@ Anzahl Dateitypen: `x`
 | | | | | | | |
 | Verzeichnis | | `relativer Pfad` | | | | |
 | Anzahl Verzeichnisse | `x` | | | | | |
-| Verzeichnisliste | `x` | | | | | |
 | Verzeichnis #1 | | `Name` | | | | |
 | Verzeichnis #.. | | `...` | | | | |
 | Anzahl Dateien | `x` | | | | | |

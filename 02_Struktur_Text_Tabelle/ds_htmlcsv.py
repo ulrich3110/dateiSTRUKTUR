@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
+import csv
 import datetime
 import json
 import os
@@ -55,8 +56,8 @@ def f_loadjson(tx_pfad):
 def f_savejson(tx_pfad, dc_verz):
     '''
     Speichert ein Wörterbuch als JSON Datei unter dem Pfad ab.
-    - dc_verz = Wörterbuch
     - tx_pfad = Pfad
+    - dc_verz = Wörterbuch
     '''
     print("# f_savejson #")
     # Pfad normalisieren
@@ -78,9 +79,14 @@ def f_savejson(tx_pfad, dc_verz):
 
 def f_savetext(tx_pfad, tx_text):
     '''
-    Speichert den <tx_text> beim <tx_pfad> ab.
+    Speichert einen Text unter dem Pfad ab.
+    - tx_pfad = Pfad
+    - tx_text = Text
     '''
+    print("# f_savetext #")
+    # Pfad normalisieren
     tx_pfad = os.path.normcase(os.path.normpath(tx_pfad))
+    # Text speichern
     try:
         ob_datei = open(
             tx_pfad,
@@ -99,6 +105,27 @@ def f_savetext(tx_pfad, tx_text):
         ob_errfile = open(tx_errpfad, 'w')
         ob_errfile.write(tx_t)
         ob_errfile.close()
+
+
+def f_savecsv(tx_pfad, ls_tabelle):
+    '''
+    Speichert einen Liste als CSV unter dem Pfad ab.
+    - tx_pfad = Pfad
+    - ls_tabelle = Liste in Tabellenform:
+      [
+        ["Spaltentitel 1", "Spaltentitel 2"],
+        [Wert Spale 1,     Wert Spalte 2],
+      ]
+    '''
+    print("# f_savecsv #")
+    # Pfad normalisieren
+    tx_pfad = os.path.normcase(os.path.normpath(tx_pfad))
+    # CSV speichern
+    ob_datei = open(tx_pfad, 'w')
+    with ob_datei:
+        ob_writer = csv.writer(ob_datei)
+        for ls_zeile in ls_tabelle:
+            ob_writer.writerow(ls_zeile)
 
 
 class DateiStruktur():
@@ -481,7 +508,7 @@ class HtmlStruktur():
         self.m_save()
 
     def m_anfang(self):
-        ''' HTML Datei-Struktur Zusammenfassung '''
+        ''' HTML Datei-Struktur Anfang '''
         print("# {0}.m_anfang #".format(self.tx_objname))
         # Head, Body, Titel, Text
         self.tx_html = "".join([
@@ -507,7 +534,7 @@ class HtmlStruktur():
 
     def m_save(self):
         ''' HTML Datei-Struktur speichern '''
-        print("# {0}.m_ende #".format(self.tx_objname))
+        print("# {0}.m_save #".format(self.tx_objname))
         # HTML speichern
         f_savetext(self.tx_htmlpfad, self.tx_html)
 
@@ -586,7 +613,7 @@ class HtmlStruktur():
                     '<th id="left">Dateiname</th>',
                     '<th id="left">Dateityp</th>',
                     '<th id="left"><small>Datum/Uhrzeit</small></th>',
-                    '<th id="right"><small>Grösse (bytes)</small></th>',
+                    '<th id="right"><small>Groesse (bytes)</small></th>',
                     '</tr>'
                 ])
                 # Dateiliste durchlaufen
@@ -605,6 +632,247 @@ class HtmlStruktur():
                     ])
                 # Tabellen Ende
                 self.tx_html = "".join([self.tx_html, "</table>"])
+
+
+class CsvStruktur():
+    ''' Aus einem Datei-Stuktur JSON eine CSV Tabelle erstellen '''
+
+    def __init__(self):
+        ''' Initieren '''
+        self.tx_objname = "CsvStruktur"
+        print("# {0}.__init__ #".format(self.tx_objname))
+        self.m_clear()
+
+    def __str__(self):
+        ''' Informationen als Text zurückgeben '''
+        print("# {0}.__str__ #".format(self.tx_objname))
+        dc_info = self.m_get_dc()
+        tx_info = json.dumps(dc_info, indent=2)
+        return(tx_info)
+
+    def m_clear(self):
+        ''' Zurücksetzen '''
+        print("# {0}.clear #".format(self.tx_objname))
+        dc_clear = {
+            "JSONPFAD": '',
+            "CSVPFAD": '',
+            "TITEL": '',
+            "TEXT": '',
+            "AUSGABELISTE": [],
+            "CSV": []
+        }
+        self.m_set_dc(dc_clear)
+
+    def m_get_dc(self):
+        ''' Verzeichnis in einem Wörterbuch zurückgeben '''
+        print("# {0}.m_get_dc #".format(self.tx_objname))
+        dc_daten = {
+            "JSONPFAD": self.tx_jsonpfad,
+            "CSVPFAD": self.tx_csvpfad,
+            "TITEL": self.tx_titel,
+            "TEXT": self.tx_text,
+            "AUSGABELISTE": self.ls_ausgabe,
+            "CSV": self.ls_csv
+        }
+        return(dc_daten)
+
+    def m_set_dc(self, dc_daten):
+        ''' Verzeichnis aus einem Wörterbuch hinzufügen '''
+        print("# {0}.m_set_dc #".format(self.tx_objname))
+        self.tx_jsonpfad = dc_daten["JSONPFAD"]
+        self.tx_csvpfad = dc_daten["CSVPFAD"]
+        self.tx_titel = dc_daten["TITEL"]
+        self.tx_text = dc_daten["TEXT"]
+        self.ls_ausgabe = dc_daten["AUSGABELISTE"]
+        self.ls_csv = dc_daten["CSV"]
+
+    def m_create(self):
+        ''' Anhand eines Datei-Struktur JSON ein CSV erstellen '''
+        print("# {0}.m_create #".format(self.tx_objname))
+        # Json laden
+        dc_json = f_loadjson(self.tx_jsonpfad)
+        # Ausgabestruktur erstellen
+        ob_ausgabe = StrukturAusgabe()
+        ob_ausgabe.dc_struktur = dc_json
+        ob_ausgabe.m_ausgabeliste()
+        # Ausgabeliste übernehmen
+        self.ls_ausgabe = ob_ausgabe.ls_ausgabe
+        # Anfang
+        self.m_titel()
+        # Zusammenfassung
+        self.m_struktur()
+        # Verzeichnisse
+        self.m_verzeichnisse()
+        # CSV schreiben
+        self.m_save()
+
+    def m_titel(self):
+        ''' CSV Datei-Struktur Titel '''
+        print("# {0}.m_anfang #".format(self.tx_objname))
+        # Spaltenüberschriften
+        self.ls_csv = [[
+            "Kategorie",
+            "Anzahl",
+            "Verzeichnisnamen",
+            "Dateiname",
+            "Dateityp",
+            "Datum/Uhrzeit",
+            "Groesse (bytes)"
+        ]]
+        # Titel und Text
+        self.ls_csv.extend([
+            [self.tx_titel, "", "", "", "", "", ""],
+            [self.tx_text, "", "", "", "", "", ""]
+        ])
+
+    def m_save(self):
+        ''' CSV Datei-Struktur speichern '''
+        print("# {0}.m_save #".format(self.tx_objname))
+        # CSV speichern
+        f_savecsv(self.tx_csvpfad, self.ls_csv)
+
+    def m_struktur(self):
+        ''' CSV Datei-Struktur Zusammenfassung '''
+        print("# {0}.m_struktur #".format(self.tx_objname))
+        # Zusammenfassung: Pfad, Datum, Anzahl Verzeichnisse,
+        # Anzahl Dateien, Anzahl Dateitypen
+        self.ls_csv.extend([
+            [
+                "Zusammenfassung",
+                "",
+                self.ls_ausgabe[0],
+                "",
+                "",
+                "",
+                ""
+            ],
+            [
+                "Datum / Uhrzeit",
+                "",
+                "",
+                "",
+                "",
+                self.ls_ausgabe[1],
+                ""
+            ],
+            [
+                "Anzahl Verzeichnisse",
+                self.ls_ausgabe[2],
+                "",
+                "",
+                "",
+                "",
+                ""
+            ],
+            [
+                "Anzahl Dateien",
+                self.ls_ausgabe[3],
+                "",
+                "",
+                "",
+                "",
+                ""
+            ],
+            [
+                "Anzahl Dateitypen",
+                self.ls_ausgabe[4],
+                "",
+                "",
+                "",
+                "",
+                ""
+            ],
+
+        ])
+
+    def m_verzeichnisse(self):
+        ''' CSV Datei-Struktur Verzeichnis '''
+        print("# {0}.m_verzeichnisse #".format(self.tx_objname))
+        # Verzeichnisliste durchlaufen
+        for ls_ver in self.ls_ausgabe[5]:
+            # Verzeichnis: Pfad, Anzahl Verzeichnisse
+            if ls_ver[0] == ".":
+                # Stammverzeichnis
+                tx_verpfad = "Hauptverzeichnis"
+            else:
+                # Ein Unterverzeichnis
+                tx_verpfad = ls_ver[0]
+            self.ls_csv.extend([
+                [
+                    "Verzeichnis",
+                    "",
+                    tx_verpfad,
+                    "",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "Anzahl Verzeichnisse",
+                    "",
+                    ls_ver[1],
+                    "",
+                    "",
+                    "",
+                    ""
+                ]
+            ])
+            # Prüfen ob Subverzeichnisse vorhanden sind
+            if ls_ver[2]:
+                index = 1
+                # Verzeichnisliste durchlaufen
+                for tx_verz in ls_ver[2]:
+                    self.ls_csv.extend([
+                        [
+                            "Verzeichnis #{0}".format(index),
+                            "",
+                            tx_verz,
+                            "",
+                            "",
+                            "",
+                            ""
+                        ]
+                    ])
+                    index += 1
+            # Anzahl Dateien, Anzahl Dateitypen
+            self.ls_csv.extend([
+                [
+                    "Anzahl Dateien",
+                    ls_ver[3],
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "Anzahl Dateitypen",
+                    ls_ver[4],
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                ]
+            ])
+            # Prüfen ob Dateien vorhanden sind
+            if ls_ver[5]:
+                index = 1
+                # Dateiliste durchlaufen
+                for ls_dat in ls_ver[5]:
+                    # Dateiname mit Informationen
+                    self.ls_csv.extend([
+                        [
+                            "Datei #{0}".format(index),
+                            "",
+                            "",
+                            ls_dat[0],
+                            ls_dat[1],
+                            ls_dat[2],
+                            ls_dat[3]
+                        ]
+                    ])
+                    index += 1
 
 
 class StrukturAusgabe():
@@ -663,7 +931,7 @@ class StrukturAusgabe():
                     [Verzeichnisnamen, ],
                     Anzahl Dateien,
                     Anzahl Dateitypen,
-                    [[Name, Typ, Datum, Grösse], ..],
+                    [[Name, Typ, Datum, Groesse], ..],
                 ],
                 ..
             ]
@@ -847,7 +1115,7 @@ if __name__ == '__main__':
         # Struktur erzeugen
         ob_ds = DateiStruktur()
         # Ziel Verzeichnis setzen (Ohne / am Ende)
-        ob_ds.tx_stammpfad = "/home/andreas/Dropbox/ICH/2_Projekte/dateiSTRUKTUR"
+        ob_ds.tx_stammpfad = "/home/andreas/Dropbox/ICH/2_Projekte"
         # Datei-Struktur lesen, ordnen und zusammenfassen
         ob_ds.m_lesen()
         ob_ds.m_ordnen()
@@ -867,6 +1135,7 @@ if __name__ == '__main__':
         ob_ausgabe.dc_struktur = dc_json
         ob_ausgabe.m_ausgabeliste()
         print(ob_ausgabe.ls_ausgabe)
+        # Als HTML speichern
         print("\nHTML")
         ob_html = HtmlStruktur()
         ob_html.tx_jsonpfad = "./dc_htmlcsv_test.json"
@@ -874,3 +1143,11 @@ if __name__ == '__main__':
         ob_html.tx_titel = "HTML-Struktur"
         ob_html.tx_text = "Funktionstest"
         ob_html.m_create()
+        # Als CSV speichern
+        print("\nCSV")
+        ob_csv = CsvStruktur()
+        ob_csv.tx_jsonpfad = "./dc_htmlcsv_test.json"
+        ob_csv.tx_csvpfad = "./test.csv"
+        ob_csv.tx_titel = "CSV-Struktur"
+        ob_csv.tx_text = "Funktionstest"
+        ob_csv.m_create()
