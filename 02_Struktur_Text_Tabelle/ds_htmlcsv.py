@@ -809,8 +809,8 @@ class CsvStruktur():
                 ],
                 [
                     "Anzahl Verzeichnisse",
-                    "",
                     ls_ver[1],
+                    "",
                     "",
                     "",
                     "",
@@ -1033,27 +1033,31 @@ class RunJson():
         print("# {0}.m_reset_befehle #".format(self.tx_objname))
         ''' Wörterbuch mit Befehlen zurücksetzen '''
         self.dc_befehle = {
-            "TESTMODUS": True,
+            "TESTMODUS": False,
             "BEFEHLE": [
                 (
                     "STRUKTUR ERFASSEN",
                     {
                         "ZIEL": ".",
-                        "JSON": "./reset.json"
+                        "JSON": "./struktur.json"
                     }
                 ),
                 (
                     "ZU HTML",
                     {
-                        "JSON": "./reset.json",
-                        "HTML": "./reset.html"
+                        "JSON": "./struktur.json",
+                        "HTML": "./struktur.html",
+                        "TITEL": "Struktur",
+                        "TEXT": "Beispiel"
                     }
                 ),
                 (
                     "ZU CSV",
                     {
-                        "JSON": "./reset.json",
-                        "HTML": "./reset.csv"
+                        "JSON": "./struktur.json",
+                        "CSV": "./struktur.csv",
+                        "TITEL": "Struktur",
+                        "TEXT": "Beispiel"
                     }
                 )
             ]
@@ -1097,9 +1101,21 @@ class RunJson():
                 # JSON speichern
                 f_savejson(dc_argumente["JSON"], dc_json)
             elif tx_befehl == "ZU HTML":
-                pass
+                # Als HTML speichern
+                ob_html = HtmlStruktur()
+                ob_html.tx_jsonpfad = dc_argumente["JSON"]
+                ob_html.tx_htmlpfad = dc_argumente["HTML"]
+                ob_html.tx_titel = dc_argumente["TITEL"]
+                ob_html.tx_text = dc_argumente["TEXT"]
+                ob_html.m_create()
             elif tx_befehl == "ZU CSV":
-                pass
+                # Als CSV Tabelle speichern
+                ob_csv = CsvStruktur()
+                ob_csv.tx_jsonpfad = dc_argumente["JSON"]
+                ob_csv.tx_csvpfad = dc_argumente["CSV"]
+                ob_csv.tx_titel = dc_argumente["TITEL"]
+                ob_csv.tx_text = dc_argumente["TEXT"]
+                ob_csv.m_create()
 
 
 if __name__ == '__main__':
