@@ -400,13 +400,13 @@ class RunJson():
         print("# {0}.m_reset_befehle #".format(self.tx_objname))
         ''' Wörterbuch mit Befehlen zurücksetzen '''
         self.dc_befehle = {
-            "TESTMODUS": True,
+            "TESTMODUS": False,
             "BEFEHLE": [
                 (
                     "STRUKTUR ERFASSEN",
                     {
                         "ZIEL": ".",
-                        "JSON": "./reset.json"
+                        "JSON": "./struktur.json"
                     }
                 )
             ]
@@ -481,7 +481,7 @@ if __name__ == '__main__':
         print(ob_verz)
         # Mit Werten und Objekten
         dc_test = {
-            "PFAD": './',
+            "PFAD": '.',
             "VERZEICHNISANZAHL": 1,
             "VERZEICHNISLISTE": ['muster'],
             "DATEIANZAHL": 1,
@@ -505,7 +505,7 @@ if __name__ == '__main__':
         dc_test = {
             "DATEILISTE": [],
             "VERZEICHNISLISTE": [],
-            "STAMMPFAD": '',
+            "STAMMPFAD": '.',
             "DATUM": ob_now.strftime('%d.%m.%Y %H:%M:%S'),
             "VERZEICHNISANZAHL": 2,
             "DATEIANZAHL": 2,
