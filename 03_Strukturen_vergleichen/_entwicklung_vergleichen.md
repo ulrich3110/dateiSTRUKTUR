@@ -6,7 +6,7 @@
 
 - Zusammenfassung vergleichen
 
-  - Anzahl Dateien
+  - Unterschiede Anzahl Dateien
 
     - Quelle als Zahl
 
@@ -14,7 +14,7 @@
 
     - Differenz Ziel zu Quelle als Zahl
 
-  - Anzahl Verzeichnisse
+  - Unterschiede Anzahl Verzeichnisse
 
     - Quelle als Zahl
 
@@ -22,7 +22,7 @@
 
     - Differenz Ziel zu Quelle als Zahl
 
-  - Anzahl Dateitypen
+  - Unterschiede Anzahl Dateitypen
 
     - Quelle als Zahl
 
@@ -32,7 +32,7 @@
 
 - Verzeichnisse vergleichen
 
-    - Anzahl Verzeichnisse
+    - Unterschiede Anzahl Verzeichnisse
 
       - Quelle als Zahl
 
@@ -40,16 +40,16 @@
 
       - Differenz Ziel zu Quelle als Zahl
 
-    - Verzeichnislisten
+    - Unterschied Verzeichnislisten
 
-      - Unterschiede Verzeichnisse als Verzeichnis
+      - Unterschiede Verzeichnisse als Wörterbuch
 
         ```
-        #                   Ziel  Quelle
-        {Verzeichnisnamen: (True, True)}
+                           Ziel  Quelle
+        {Verzeichnisname: (True, True)}
         ```
 
-    - Anzahl Dateien
+    - Unterschiede Anzahl Dateien
 
       - Quelle als Zahl
 
@@ -57,7 +57,7 @@
 
       - Differenz Ziel zu Quelle als Zahl
 
-    - Anzahl Dateitypen
+    - Unterschiede Anzahl Dateitypen
 
       - Quelle als Zahl
 
@@ -65,12 +65,12 @@
 
       - Differenz Ziel zu Quelle als Zahl
 
-    - Dateien
+    - Unterschied Dateien Ziel zu Quellen
 
-      - Unterschiede Dateien als Verzeichnis
+      - Unterschiede Dateien als Wörterbuch
 
         ```
-        {Dateityp: Dateinamen, Dateidatum, "neuer/älter", Dateigrösse, "grösser/kleiner"}
+        {Dateiname, Dateityp, Dateidatum, "neuer/älter", Dateigrösse, "grösser/kleiner"}
         ```
 
 - Alles zusammen als JSON speichern in einem lesbaren Format
