@@ -403,7 +403,7 @@ class RunJson():
             "TESTMODUS": False,
             "BEFEHLE": [
                 (
-                    "STRUKTUR ERFASSEN",
+                    "ERFASSEN",
                     {
                         "ZIEL": ".",
                         "JSON": "./struktur.json"
@@ -436,7 +436,7 @@ class RunJson():
             tx_befehl = tp_aktion[0]
             dc_argumente = tp_aktion[1]
             # Aktionen wählen
-            if tx_befehl == "STRUKTUR ERFASSEN":
+            if tx_befehl == "ERFASSEN":
                 # Struktur erzeugen
                 ob_ds = DateiStruktur()
                 # Ziel Verzeichnis setzen
