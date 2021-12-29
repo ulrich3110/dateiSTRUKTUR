@@ -25,23 +25,81 @@ DEUTSCHE ÜBERSETZUNG: <http://www.gnu.de/documents/gpl-3.0.de.html>
 '''
 
 
-def f_fehlertext(in_anz, tx_titel, tx_test, tx_wert, tx_resultat):
+def f_formattext(tx_l, tx_r):
+    '''
+    Formatiert eine Tabelle mit einem linken und einem rechten
+    Textteil. Gibt einen String zurück.
+    - tx_links = linker Text
+    - tx_rechts = rechter Text
+    '''
+    # Zeilenbreite linker Textteil
+    in_links = 12
+    # Linker Teil formatieren (1 Leerzeichen als Trennung)
+    if len(tx_l) > in_links - 1:
+        tx_l = tx_l[0:in_links - 1]
+    tx_l = tx_l.ljust(in_links)
+    tx_z = "{0}{1}".format(tx_l, tx_r)
+    return(tx_z)
+
+
+def f_fehlertext(in_anz, tx_test, tx_kontroll, tx_resultat):
     '''
     Gibt den Fehlertext aus, erhöht den Zähler und gibt den Zähler
     zurück
-    in_anz = Fehlerzähler
-    tx_titel = Titel
-    tx_test = Test Bezeichnung
-    tx_wert = Vorgabe Wert
-    tx_resultat = Testresultat
+    - in_anz = Fehlerzähler
+    - tx_test = Test Bezeichnung
+    - tx_wert = Vorgabe Wert
+    - tx_resultat = Testresultat
     '''
-    print(tx_titel, tx_test, "|", tx_wert, "!=", tx_resultat)
+    # Formatierung
+    tx_r = "{0}  |  {1} != {2}".format(
+        tx_test,
+        tx_kontroll,
+        tx_resultat
+    )
+    print(f_formattext("FEHLER", tx_r))
     in_anz += 1
     return(in_anz)
 
 
+def f_testfehlertext(in_anz, tx_test, tx_kontroll, tx_resultat):
+    '''
+    Gibt den Fehlertext zum testen des Scripts aus, erhöht den Zähler
+    und gibt den Zähler zurück
+    - in_anz = Fehlerzähler
+    - tx_test = Test Bezeichnung
+    - tx_wert = Vorgabe Wert
+    - tx_resultat = Testresultat
+    '''
+    # Formatierung
+    tx_r = "{0}  |  {1} != {2}".format(
+        tx_test,
+        tx_kontroll,
+        tx_resultat
+    )
+    print(f_formattext("TESTFEHLER", tx_r))
+    in_anz += 1
+    return(in_anz)
+
+
+def f_oktext(tx_test):
+    '''
+    Gibt den OK Text aus.
+    - tx_test = Test Bezeichnung
+    '''
+    print(f_formattext("OK", tx_test))
+
+
+def f_testtitel(tx_test):
+    '''  Gibt den Test-Titel aus '''
+    print()
+    print(f_formattext("TEST", tx_test))
+
+
 if __name__ == '__main__':
-    # Titel
+    '''
+    Beschreibung
+    '''
     print("DS_TEST_DATEISTRUKUR")
     print("-------------------")
     print("Objekt:     DateiStruktur")
@@ -56,64 +114,56 @@ if __name__ == '__main__':
     in_anzerr = 0
     # Modus, True = produktiver Test, False = diese Script prüfen
     bl_modus = True
-    print()
-    print("TEST        DateiStruktur Objekt erzeugen")
+    # Text Variabblen für Objekte, Wörterbücher und beide
+    tx_fuer_ob = "<Objekte>"
+    tx_fuer_dc = "<Wörterbücher>"
+    tx_fuer_beide = "<Obj. & Wörterb.>"
+    '''
+    OBJEKT erzeugen
+    '''
     # Objekt für Verzeichnisse als Wörterbücher
+    tx_test = "DateiStruktur Objekt {0} erzeugen".format(tx_fuer_dc)
+    f_testtitel(tx_test)
     ob_datstrkt_dc = DateiStruktur()
     # Objekt für Verzeichnisse als Objekte
+    tx_test = "DateiStruktur Objekt {0} erzeugen".format(tx_fuer_ob)
+    f_testtitel(tx_test)
     ob_datstrkt_ob = DateiStruktur()
-    print()
-    print("TEST        DateiStruktur.__str__()")
-    # Verzeichnis DateiInfo Wörterbücher
-    tx_r = ob_datstrkt_dc.__str__()
-    # Vergleich
-    tx_test = "DateiStruktur.__str__()"
-    if bl_modus:
-        # Produktiver Test Modus
-        if not tx_r:
-            in_anzerr = f_fehlertext(
-                in_anzerr,
-                "FEHLER      (Wörterbücher)",
-                tx_test,
-                tx_r,
-                ""
-            )
+    '''
+    __STR__ testen
+    '''
+    tx_test = "{0} DateiStruktur.__str__()".format(tx_fuer_beide)
+    f_testtitel(tx_test)
+    # Verzeichnis mit DateiInfo Wörterbücher und Objekten
+    for ob_t, tx_t in [
+        [ob_datstrkt_dc, tx_fuer_dc],
+        [ob_datstrkt_ob, tx_fuer_ob]
+    ]:
+        tx_r = ob_t.__str__()
+        # Vergleich
+        if bl_modus:
+            # Produktiver Test Modus
+            if not tx_r:
+                in_anzerr = f_fehlertext(
+                    in_anzerr,
+                    tx_t,
+                    "<text>",
+                    tx_r)
+            else:
+                f_oktext(tx_t)
         else:
-            print("OK          (Wörterbücher) DateiStruktur.__str__()")
-    else:
-        # Dieses Script testen
-        in_anzerr = f_fehlertext(
-            in_anzerr,
-            "TESTFEHLER  (Wörterbücher)",
-            tx_test,
-            tx_r,
-            ""
-        )
-    # Verzeichnis DateiInfo Objekte
-    tx_r = ob_datstrkt_ob.__str__()
-    if bl_modus:
-        # Produktiver Test Modus
-        if not tx_r:
-            in_anzerr = f_fehlertext(
+            # Dieses Script testen
+            in_anzerr = f_testfehlertext(
                 in_anzerr,
-                "FEHLER      (Objekte)",
-                tx_test,
-                tx_r,
-                ""
-            )
-        else:
-            print("OK          (Objekte) DateiStruktur.__str__()")
-    else:
-        # Dieses Script testen
-        in_anzerr = f_fehlertext(
-            in_anzerr,
-            "TESTFEHLER  (Objekte)",
-            tx_test,
-            tx_r,
-            ""
-        )
-    print()
-    print("TEST        DateiStruktur.m_set_dc(..)")
+                tx_t,
+                "<test>",
+                tx_r)
+    '''
+    SET WÖRTERBUCH testen
+    '''
+    tx_test = "{0} Verzeichnis.m_set_dc(<dict>, <bool>)".\
+        format(tx_fuer_beide)
+    f_testtitel(tx_test)
     # Wörterbücher für Test DateiInfo Objekte
     dc_testdat11 = {"NAME": "Datei_11", "TYP": ".tya",
                     "DATUM": "25.12.2021 15:34:00", "GROESSE": 16}
@@ -236,50 +286,49 @@ if __name__ == '__main__':
     # False = als Wörterbücher, True = als Objekte
     ob_datstrkt_dc.m_set_dc(dc_test_dc, False)
     ob_datstrkt_ob.m_set_dc(dc_test_ob, True)
-    print()
-    print("TEST        DateiStruktur.m_get_dc()")
+    '''
+    GET WÖRTERBUCH testen
+    '''
+    tx_test = "{0} Verzeichnis.m_get_dc()".format(tx_fuer_beide)
+    f_testtitel(tx_test)
     # Wörterbücher holen, mit DateiInfo als Wörterbücher und Objekte
     # False = als Wörterbücher, True = als Objekte
     dc_test_dc = ob_datstrkt_dc.m_get_dc(False)
     dc_test_ob = ob_datstrkt_ob.m_get_dc(True)
     # Beide Daten testen
     for ls_u in [
-        [dc_test_dc, "Wörterbücher"],
-        [dc_test_ob, "Objekte"]
+        [dc_test_dc, tx_fuer_dc],
+        [dc_test_ob, tx_fuer_ob]
     ]:
         dc_t, tx_t = ls_u
         # Mit Schlüssel und Soll Resualtat
         for ls_t in ls_testdaten:
             tx_k, vl_w = ls_t
-            tx_test = "Schlüssel = '{0}'".format(tx_k)
+            tx_test = "Schlüssel: '{0}'".format(tx_k)
             # Vergleich
             if bl_modus:
                 # Produktiver Testmodus
                 if dc_t[tx_k] != vl_w:
                     in_anzerr = f_fehlertext(
                         in_anzerr,
-                        "FEHLER      ({0})".format(tx_t),
-                        tx_test,
-                        str(dc_t[tx_k]),
-                        str(vl_w)
+                        "{0} {1}".format(tx_t, tx_test),
+                        str(vl_w),
+                        str(dc_t[tx_k])
                     )
                 else:
-                    print("OK          ({0}) {1}".format(
-                        tx_t, tx_test
-                    ))
+                    f_oktext("{0} {1}".format(tx_t, tx_test))
             else:
                 # Dieses Script testen
-                in_anzerr = f_fehlertext(
+                in_anzerr = f_testfehlertext(
                     in_anzerr,
-                    "FEHLER      ({0})".format(tx_t),
-                    tx_test,
-                    str(dc_t[tx_k]),
-                    str(vl_w)
+                    "{0} {1}".format(tx_t, tx_test),
+                    str(vl_w),
+                    str(dc_t[tx_k])
                 )
-    tx_test = "Schlüssel = 'VERZEICHNISSE'"
+    tx_test = "Schlüssel: 'VERZEICHNISSE'"
     for ls_t in [
-        [dc_test_dc["VERZEICHNISSE"], ls_test_dc, "Wörterbücher"],
-        [dc_test_ob["VERZEICHNISSE"], ls_test_ob, "Objekte"]
+        [dc_test_dc["VERZEICHNISSE"], ls_test_dc, tx_fuer_dc],
+        [dc_test_ob["VERZEICHNISSE"], ls_test_ob, tx_fuer_ob]
     ]:
         ls_u, ls_v, tx_t = ls_t
         # DateiInfo Listen Vergleich
@@ -288,27 +337,31 @@ if __name__ == '__main__':
             if ls_u != ls_v:
                 in_anzerr = f_fehlertext(
                     in_anzerr,
-                    "FEHLER      ({0})".format(tx_t),
-                    tx_test,
-                    str(ls_u),
-                    str(ls_v)
+                    "{0} {1}".format(tx_t, tx_test),
+                    str(ls_v),
+                    str(ls_u)
                 )
             else:
-                print("OK          ({0}) {1}".format(
-                    tx_t, tx_test
-                ))
+                f_oktext("{0} {1}".format(tx_t, tx_test))
         else:
             # Dieses Script testen
-            in_anzerr = f_fehlertext(
+            in_anzerr = f_testfehlertext(
                 in_anzerr,
-                "TESTFEHLER  ({0})".format(tx_t),
-                tx_test,
-                str(ls_u),
-                str(ls_v)
+                "{0} {1}".format(tx_t, tx_test),
+                str(ls_v),
+                str(ls_u)
             )
-    print()
-    print("TEST        DateiStruktur.m_clear()")
+    '''
+    CLEAR testen
+    '''
+    tx_test = "{0} DateiStruktur.m_clear()".format(tx_fuer_ob)
+    f_testtitel(tx_test)
     ob_datstrkt_ob.m_clear()
+    '''
+    Werte direkt eintragen
+    '''
+    tx_test = "{0} Werte direkt eintragen".format(tx_fuer_ob)
+    f_testtitel(tx_test)
     # Test DateiInfo Objekte
     ob_testdat01 = DateiInfo()
     ob_testdat11 = DateiInfo()
@@ -380,8 +433,6 @@ if __name__ == '__main__':
         ["DateiStruktur.in_anztyp", 5],
         ["DateiStruktur.ls_verz", ls_test_ob]
     ]
-    print()
-    print("TEST        Werte direkt eintragen")
     ob_datstrkt_ob.ls_dateien = ls_testdaten[0][1]
     ob_datstrkt_ob.ls_verzeich = ls_testdaten[1][1]
     ob_datstrkt_ob.tx_stammpfad = ls_testdaten[2][1]
@@ -390,8 +441,11 @@ if __name__ == '__main__':
     ob_datstrkt_ob.in_anzdat = ls_testdaten[5][1]
     ob_datstrkt_ob.in_anztyp = ls_testdaten[6][1]
     ob_datstrkt_ob.ls_verz = ls_testdaten[7][1]
-    print()
-    print("TEST        Werte direkt abfragen")
+    '''
+    Werte direkt abfragen
+    '''
+    tx_test = "{0} Werte direkt abfragen".format(tx_fuer_ob)
+    f_testtitel(tx_test)
     for ls_t in ls_testdaten:
         tx_t, vl_w = ls_t
         if tx_t.endswith(".ls_dateien"):
@@ -411,27 +465,148 @@ if __name__ == '__main__':
         elif tx_t.endswith(".ls_verz"):
             vl_r = ob_datstrkt_ob.ls_verz
         # Vergleich
-        tx_test = "Attribut = {0}".format(tx_t)
+        tx_test = "Attribut: {0}".format(tx_t)
         if bl_modus:
             # Produktiver Test Modus
             if vl_w != vl_r:
-                in_anzerr = f_fehlertext(
-                    in_anzerr,
-                    "FEHLER     ",
-                    tx_test,
-                    str(vl_w),
-                    str(vl_r)
-                )
+                in_anzerr = f_fehlertext(in_anzerr, tx_test, str(vl_w),
+                                         str(vl_r))
             else:
-                print("OK         ", tx_test)
+                f_oktext("{0} {1}".format(tx_t, tx_test))
         else:
             # Dieses Script testen
-            in_anzerr = f_fehlertext(
+            in_anzerr = f_testfehlertext(in_anzerr, tx_test, str(vl_w),
+                                         str(vl_r))
+    '''
+    LESEN testen
+    '''
+    tx_stamm = ".."
+    tx_test = "{0} DateiStruktur.m_lesen(), stamm={1}".format(
+        tx_fuer_beide,
+        tx_stamm
+    )
+    f_testtitel(tx_test)
+    # DateiStruktur mit Wörterbücher und Objekte testen
+    for ob_t, tx_t in [
+        [ob_datstrkt_dc, tx_fuer_dc],
+        [ob_datstrkt_ob, tx_fuer_ob]
+    ]:
+        # Stammpfad setzen
+        ob_t.tx_stammpfad = tx_stamm
+        # DateiStruktur lesen
+        ob_t.m_lesen()
+        # Werte testen: Resultat darf nicht leer sein
+        for vl_w, tx_ta in [
+            [ob_t.ls_dateien, "DateiStruktur.ls_dateien"],
+            [ob_t.ls_verzeich, "DateiStruktur.ls_verezeich"],
+            [ob_t.tx_datum, "DateiStruktur.tx_datum"]
+        ]:
+            # Vergleich
+            tx_test = "Attribut: {0}".format(tx_ta)
+            if bl_modus:
+                # Produktiver Test Modus
+                if not vl_w:
+                    in_anzerr = f_fehlertext(
+                        in_anzerr,
+                        "{0} {1}".format(tx_t, tx_test),
+                        " ".join([
+                            "<list> Dateien /",
+                            "Verzeichnissen oder",
+                            "<text> Datum"
+                        ]),
+                        str(vl_w)
+                    )
+                else:
+                    f_oktext("{0} {1}".format(tx_t, tx_test))
+            else:
+                # Dieses Script testen
+                in_anzerr = f_testfehlertext(
+                    in_anzerr,
+                    "{0} {1}".format(tx_t, tx_test),
+                    " ".join([
+                        "<list> Dateien /",
+                        "Verzeichnissen oder",
+                        "<text> Datum"
+                    ]),
+                    str(vl_w)
+                )
+    '''
+    ORDNEN testen
+    '''
+    tx_test = "{0} DateiStruktur.m_ordnen()".format(tx_fuer_beide)
+    f_testtitel(tx_test)
+    # DateiStruktur mit Wörterbücher und Objekte testen
+    for ob_t, tx_t in [
+        [ob_datstrkt_dc, tx_fuer_dc],
+        [ob_datstrkt_ob, tx_fuer_ob]
+    ]:
+        # DateiStruktur ordnen
+        ob_t.m_ordnen()
+        # Vergleich
+        if bl_modus:
+            # Produktiver Test Modus
+            if not ob_t.ls_verz:
+                in_anzerr = f_fehlertext(
+                    in_anzerr,
+                    "{0} Attribut: DateiStruktur.ls_verz".format(
+                        tx_t
+                    ),
+                    "<list> Verzeichnis Objekte",
+                    str(ob_t.ls_verz)
+                )
+            else:
+                f_oktext(
+                    "{0} Attribut: DateiStruktur.ls_verz".format(tx_t)
+                )
+        else:
+            # Dieses Script testen
+            in_anzerr = f_testfehlertext(
                 in_anzerr,
-                "TESTFEHLER ",
-                tx_test,
-                str(vl_w),
-                str(vl_r)
+                "{0} Attribut: DateiStruktur.ls_verz".format(tx_t),
+                "<list> Verzeichnis Objekte",
+                str(ob_t.ls_verz)
             )
+    '''
+    TOTAL testen
+    '''
+    tx_test = "{0} DateiStruktur.m_total()".format(tx_fuer_beide)
+    f_testtitel(tx_test)
+    # DateiStruktur mit Wörterbücher und Objekte testen
+    for ob_t, tx_t in [
+        [ob_datstrkt_dc, tx_fuer_dc],
+        [ob_datstrkt_ob, tx_fuer_ob]
+    ]:
+        # DateiStruktur ordnen
+        ob_t.m_total()
+        # Werte testen: Resultat darf nicht 0 sein
+        for vl_w, tx_ta in [
+            [ob_t.in_anzverz, "DateiStruktur.in_anzverz"],
+            [ob_t.in_anzdat, "DateiStruktur.in_anzdat"],
+            [ob_t.in_anztyp, "DateiStruktur.in_anztyp"]
+        ]:
+            # Vergleich
+            tx_test = "Attribut: {0}".format(tx_ta)
+            if bl_modus:
+                # Produktiver Test Modus
+                if vl_w <= 0:
+                    in_anzerr = f_fehlertext(
+                        in_anzerr,
+                        "{0} {1}".format(tx_t, tx_test),
+                        "> 0",
+                        str(vl_w)
+                    )
+                else:
+                    f_oktext("{0} {1}".format(tx_t, tx_test))
+            else:
+                # Dieses Script testen
+                in_anzerr = f_testfehlertext(
+                    in_anzerr,
+                    "{0} {1}".format(tx_t, tx_test),
+                    "> 0",
+                    str(vl_w)
+                )
+    '''
+    ZUSAMMENFASSUNG
+    '''
     print()
-    print("ANZAHL     ", in_anzerr)
+    print(f_formattext("ANZAHL", str(in_anzerr)))

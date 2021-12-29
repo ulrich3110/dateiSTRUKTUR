@@ -389,13 +389,6 @@ class RunJson():
         self.tx_objname = "RunJson"
         print("# {0}.__init__ #".format(self.tx_objname))
 
-    def __str__(self):
-        ''' Informationen als Text zurückgeben '''
-        print("# {0}.__str__ #".format(self.tx_objname))
-        dc_info = self.m_get_dc()
-        tx_info = json.dumps(dc_info, indent=2)
-        return(tx_info)
-
     def m_reset_befehle(self):
         print("# {0}.m_reset_befehle #".format(self.tx_objname))
         ''' Wörterbuch mit Befehlen zurücksetzen '''

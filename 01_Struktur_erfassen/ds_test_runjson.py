@@ -3,7 +3,7 @@
 from ds_erfassen import *
 
 '''
-ds_test_dateiinfo.py - [d]atei[s]strukturen <DateiInfo> Test
+ds_test_dateiinfo.py - [d]atei[s]strukturen <RunJson> Test
 Copyright (c) Dezember 2021: Andreas Ulrich
 <http://erasand.ch>, <andreas@erasand.ch>
 
@@ -100,12 +100,12 @@ if __name__ == '__main__':
     '''
     Beschreibung
     '''
-    print("DS_TEST_DATEIINFO")
-    print("-----------------")
-    print("Objekt:     DateiInfo")
-    print("Methoden:   __init__(), __str__(), m_clear(), m_get_dc(),")
-    print("            m_set_dc(<dict>)")
-    print("Attribute:  tx_name, tx_typ, tx_datum, in_groesse")
+    print("DS_TEST_RUNJSON")
+    print("---------------")
+    print("Objekt:     RunJson")
+    print("Methoden:   __init__(), m_reset_befehle(), m_load(),")
+    print("            m_run()")
+    print("Attribute:  dc_befehle")
     # Anzahl Fehler
     in_anzerr = 0
     # Modus, True = produktiver Test, False = diese Script prüfen
@@ -113,15 +113,15 @@ if __name__ == '__main__':
     '''
     OBJEKT erzeugen
     '''
-    tx_test = "DateiInfo Objekt erzeugen"
+    tx_test = "RunJson Objekt erzeugen"
     f_testtitel(tx_test)
-    ob_datinf = DateiInfo()
+    ob_run = RunJson()
     '''
     __STR__ testen
     '''
-    tx_test = "DateiInfo.__str__()"
+    tx_test = "RunJson.__str__()"
     f_testtitel(tx_test)
-    tx_r = ob_datinf.__str__()
+    tx_r = ob_run.__str__()
     # Vergleich
     if bl_modus:
         # Produktiver Test Modus
@@ -135,95 +135,57 @@ if __name__ == '__main__':
         in_anzerr = f_testfehlertext(in_anzerr, tx_test,
                                      "<test>", tx_r)
     '''
-    SET WÖRTERBUCH testen
+    RESET testen
     '''
-    tx_test = "DateiInfo.m_set_dc(<dict>)"
+    tx_test = "RunJson.m_reset_befehle()"
     f_testtitel(tx_test)
-    # Testliste definieren, [[Schlüssel, Wert]
-    ls_testdaten = [
-        ["NAME", "Test_Datei"],
-        ["TYP", ".txt"],
-        ["DATUM", "21.12.2021 23:11:00"],
-        ["GROESSE", 64]
-    ]
-    # Test Wörterbuch
-    dc_daten = {}
-    for ls_t in ls_testdaten:
-        dc_daten[ls_t[0]] = ls_t[1]
-    # Wörterbuch setzen
-    ob_datinf.m_set_dc(dc_daten)
-    '''
-    GET WÖRTERBUCH testen
-    '''
-    tx_test = "DateiInfo.m_get_dc()"
-    f_testtitel(tx_test)
-    dc_daten = ob_datinf.m_get_dc()
-    # Daten testen mit Schlüssel und Soll Resultat
-    for ls_t in ls_testdaten:
-        tx_k, vl_w = ls_t
-        tx_test = "Schlüssel: '{0}'".format(tx_k)
-        # Vergleich
-        if bl_modus:
-            # Produktiver Testmodus
-            if dc_daten[tx_k] != vl_w:
-                in_anzerr = f_fehlertext(in_anzerr, tx_test, str(vl_w),
-                                         str(dc_daten[tx_k]))
-            else:
-                f_oktext(tx_test)
+    ob_run.m_reset_befehle()
+    bl_r = ob_run.dc_befehle["TESTMODUS"]
+    ls_r = ob_run.dc_befehle["BEFEHLE"]
+    # Vergleich
+    if bl_modus:
+        # Produktiver Test Modus
+        if bl_r or not isinstance(ls_r, list):
+            # Kontrollwerte und Resulatwerte als Text
+            tx_k = "{0}, {1}".format(str(False), str(type([])))
+            tx_r = "{0}, {1}".format(str(bl_r), str(type(ls_r)))
+            in_anzerr = f_fehlertext(in_anzerr, tx_test, tx_k, tx_r)
         else:
-            # Dieses Script testen
-            in_anzerr = f_testfehlertext(in_anzerr, tx_test, str(vl_w),
-                                         str(dc_daten[tx_k]))
+            f_oktext(tx_test)
+    else:
+        # Dieses Script testen, Kontrollwerte und Resulatwerte als Text
+        tx_k = "{0}, {1}".format(str(False), str(type([])))
+        tx_r = "{0}, {1}".format(str(bl_r), str(type(ls_r)))
+        in_anzerr = f_testfehlertext(in_anzerr, tx_test, tx_k, tx_r)
     '''
-    CLEAR testen
+    LADEN testen
     '''
-    tx_test = "DateiInfo.m_clear()"
+    tx_test = "RunJson.m_load()"
     f_testtitel(tx_test)
-    ob_datinf.m_clear()
-    '''
-    Werte direkt eintragen
-    '''
-    tx_test = "Werte direkt eintragen"
-    f_testtitel(tx_test)
-    # Testliste definieren, [[Testbezeichnung, Wert]
-    ls_testdaten = [
-        ["DateiInfo.tx_name", "Test_2"],
-        ["DateiInfo.tx_typ", ".tx$"],
-        ["DateiInfo.tx_datum", "23.12.2021 13:28:00"],
-        ["DateiInfo.tx_groesse", 32]
-    ]
-    ob_datinf.tx_name = ls_testdaten[0][1]
-    ob_datinf.tx_typ = ls_testdaten[1][1]
-    ob_datinf.tx_datum = ls_testdaten[2][1]
-    ob_datinf.tx_groesse = ls_testdaten[3][1]
-    '''
-    Werte direkt abfragen
-    '''
-    tx_test = "Werte direkt abfragen"
-    f_testtitel(tx_test)
-    for ls_t in ls_testdaten:
-        tx_t, vl_w = ls_t
-        if tx_t.endswith(".tx_name"):
-            vl_r = ob_datinf.tx_name
-        elif tx_t.endswith(".tx_typ"):
-            vl_r = ob_datinf.tx_typ
-        elif tx_t.endswith(".tx_datum"):
-            vl_r = ob_datinf.tx_datum
-        elif tx_t.endswith(".tx_groesse"):
-            vl_r = ob_datinf.tx_groesse
-        # Vergleich
-        tx_test = "Attribut: {0}".format(tx_t)
-        if bl_modus:
-            # Produktiver Test Modus
-            if vl_w != vl_r:
-                in_anzerr = f_fehlertext(in_anzerr, tx_test, str(vl_w),
-                                         str(vl_r))
-            else:
-                f_oktext(tx_test)
+    ob_run.m_load()
+    bl_r = ob_run.dc_befehle["TESTMODUS"]
+    ls_r = ob_run.dc_befehle["BEFEHLE"]
+    # Vergleich
+    if bl_modus:
+        # Produktiver Test Modus
+        if bl_r or not isinstance(ls_r, list):
+            # Kontrollwerte und Resulatwerte als Text
+            tx_k = "{0}, {1}".format(str(False), str(type([])))
+            tx_r = "{0}, {1}".format(str(bl_r), str(type(ls_r)))
+            in_anzerr = f_fehlertext(in_anzerr, tx_test, tx_k, tx_r)
         else:
-            # Dieses Script testen
-            in_anzerr = f_testfehlertext(in_anzerr, tx_test, str(vl_w),
-                                         str(vl_r))
+            f_oktext(tx_test)
+    else:
+        # Dieses Script testen, Kontrollwerte und Resulatwerte als Text
+        tx_k = "{0}, {1}".format(str(False), str(type([])))
+        tx_r = "{0}, {1}".format(str(bl_r), str(type(ls_r)))
+        in_anzerr = f_testfehlertext(in_anzerr, tx_test, tx_k, tx_r)
+    '''
+    RUN testen
+    '''
+    tx_test = "RunJson.m_load()"
+    f_testtitel(tx_test)
+    ob_run.m_run()
     '''
     ZUSAMMENFASSUNG
     '''
