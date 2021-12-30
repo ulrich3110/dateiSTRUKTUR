@@ -3,7 +3,7 @@
 from ds_erfassen import *
 
 '''
-ds_test_dateiinfo.py - [d]atei[s]strukturen <RunJson> Test
+ds_test_runjson.py - [d]atei[s]strukturen <RunJson> Test
 Copyright (c) Dezember 2021: Andreas Ulrich
 <http://erasand.ch>, <andreas@erasand.ch>
 
