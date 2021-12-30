@@ -393,7 +393,6 @@ class RunJson():
         print("# {0}.m_reset_befehle #".format(self.tx_objname))
         ''' Wörterbuch mit Befehlen zurücksetzen '''
         self.dc_befehle = {
-            "TESTMODUS": False,
             "BEFEHLE": [
                 (
                     "ERFASSEN",
@@ -445,77 +444,7 @@ class RunJson():
 
 
 if __name__ == '__main__':
-    # RunJson Objekt und Befehle laden
+    # RunJson Objekt, Befehle laden und ausführen
     ob_rj = RunJson()
     ob_rj.m_load()
-    # Testmodus prüfen
-    if not ob_rj.dc_befehle["TESTMODUS"]:
-        ob_rj.m_run()
-    else:
-        # Test DateiInfo
-        print("\nDATEIINFO TEST")
-        # Leeres DateiInfo Objekt
-        ob_datinf = DateiInfo()
-        print(ob_datinf)
-        # Mit Werten
-        ob_now = datetime.datetime.today()
-        dc_test = {
-            "NAME": "Testdatei",
-            "TYP": "TXT",
-            "DATUM": ob_now.strftime('%d.%m.%Y %H:%M:%S'),
-            "GROESSE": 1234
-        }
-        ob_datinf.m_set_dc(dc_test)
-        print(ob_datinf)
-        # Test Verzeichnis
-        print("\nVERZEICHNIS TEST")
-        # Leeres Verzeichnis Objekt
-        ob_verz = Verzeichnis()
-        print(ob_verz)
-        # Mit Werten und Objekten
-        dc_test = {
-            "PFAD": '.',
-            "VERZEICHNISANZAHL": 1,
-            "VERZEICHNISLISTE": ['muster'],
-            "DATEIANZAHL": 1,
-            "TYPANZAHL": 1,
-            "DATEILISTE": [ob_datinf]
-        }
-        ob_verz.m_set_dc(dc_test, True)
-        print(ob_verz)
-        # Nur mit JSON Werten
-        dc_verz = ob_verz.m_get_dc(False)
-        ob_verz2 = Verzeichnis()
-        ob_verz2.m_set_dc(dc_verz, False)
-        print(ob_verz2)
-        # Test DateiStruktur
-        print("\nDATEISTRUKTUR TEST")
-        # Leeres DateiStruktur Objekt
-        ob_ds = DateiStruktur()
-        print(ob_ds)
-        # Mit Werten und Objekten
-        ob_now = datetime.datetime.today()
-        dc_test = {
-            "DATEILISTE": [],
-            "VERZEICHNISLISTE": [],
-            "STAMMPFAD": '.',
-            "DATUM": ob_now.strftime('%d.%m.%Y %H:%M:%S'),
-            "VERZEICHNISANZAHL": 2,
-            "DATEIANZAHL": 2,
-            "TYPANZAHL": 1,
-            "VERZEICHNISSE": [ob_verz, ob_verz2]
-        }
-        ob_ds.m_set_dc(dc_test, True)
-        print(ob_ds)
-        # Nur mit JSON Werten
-        dc_ds = ob_ds.m_get_dc(False)
-        ob_ds2 = DateiStruktur()
-        ob_ds2.m_set_dc(dc_ds, False)
-        print(ob_ds2)
-        # DateiStruktur lesen testen
-        ob_ds3 = DateiStruktur()
-        ob_ds3.tx_stammpfad = ".."
-        ob_ds3.m_lesen()
-        ob_ds3.m_ordnen()
-        ob_ds3.m_total()
-        print(ob_ds3)
+    ob_rj.m_run()

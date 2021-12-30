@@ -140,22 +140,21 @@ if __name__ == '__main__':
     tx_test = "RunJson.m_reset_befehle()"
     f_testtitel(tx_test)
     ob_run.m_reset_befehle()
-    bl_r = ob_run.dc_befehle["TESTMODUS"]
     ls_r = ob_run.dc_befehle["BEFEHLE"]
     # Vergleich
     if bl_modus:
         # Produktiver Test Modus
-        if bl_r or not isinstance(ls_r, list):
+        if not isinstance(ls_r, list):
             # Kontrollwerte und Resulatwerte als Text
-            tx_k = "{0}, {1}".format(str(False), str(type([])))
-            tx_r = "{0}, {1}".format(str(bl_r), str(type(ls_r)))
+            tx_k = str(type([]))
+            tx_r = str(type(ls_r))
             in_anzerr = f_fehlertext(in_anzerr, tx_test, tx_k, tx_r)
         else:
             f_oktext(tx_test)
     else:
         # Dieses Script testen, Kontrollwerte und Resulatwerte als Text
-        tx_k = "{0}, {1}".format(str(False), str(type([])))
-        tx_r = "{0}, {1}".format(str(bl_r), str(type(ls_r)))
+        tx_k = str(type([]))
+        tx_r = str(type(ls_r))
         in_anzerr = f_testfehlertext(in_anzerr, tx_test, tx_k, tx_r)
     '''
     LADEN testen
@@ -163,22 +162,21 @@ if __name__ == '__main__':
     tx_test = "RunJson.m_load()"
     f_testtitel(tx_test)
     ob_run.m_load()
-    bl_r = ob_run.dc_befehle["TESTMODUS"]
     ls_r = ob_run.dc_befehle["BEFEHLE"]
     # Vergleich
     if bl_modus:
         # Produktiver Test Modus
-        if bl_r or not isinstance(ls_r, list):
+        if not isinstance(ls_r, list):
             # Kontrollwerte und Resulatwerte als Text
-            tx_k = "{0}, {1}".format(str(False), str(type([])))
-            tx_r = "{0}, {1}".format(str(bl_r), str(type(ls_r)))
+            tx_k = str(type([]))
+            tx_r = str(type(ls_r))
             in_anzerr = f_fehlertext(in_anzerr, tx_test, tx_k, tx_r)
         else:
             f_oktext(tx_test)
     else:
         # Dieses Script testen, Kontrollwerte und Resulatwerte als Text
-        tx_k = "{0}, {1}".format(str(False), str(type([])))
-        tx_r = "{0}, {1}".format(str(bl_r), str(type(ls_r)))
+        tx_k = str(type([]))
+        tx_r = str(type(ls_r))
         in_anzerr = f_testfehlertext(in_anzerr, tx_test, tx_k, tx_r)
     '''
     RUN testen
