@@ -1033,17 +1033,16 @@ class RunJson():
         print("# {0}.m_reset_befehle #".format(self.tx_objname))
         ''' Wörterbuch mit Befehlen zurücksetzen '''
         self.dc_befehle = {
-            "TESTMODUS": False,
             "BEFEHLE": [
                 (
-                    "STRUKTUR ERFASSEN",
+                    "ERFASSEN",
                     {
                         "ZIEL": ".",
                         "JSON": "./struktur.json"
                     }
                 ),
                 (
-                    "ZU HTML",
+                    "HTML",
                     {
                         "JSON": "./struktur.json",
                         "HTML": "./struktur.html",
@@ -1052,7 +1051,7 @@ class RunJson():
                     }
                 ),
                 (
-                    "ZU CSV",
+                    "CSV",
                     {
                         "JSON": "./struktur.json",
                         "CSV": "./struktur.csv",
@@ -1087,7 +1086,7 @@ class RunJson():
             tx_befehl = tp_aktion[0]
             dc_argumente = tp_aktion[1]
             # Aktionen wählen
-            if tx_befehl == "STRUKTUR ERFASSEN":
+            if tx_befehl == "ERFASSEN":
                 # Struktur erzeugen
                 ob_ds = DateiStruktur()
                 # Ziel Verzeichnis setzen
@@ -1100,7 +1099,7 @@ class RunJson():
                 dc_json = ob_ds.m_get_dc(False)
                 # JSON speichern
                 f_savejson(dc_argumente["JSON"], dc_json)
-            elif tx_befehl == "ZU HTML":
+            elif tx_befehl == "HTML":
                 # Als HTML speichern
                 ob_html = HtmlStruktur()
                 ob_html.tx_jsonpfad = dc_argumente["JSON"]
@@ -1108,7 +1107,7 @@ class RunJson():
                 ob_html.tx_titel = dc_argumente["TITEL"]
                 ob_html.tx_text = dc_argumente["TEXT"]
                 ob_html.m_create()
-            elif tx_befehl == "ZU CSV":
+            elif tx_befehl == "CSV":
                 # Als CSV Tabelle speichern
                 ob_csv = CsvStruktur()
                 ob_csv.tx_jsonpfad = dc_argumente["JSON"]
@@ -1122,48 +1121,4 @@ if __name__ == '__main__':
     # RunJson Objekt und Befehle laden
     ob_rj = RunJson()
     ob_rj.m_load()
-    # Testmodus prüfen
-    if not ob_rj.dc_befehle["TESTMODUS"]:
-        ob_rj.m_run()
-    else:
-        # Datei-Struktur erstellen
-        print("\nDATEISTRUKTUR ERSTELLEN")
-        # Struktur erzeugen
-        ob_ds = DateiStruktur()
-        # Ziel Verzeichnis setzen (Ohne / am Ende)
-        ob_ds.tx_stammpfad = "/home/andreas/Dropbox/ICH/2_Projekte"
-        # Datei-Struktur lesen, ordnen und zusammenfassen
-        ob_ds.m_lesen()
-        ob_ds.m_ordnen()
-        ob_ds.m_total()
-        # Wörterbuch für JSON erzeugen
-        dc_json = ob_ds.m_get_dc(False)
-        # JSON speichern
-        f_savejson("./dc_htmlcsv_test.json", dc_json)
-        # Datei-Struktur laden
-        print("\nDATEISTRUKTUR LADEN")
-        # Json laden und ausgeben
-        dc_json = f_loadjson("./dc_htmlcsv_test.json")
-        print(dc_json)
-        # Ausgabestruktur erstellen
-        print("\nAUSGABESTRUKTUR")
-        ob_ausgabe = StrukturAusgabe()
-        ob_ausgabe.dc_struktur = dc_json
-        ob_ausgabe.m_ausgabeliste()
-        print(ob_ausgabe.ls_ausgabe)
-        # Als HTML speichern
-        print("\nHTML")
-        ob_html = HtmlStruktur()
-        ob_html.tx_jsonpfad = "./dc_htmlcsv_test.json"
-        ob_html.tx_htmlpfad = "./test.html"
-        ob_html.tx_titel = "HTML-Struktur"
-        ob_html.tx_text = "Funktionstest"
-        ob_html.m_create()
-        # Als CSV speichern
-        print("\nCSV")
-        ob_csv = CsvStruktur()
-        ob_csv.tx_jsonpfad = "./dc_htmlcsv_test.json"
-        ob_csv.tx_csvpfad = "./test.csv"
-        ob_csv.tx_titel = "CSV-Struktur"
-        ob_csv.tx_text = "Funktionstest"
-        ob_csv.m_create()
+    ob_rj.m_run()
