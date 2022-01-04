@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 from ds_erfassen import *
+from ds_test_funktionen import *
 
 '''
 ds_test_verzeichnis.py - [d]atei[s]strukturen <Verzeichnis> Test
@@ -25,75 +26,28 @@ DEUTSCHE ÜBERSETZUNG: <http://www.gnu.de/documents/gpl-3.0.de.html>
 '''
 
 
-def f_formattext(tx_l, tx_r):
+def f_attribute(ob_test, tx_attribut):
     '''
-    Formatiert eine Tabelle mit einem linken und einem rechten
-    Textteil. Gibt einen String zurück.
-    - tx_links = linker Text
-    - tx_rechts = rechter Text
+    Liefert von einem <HtmlStruktur> Objekt den Wert des Attributes
+    - ob_test = <HtmlStruktur> Objekt
+    - tx_attribut = Text mit dem Namen des Attribtes
+    Rückgabe des Attribut-Wertes
     '''
-    # Zeilenbreite linker Textteil
-    in_links = 12
-    # Linker Teil formatieren (1 Leerzeichen als Trennung)
-    if len(tx_l) > in_links - 1:
-        tx_l = tx_l[0:in_links - 1]
-    tx_l = tx_l.ljust(in_links)
-    tx_z = "{0}{1}".format(tx_l, tx_r)
-    return(tx_z)
-
-
-def f_fehlertext(in_anz, tx_test, tx_kontroll, tx_resultat):
-    '''
-    Gibt den Fehlertext aus, erhöht den Zähler und gibt den Zähler
-    zurück
-    - in_anz = Fehlerzähler
-    - tx_test = Test Bezeichnung
-    - tx_wert = Vorgabe Wert
-    - tx_resultat = Testresultat
-    '''
-    # Formatierung
-    tx_r = "{0}  |  {1} != {2}".format(
-        tx_test,
-        tx_kontroll,
-        tx_resultat
-    )
-    print(f_formattext("FEHLER", tx_r))
-    in_anz += 1
-    return(in_anz)
-
-
-def f_testfehlertext(in_anz, tx_test, tx_kontroll, tx_resultat):
-    '''
-    Gibt den Fehlertext zum testen des Scripts aus, erhöht den Zähler
-    und gibt den Zähler zurück
-    - in_anz = Fehlerzähler
-    - tx_test = Test Bezeichnung
-    - tx_wert = Vorgabe Wert
-    - tx_resultat = Testresultat
-    '''
-    # Formatierung
-    tx_r = "{0}  |  {1} != {2}".format(
-        tx_test,
-        tx_kontroll,
-        tx_resultat
-    )
-    print(f_formattext("TESTFEHLER", tx_r))
-    in_anz += 1
-    return(in_anz)
-
-
-def f_oktext(tx_test):
-    '''
-    Gibt den OK Text aus.
-    - tx_test = Test Bezeichnung
-    '''
-    print(f_formattext("OK", tx_test))
-
-
-def f_testtitel(tx_test):
-    '''  Gibt den Test-Titel aus '''
-    print()
-    print(f_formattext("TEST", tx_test))
+    # Mit Endswith Attribut suchen
+    if tx_attribut.endswith("tx_pfad"):
+        vl_test = ob_test.tx_pfad
+    elif tx_attribut.endswith("in_anzverz"):
+        vl_test = ob_test.in_anzverz
+    elif tx_attribut.endswith("ls_verz"):
+        vl_test = ob_test.ls_verz
+    elif tx_attribut.endswith("in_anzdat"):
+        vl_test = ob_test.in_anzdat
+    elif tx_attribut.endswith("in_anztyp"):
+        vl_test = ob_test.in_anztyp
+    elif tx_attribut.endswith("ls_dat"):
+        vl_test = ob_test.ls_dat
+    # Wert zurückgeben
+    return(vl_test)
 
 
 if __name__ == '__main__':
@@ -102,13 +56,12 @@ if __name__ == '__main__':
     '''
     print("DS_TEST_VERZEICHNIS")
     print("-------------------")
-    print("Objekt:     Verzeichnis")
-    print("Methoden:   __init__(), __str__(), m_clear(),")
-    print("            m_get_dc(<bool>),")
-    print("            m_set_dc(<dict>, <bool>)")
-    print("Attribute:  tx_pfad, in_anzverz, ls_verz, in_anzdat,")
-    print("            in_anztyp, ls_dat")
-    print("Bemerkung:  ls_dat = [<DateiInfo>, ]")
+    print("Objekt:        Verzeichnis")
+    print("Methoden:      __init__(), __str__(), m_clear(),")
+    print("               m_get_dc(<bool>), m_set_dc(<dict>, <bool>)")
+    print("Attribute:     tx_pfad, in_anzverz, ls_verz, in_anzdat,")
+    print("               in_anztyp, ls_dat")
+    print("Bemerkung:     ls_dat = [<DateiInfo>, ]")
     # Anzahl Fehler
     in_anzerr = 0
     # Modus, True = produktiver Test, False = diese Script prüfen
@@ -139,24 +92,13 @@ if __name__ == '__main__':
         [ob_verz_ob, tx_fuer_ob]
     ]:
         tx_r = ob_t.__str__()
+        # Vorgabe
+        tx_vorgabe = "VERZEICHNISANZAHL"
+        # Test
+        bl_test = tx_vorgabe in tx_r
         # Vergleich
-        if bl_modus:
-            # Produktiver Test Modus
-            if not tx_r:
-                in_anzerr = f_fehlertext(
-                    in_anzerr,
-                    tx_t,
-                    "<text>",
-                    tx_r)
-            else:
-                f_oktext(tx_t)
-        else:
-            # Dieses Script testen
-            in_anzerr = f_testfehlertext(
-                in_anzerr,
-                tx_t,
-                "<test>",
-                tx_r)
+        in_anzerr = f_vergleich(bl_modus, bl_test, in_anzerr, tx_test,
+                                tx_vorgabe, tx_r)
     '''
     SET WÖRTERBUCH testen
     '''
@@ -181,7 +123,7 @@ if __name__ == '__main__':
     ob_testdat3.m_set_dc(dc_testdat3)
     # Testliste mit DateiInfo als Objekte
     ls_test_ob = [ob_testdat1, ob_testdat2, ob_testdat3]
-    # Testliste definieren, [[Schlüssel, Wert]
+    # Testliste definieren, [[Schlüssel, Wert], ]
     ls_testdaten = [
         ["PFAD", "/test"],
         ["VERZEICHNISANZAHL", 4],
@@ -220,60 +162,54 @@ if __name__ == '__main__':
         dc_t, tx_t = ls_u
         # Mit Schlüssel und Soll Resualtat
         for ls_t in ls_testdaten:
+            # Schlüssel, Vorgabe, Bezeichnung
             tx_k, vl_w = ls_t
             tx_test = "Schlüssel: '{0}'".format(tx_k)
+            # Test
+            bl_test = vl_w == dc_t[tx_k]
             # Vergleich
-            if bl_modus:
-                # Produktiver Test Modus
-                if dc_t[tx_k] != vl_w:
-                    in_anzerr = f_fehlertext(
-                        in_anzerr,
-                        "{0} {1}".format(tx_t, tx_test),
-                        str(vl_w),
-                        str(dc_t[tx_k])
-                    )
-                else:
-                    f_oktext("{0} {1}".format(tx_t, tx_test))
-            else:
-                # Dieses Script testen
-                in_anzerr = f_testfehlertext(
-                    in_anzerr,
-                    "{0} {1}".format(tx_t, tx_test),
-                    str(vl_w),
-                    str(dc_t[tx_k])
-                )
+            in_anzerr = f_vergleich(bl_modus, bl_test, in_anzerr,
+                                    tx_test, str(vl_w),
+                                    str(dc_t[tx_k]))
     tx_test = "Schlüssel: 'DATEILISTE'"
     for ls_t in [
         [dc_test_dc["DATEILISTE"], ls_test_dc, tx_fuer_dc],
         [dc_test_ob["DATEILISTE"], ls_test_ob, tx_fuer_ob]
     ]:
+        # Resultat, Vorgabe, Bezeichnung
         ls_u, ls_v, tx_t = ls_t
-        # DateiInfo Listen Vergleich
-        if bl_modus:
-            # Produktiver Test Modus
-            if ls_u != ls_v:
-                in_anzerr = f_fehlertext(
-                    in_anzerr,
-                    "{0} {1}".format(tx_t, tx_test),
-                    str(ls_v),
-                    str(ls_u)
-                )
-            else:
-                f_oktext("{0} {1}".format(tx_t, tx_test))
-        else:
-            # Dieses Script testen
-            in_anzerr = f_testfehlertext(
-                in_anzerr,
-                "{0} {1}".format(tx_t, tx_test),
-                str(ls_v),
-                str(ls_u)
-            )
+        # Test
+        bl_test = ls_v == ls_u
+        # Vergleich
+        in_anzerr = f_vergleich(bl_modus, bl_test, in_anzerr, tx_test,
+                                str(ls_v), str(ls_u))
     '''
     CLEAR testen
     '''
     tx_test = "{0} Verzeichnis.m_clear()".format(tx_fuer_ob)
     f_testtitel(tx_test)
     ob_verz_ob.m_clear()
+    # Testliste definieren, [[Atribut, Wert], ]
+    ls_testdaten = [
+        ["Verzeichnis.tx_pfad", ""],
+        ["Verzeichnis.in_anzverz", 0],
+        ["Verzeichnis.ls_verz", []],
+        ["Verzeichnis.in_anzdat", 0],
+        ["Verzeichnis.in_anztyp", 0],
+        ["Verzeichnis.ls_dat", []]
+    ]
+    # Testliste durchlaufen
+    for ls_t in ls_testdaten:
+        # Attribut, Vorgabe, Bezeichnung
+        tx_t, vl_w = ls_t
+        tx_test = "Attribut: '{0}'".format(tx_t)
+        # Attribut abfragen
+        vl_r = f_attribute(ob_verz_ob, tx_t)
+        # Test
+        bl_test = vl_w == vl_r
+        # Vergleich
+        in_anzerr = f_vergleich(bl_modus, bl_test, in_anzerr, tx_test,
+                                str(vl_w), str(vl_r))
     '''
     Werte direkt eintragen
     '''
@@ -295,7 +231,7 @@ if __name__ == '__main__':
         "GROESSE": 2048
     })
     ob_testdat3 = DateiInfo()
-    # Testliste definieren, [[Testbezeichnung, Wert]
+    # Testliste definieren, [[Attribut, Wert], ]
     ls_testdaten = [
         ["Verzeichnis.tx_pfad", "/test"],
         ["Verzeichnis.in_anzverz", 5],
@@ -316,32 +252,16 @@ if __name__ == '__main__':
     tx_test = "{0} Werte direkt abfragen".format(tx_fuer_ob)
     f_testtitel(tx_test)
     for ls_t in ls_testdaten:
+        # Attribut, Vorgabe, Bezeichnung
         tx_t, vl_w = ls_t
-        if tx_t.endswith(".tx_pfad"):
-            vl_r = ob_verz_ob.tx_pfad
-        elif tx_t.endswith(".in_anzverz"):
-            vl_r = ob_verz_ob.in_anzverz
-        elif tx_t.endswith(".ls_verz"):
-            vl_r = ob_verz_ob.ls_verz
-        elif tx_t.endswith(".in_anzdat"):
-            vl_r = ob_verz_ob.in_anzdat
-        elif tx_t.endswith(".in_anztyp"):
-            vl_r = ob_verz_ob.in_anztyp
-        elif tx_t.endswith(".ls_dat"):
-            vl_r = ob_verz_ob.ls_dat
-        # Vergleich
         tx_test = "Attribut: {0}".format(tx_t)
-        if bl_modus:
-            # Produktiver Test Modus
-            if vl_w != vl_r:
-                in_anzerr = f_fehlertext(in_anzerr, tx_test, str(vl_w),
-                                         str(vl_r))
-            else:
-                f_oktext(tx_test)
-        else:
-            # Dieses Script testen
-            in_anzerr = f_testfehlertext(in_anzerr, tx_test, str(vl_w),
-                                         str(vl_r))
+        # Attribut abfragen
+        vl_r = f_attribute(ob_verz_ob, tx_t)
+        # Test
+        bl_test = vl_w == vl_r
+        # Vergleich
+        in_anzerr = f_vergleich(bl_modus, bl_test, in_anzerr, tx_test,
+                                str(vl_w), str(vl_r))
     '''
     ZUSAMMENFASSUNG
     '''

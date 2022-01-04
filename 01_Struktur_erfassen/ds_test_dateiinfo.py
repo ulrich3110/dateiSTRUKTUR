@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 from ds_erfassen import *
+from ds_test_funktionen import *
 
 '''
 ds_test_dateiinfo.py - [d]atei[s]strukturen <DateiInfo> Test
@@ -25,75 +26,24 @@ DEUTSCHE ÜBERSETZUNG: <http://www.gnu.de/documents/gpl-3.0.de.html>
 '''
 
 
-def f_formattext(tx_l, tx_r):
+def f_attribute(ob_test, tx_attribut):
     '''
-    Formatiert eine Tabelle mit einem linken und einem rechten
-    Textteil. Gibt einen String zurück.
-    - tx_links = linker Text
-    - tx_rechts = rechter Text
+    Liefert von einem <HtmlStruktur> Objekt den Wert des Attributes
+    - ob_test = <HtmlStruktur> Objekt
+    - tx_attribut = Text mit dem Namen des Attribtes
+    Rückgabe des Attribut-Wertes
     '''
-    # Zeilenbreite linker Textteil
-    in_links = 12
-    # Linker Teil formatieren (1 Leerzeichen als Trennung)
-    if len(tx_l) > in_links - 1:
-        tx_l = tx_l[0:in_links - 1]
-    tx_l = tx_l.ljust(in_links)
-    tx_z = "{0}{1}".format(tx_l, tx_r)
-    return(tx_z)
-
-
-def f_fehlertext(in_anz, tx_test, tx_kontroll, tx_resultat):
-    '''
-    Gibt den Fehlertext aus, erhöht den Zähler und gibt den Zähler
-    zurück
-    - in_anz = Fehlerzähler
-    - tx_test = Test Bezeichnung
-    - tx_wert = Vorgabe Wert
-    - tx_resultat = Testresultat
-    '''
-    # Formatierung
-    tx_r = "{0}  |  {1} != {2}".format(
-        tx_test,
-        tx_kontroll,
-        tx_resultat
-    )
-    print(f_formattext("FEHLER", tx_r))
-    in_anz += 1
-    return(in_anz)
-
-
-def f_testfehlertext(in_anz, tx_test, tx_kontroll, tx_resultat):
-    '''
-    Gibt den Fehlertext zum testen des Scripts aus, erhöht den Zähler
-    und gibt den Zähler zurück
-    - in_anz = Fehlerzähler
-    - tx_test = Test Bezeichnung
-    - tx_wert = Vorgabe Wert
-    - tx_resultat = Testresultat
-    '''
-    # Formatierung
-    tx_r = "{0}  |  {1} != {2}".format(
-        tx_test,
-        tx_kontroll,
-        tx_resultat
-    )
-    print(f_formattext("TESTFEHLER", tx_r))
-    in_anz += 1
-    return(in_anz)
-
-
-def f_oktext(tx_test):
-    '''
-    Gibt den OK Text aus.
-    - tx_test = Test Bezeichnung
-    '''
-    print(f_formattext("OK", tx_test))
-
-
-def f_testtitel(tx_test):
-    '''  Gibt den Test-Titel aus '''
-    print()
-    print(f_formattext("TEST", tx_test))
+    # Mit Endswith Attribut suchen
+    if tx_attribut.endswith("tx_name"):
+        vl_test = ob_test.tx_name
+    elif tx_attribut.endswith("tx_typ"):
+        vl_test = ob_test.tx_typ
+    elif tx_attribut.endswith("tx_datum"):
+        vl_test = ob_test.tx_datum
+    elif tx_attribut.endswith("in_groesse"):
+        vl_test = ob_test.in_groesse
+    # Wert zurückgeben
+    return(vl_test)
 
 
 if __name__ == '__main__':
@@ -102,10 +52,10 @@ if __name__ == '__main__':
     '''
     print("DS_TEST_DATEIINFO")
     print("-----------------")
-    print("Objekt:     DateiInfo")
-    print("Methoden:   __init__(), __str__(), m_clear(), m_get_dc(),")
-    print("            m_set_dc(<dict>)")
-    print("Attribute:  tx_name, tx_typ, tx_datum, in_groesse")
+    print("Objekt:        DateiInfo")
+    print("Methoden:      __init__(), __str__(), m_clear(),")
+    print("               m_get_dc(), m_set_dc(<dict>)")
+    print("Attribute:     tx_name, tx_typ, tx_datum, in_groesse")
     # Anzahl Fehler
     in_anzerr = 0
     # Modus, True = produktiver Test, False = diese Script prüfen
@@ -122,24 +72,19 @@ if __name__ == '__main__':
     tx_test = "DateiInfo.__str__()"
     f_testtitel(tx_test)
     tx_r = ob_datinf.__str__()
+    # Vorgabe
+    tx_vorgabe = "NAME"
+    # Test
+    bl_test = tx_vorgabe in tx_r
     # Vergleich
-    if bl_modus:
-        # Produktiver Test Modus
-        if not tx_r:
-            in_anzerr = f_fehlertext(in_anzerr, tx_test,
-                                     "<test>", tx_r)
-        else:
-            f_oktext(tx_test)
-    else:
-        # Dieses Script testen
-        in_anzerr = f_testfehlertext(in_anzerr, tx_test,
-                                     "<test>", tx_r)
+    in_anzerr = f_vergleich(bl_modus, bl_test, in_anzerr, tx_test,
+                            tx_vorgabe, tx_r)
     '''
     SET WÖRTERBUCH testen
     '''
     tx_test = "DateiInfo.m_set_dc(<dict>)"
     f_testtitel(tx_test)
-    # Testliste definieren, [[Schlüssel, Wert]
+    # Testliste definieren, [[Schlüssel, Wert], ]
     ls_testdaten = [
         ["NAME", "Test_Datei"],
         ["TYP", ".txt"],
@@ -160,70 +105,71 @@ if __name__ == '__main__':
     dc_daten = ob_datinf.m_get_dc()
     # Daten testen mit Schlüssel und Soll Resultat
     for ls_t in ls_testdaten:
+        # Schlüssel, Vorgabe, Bezeichnung
         tx_k, vl_w = ls_t
         tx_test = "Schlüssel: '{0}'".format(tx_k)
+        # Test
+        bl_test = vl_w == dc_daten[tx_k]
         # Vergleich
-        if bl_modus:
-            # Produktiver Testmodus
-            if dc_daten[tx_k] != vl_w:
-                in_anzerr = f_fehlertext(in_anzerr, tx_test, str(vl_w),
-                                         str(dc_daten[tx_k]))
-            else:
-                f_oktext(tx_test)
-        else:
-            # Dieses Script testen
-            in_anzerr = f_testfehlertext(in_anzerr, tx_test, str(vl_w),
-                                         str(dc_daten[tx_k]))
+        in_anzerr = f_vergleich(bl_modus, bl_test, in_anzerr, tx_test,
+                                str(vl_w), str(dc_daten[tx_k]))
     '''
     CLEAR testen
     '''
     tx_test = "DateiInfo.m_clear()"
     f_testtitel(tx_test)
     ob_datinf.m_clear()
+    # Testliste definieren, [[Atribut, Wert], ]
+    ls_testdaten = [
+        ["DateiInfo.tx_name", ""],
+        ["DateiInfo.tx_typ", ""],
+        ["DateiInfo.tx_datum", ""],
+        ["DateiInfo.in_groesse", 0]
+    ]
+    # Testliste durchlaufen
+    for ls_t in ls_testdaten:
+        # Attribut, Vorgabe, Bezeichnung
+        tx_t, vl_w = ls_t
+        tx_test = "Attribut: {0}".format(tx_t)
+        # Attribut abfragen
+        vl_r = f_attribute(ob_datinf, tx_t)
+        # Test
+        bl_test = vl_w == vl_r
+        # Vergleich
+        in_anzerr = f_vergleich(bl_modus, bl_test, in_anzerr, tx_test,
+                                str(vl_w), str(vl_r))
     '''
     Werte direkt eintragen
     '''
     tx_test = "Werte direkt eintragen"
     f_testtitel(tx_test)
-    # Testliste definieren, [[Testbezeichnung, Wert]
+    # Testliste definieren, [[Attribut, Wert], ]
     ls_testdaten = [
         ["DateiInfo.tx_name", "Test_2"],
         ["DateiInfo.tx_typ", ".tx$"],
         ["DateiInfo.tx_datum", "23.12.2021 13:28:00"],
-        ["DateiInfo.tx_groesse", 32]
+        ["DateiInfo.in_groesse", 32]
     ]
     ob_datinf.tx_name = ls_testdaten[0][1]
     ob_datinf.tx_typ = ls_testdaten[1][1]
     ob_datinf.tx_datum = ls_testdaten[2][1]
-    ob_datinf.tx_groesse = ls_testdaten[3][1]
+    ob_datinf.in_groesse = ls_testdaten[3][1]
     '''
     Werte direkt abfragen
     '''
     tx_test = "Werte direkt abfragen"
     f_testtitel(tx_test)
     for ls_t in ls_testdaten:
+        # Attribut, Vorgabe, Bezeichnung
         tx_t, vl_w = ls_t
-        if tx_t.endswith(".tx_name"):
-            vl_r = ob_datinf.tx_name
-        elif tx_t.endswith(".tx_typ"):
-            vl_r = ob_datinf.tx_typ
-        elif tx_t.endswith(".tx_datum"):
-            vl_r = ob_datinf.tx_datum
-        elif tx_t.endswith(".tx_groesse"):
-            vl_r = ob_datinf.tx_groesse
-        # Vergleich
         tx_test = "Attribut: {0}".format(tx_t)
-        if bl_modus:
-            # Produktiver Test Modus
-            if vl_w != vl_r:
-                in_anzerr = f_fehlertext(in_anzerr, tx_test, str(vl_w),
-                                         str(vl_r))
-            else:
-                f_oktext(tx_test)
-        else:
-            # Dieses Script testen
-            in_anzerr = f_testfehlertext(in_anzerr, tx_test, str(vl_w),
-                                         str(vl_r))
+        # Attribut abfragen
+        vl_r = f_attribute(ob_datinf, tx_t)
+        # Test
+        bl_test = vl_w == vl_r
+        # Vergleich
+        in_anzerr = f_vergleich(bl_modus, bl_test, in_anzerr, tx_test,
+                                str(vl_w), str(vl_r))
     '''
     ZUSAMMENFASSUNG
     '''

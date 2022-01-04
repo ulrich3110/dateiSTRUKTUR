@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 from ds_erfassen import *
+from ds_test_funktionen import *
 
 '''
 ds_test_runjson.py - [d]atei[s]strukturen <RunJson> Test
@@ -25,87 +26,16 @@ DEUTSCHE ÜBERSETZUNG: <http://www.gnu.de/documents/gpl-3.0.de.html>
 '''
 
 
-def f_formattext(tx_l, tx_r):
-    '''
-    Formatiert eine Tabelle mit einem linken und einem rechten
-    Textteil. Gibt einen String zurück.
-    - tx_links = linker Text
-    - tx_rechts = rechter Text
-    '''
-    # Zeilenbreite linker Textteil
-    in_links = 12
-    # Linker Teil formatieren (1 Leerzeichen als Trennung)
-    if len(tx_l) > in_links - 1:
-        tx_l = tx_l[0:in_links - 1]
-    tx_l = tx_l.ljust(in_links)
-    tx_z = "{0}{1}".format(tx_l, tx_r)
-    return(tx_z)
-
-
-def f_fehlertext(in_anz, tx_test, tx_kontroll, tx_resultat):
-    '''
-    Gibt den Fehlertext aus, erhöht den Zähler und gibt den Zähler
-    zurück
-    - in_anz = Fehlerzähler
-    - tx_test = Test Bezeichnung
-    - tx_wert = Vorgabe Wert
-    - tx_resultat = Testresultat
-    '''
-    # Formatierung
-    tx_r = "{0}  |  {1} != {2}".format(
-        tx_test,
-        tx_kontroll,
-        tx_resultat
-    )
-    print(f_formattext("FEHLER", tx_r))
-    in_anz += 1
-    return(in_anz)
-
-
-def f_testfehlertext(in_anz, tx_test, tx_kontroll, tx_resultat):
-    '''
-    Gibt den Fehlertext zum testen des Scripts aus, erhöht den Zähler
-    und gibt den Zähler zurück
-    - in_anz = Fehlerzähler
-    - tx_test = Test Bezeichnung
-    - tx_wert = Vorgabe Wert
-    - tx_resultat = Testresultat
-    '''
-    # Formatierung
-    tx_r = "{0}  |  {1} != {2}".format(
-        tx_test,
-        tx_kontroll,
-        tx_resultat
-    )
-    print(f_formattext("TESTFEHLER", tx_r))
-    in_anz += 1
-    return(in_anz)
-
-
-def f_oktext(tx_test):
-    '''
-    Gibt den OK Text aus.
-    - tx_test = Test Bezeichnung
-    '''
-    print(f_formattext("OK", tx_test))
-
-
-def f_testtitel(tx_test):
-    '''  Gibt den Test-Titel aus '''
-    print()
-    print(f_formattext("TEST", tx_test))
-
-
 if __name__ == '__main__':
     '''
     Beschreibung
     '''
     print("DS_TEST_RUNJSON")
     print("---------------")
-    print("Objekt:     RunJson")
-    print("Methoden:   __init__(), m_reset_befehle(), m_load(),")
-    print("            m_run()")
-    print("Attribute:  dc_befehle")
+    print("Objekt:        RunJson")
+    print("Methoden:      __init__(), m_reset_befehle(), m_load(),")
+    print("               m_run()")
+    print("Attribute:     dc_befehle")
     # Anzahl Fehler
     in_anzerr = 0
     # Modus, True = produktiver Test, False = diese Script prüfen
@@ -122,68 +52,60 @@ if __name__ == '__main__':
     tx_test = "RunJson.__str__()"
     f_testtitel(tx_test)
     tx_r = ob_run.__str__()
-    # Vergleich
-    if bl_modus:
-        # Produktiver Test Modus
-        if not tx_r:
-            in_anzerr = f_fehlertext(in_anzerr, tx_test,
-                                     "<test>", tx_r)
-        else:
-            f_oktext(tx_test)
+    # Test
+    if tx_r:
+        bl_test = True
     else:
-        # Dieses Script testen
-        in_anzerr = f_testfehlertext(in_anzerr, tx_test,
-                                     "<test>", tx_r)
+        bl_test = False
+    # Vergleich
+    in_anzerr = f_vergleich(bl_modus, bl_test, in_anzerr, tx_test,
+                            "'..'", tx_r)
     '''
     RESET testen
     '''
     tx_test = "RunJson.m_reset_befehle()"
     f_testtitel(tx_test)
     ob_run.m_reset_befehle()
+    # Vorgabe
+    tx_vorgabe = str(type([]))
+    # Resultat
     ls_r = ob_run.dc_befehle["BEFEHLE"]
+    tx_r = str(type(ls_r))
+    # Test
+    bl_test = tx_vorgabe == tx_r
     # Vergleich
-    if bl_modus:
-        # Produktiver Test Modus
-        if not isinstance(ls_r, list):
-            # Kontrollwerte und Resulatwerte als Text
-            tx_k = str(type([]))
-            tx_r = str(type(ls_r))
-            in_anzerr = f_fehlertext(in_anzerr, tx_test, tx_k, tx_r)
-        else:
-            f_oktext(tx_test)
-    else:
-        # Dieses Script testen, Kontrollwerte und Resulatwerte als Text
-        tx_k = str(type([]))
-        tx_r = str(type(ls_r))
-        in_anzerr = f_testfehlertext(in_anzerr, tx_test, tx_k, tx_r)
+    in_anzerr = f_vergleich(bl_modus, bl_test, in_anzerr, tx_test,
+                            tx_vorgabe, tx_r)
     '''
     LADEN testen
     '''
     tx_test = "RunJson.m_load()"
     f_testtitel(tx_test)
     ob_run.m_load()
+    # Vorgabe
+    tx_vorgabe = str(type([]))
+    # Resultat
     ls_r = ob_run.dc_befehle["BEFEHLE"]
+    tx_r = str(type(ls_r))
+    # Test
+    bl_test = tx_vorgabe == tx_r
     # Vergleich
-    if bl_modus:
-        # Produktiver Test Modus
-        if not isinstance(ls_r, list):
-            # Kontrollwerte und Resulatwerte als Text
-            tx_k = str(type([]))
-            tx_r = str(type(ls_r))
-            in_anzerr = f_fehlertext(in_anzerr, tx_test, tx_k, tx_r)
-        else:
-            f_oktext(tx_test)
-    else:
-        # Dieses Script testen, Kontrollwerte und Resulatwerte als Text
-        tx_k = str(type([]))
-        tx_r = str(type(ls_r))
-        in_anzerr = f_testfehlertext(in_anzerr, tx_test, tx_k, tx_r)
+    in_anzerr = f_vergleich(bl_modus, bl_test, in_anzerr, tx_test,
+                            tx_vorgabe, tx_r)
     '''
     RUN testen
     '''
     tx_test = "RunJson.m_load()"
     f_testtitel(tx_test)
-    ob_run.m_run()
+    # Vorgabe
+    vl_w = None
+    # Resultat
+    vl_r = ob_run.m_run()
+    # Test
+    bl_test = vl_w == vl_r
+    # Vergleich
+    in_anzerr = f_vergleich(bl_modus, bl_test, in_anzerr, tx_test,
+                            str(vl_w), str(vl_r))
     '''
     ZUSAMMENFASSUNG
     '''
