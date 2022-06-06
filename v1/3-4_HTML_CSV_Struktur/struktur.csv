@@ -1,0 +1,37 @@
+Kategorie,Anzahl,Verzeichnisnamen,Dateiname,Dateityp,Datum/Uhrzeit,Groesse (bytes)
+Beispiel,,,,,,
+Struktur,,,,,,
+Zusammenfassung,,.,,,,
+Datum / Uhrzeit,,,,,23.02.2022 19:22:19,
+Anzahl Verzeichnisse,2,,,,,
+Anzahl Dateien,20,,,,,
+Anzahl Dateitypen,6,,,,,
+Verzeichnis,,Hauptverzeichnis,,,,
+Anzahl Verzeichnisse,1,,,,,
+Verzeichnis #1,,__pycache__,,,,
+Anzahl Dateien,17,,,,,
+Anzahl Dateitypen,5,,,,,
+Datei #1,,,_darstellung_dateistruktur,.md,20.11.2021 19:26:00,2025
+Datei #2,,,_entwicklung_text_tabelle,.md,08.11.2021 21:07:53,158
+Datei #3,,,ds_htmlcsv,.json,30.12.2021 23:14:21,458
+Datei #4,,,ds_htmlcsv,.py,04.01.2022 18:13:01,37231
+Datei #5,,,strkt2,.csv,04.01.2022 18:29:11,122
+Datei #6,,,strkt2,.html,04.01.2022 18:28:55,256
+Datei #7,,,struktur,.csv,04.01.2022 18:29:15,1645
+Datei #8,,,struktur,.html,04.01.2022 18:29:15,4113
+Datei #9,,,struktur,.json,04.01.2022 18:29:15,4073
+Datei #10,,,test_csvstruktur,.py,03.01.2022 12:48:00,11207
+Datei #11,,,test_dateiinfo,.py,02.01.2022 22:00:21,5465
+Datei #12,,,test_dateistruktur,.py,02.01.2022 22:05:41,19398
+Datei #13,,,test_funktionen,.py,02.01.2022 21:50:28,3719
+Datei #14,,,test_htmlstruktur,.py,03.01.2022 12:47:14,11248
+Datei #15,,,test_runjson,.py,23.02.2022 19:22:19,3087
+Datei #16,,,test_strukturausgabe,.py,23.02.2022 19:22:11,13579
+Datei #17,,,test_verzeichnis,.py,23.02.2022 19:22:04,9431
+Verzeichnis,,__pycache__,,,,
+Anzahl Verzeichnisse,0,,,,,
+Anzahl Dateien,3,,,,,
+Anzahl Dateitypen,1,,,,,
+Datei #1,,,ds_htmlcsv.cpython-38,.pyc,04.01.2022 18:13:37,22731
+Datei #2,,,ds_test_funktionen.cpython-38,.pyc,02.01.2022 21:55:39,3332
+Datei #3,,,test_funktionen.cpython-38,.pyc,23.02.2022 19:22:04,3329

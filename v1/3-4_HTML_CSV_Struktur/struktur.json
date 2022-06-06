@@ -1,0 +1,174 @@
+{
+  "DATEIANZAHL": 20,
+  "DATEILISTE": [
+    "./__pycache__/test_funktionen.cpython-38.pyc",
+    "./__pycache__/ds_htmlcsv.cpython-38.pyc",
+    "./__pycache__/ds_test_funktionen.cpython-38.pyc",
+    "./test_htmlstruktur.py",
+    "./struktur.json",
+    "./test_verzeichnis.py",
+    "./test_dateistruktur.py",
+    "./test_strukturausgabe.py",
+    "./test_funktionen.py",
+    "./struktur.html",
+    "./strkt2.html",
+    "./_darstellung_dateistruktur.md",
+    "./ds_htmlcsv.py",
+    "./strkt2.csv",
+    "./test_runjson.py",
+    "./test_dateiinfo.py",
+    "./ds_htmlcsv.json",
+    "./test_csvstruktur.py",
+    "./struktur.csv",
+    "./_entwicklung_text_tabelle.md"
+  ],
+  "DATUM": "23.02.2022 19:22:19",
+  "STAMMPFAD": ".",
+  "TYPANZAHL": 6,
+  "VERZEICHNISANZAHL": 2,
+  "VERZEICHNISLISTE": [
+    "./__pycache__"
+  ],
+  "VERZEICHNISSE": [
+    {
+      "DATEIANZAHL": 17,
+      "DATEILISTE": [
+        {
+          "DATUM": "03.01.2022 12:47:14",
+          "GROESSE": 11248,
+          "NAME": "test_htmlstruktur",
+          "TYP": ".py"
+        },
+        {
+          "DATUM": "04.01.2022 18:29:15",
+          "GROESSE": 4073,
+          "NAME": "struktur",
+          "TYP": ".json"
+        },
+        {
+          "DATUM": "23.02.2022 19:22:04",
+          "GROESSE": 9431,
+          "NAME": "test_verzeichnis",
+          "TYP": ".py"
+        },
+        {
+          "DATUM": "02.01.2022 22:05:41",
+          "GROESSE": 19398,
+          "NAME": "test_dateistruktur",
+          "TYP": ".py"
+        },
+        {
+          "DATUM": "23.02.2022 19:22:11",
+          "GROESSE": 13579,
+          "NAME": "test_strukturausgabe",
+          "TYP": ".py"
+        },
+        {
+          "DATUM": "02.01.2022 21:50:28",
+          "GROESSE": 3719,
+          "NAME": "test_funktionen",
+          "TYP": ".py"
+        },
+        {
+          "DATUM": "04.01.2022 18:29:15",
+          "GROESSE": 4113,
+          "NAME": "struktur",
+          "TYP": ".html"
+        },
+        {
+          "DATUM": "04.01.2022 18:28:55",
+          "GROESSE": 256,
+          "NAME": "strkt2",
+          "TYP": ".html"
+        },
+        {
+          "DATUM": "20.11.2021 19:26:00",
+          "GROESSE": 2025,
+          "NAME": "_darstellung_dateistruktur",
+          "TYP": ".md"
+        },
+        {
+          "DATUM": "04.01.2022 18:13:01",
+          "GROESSE": 37231,
+          "NAME": "ds_htmlcsv",
+          "TYP": ".py"
+        },
+        {
+          "DATUM": "04.01.2022 18:29:11",
+          "GROESSE": 122,
+          "NAME": "strkt2",
+          "TYP": ".csv"
+        },
+        {
+          "DATUM": "23.02.2022 19:22:19",
+          "GROESSE": 3087,
+          "NAME": "test_runjson",
+          "TYP": ".py"
+        },
+        {
+          "DATUM": "02.01.2022 22:00:21",
+          "GROESSE": 5465,
+          "NAME": "test_dateiinfo",
+          "TYP": ".py"
+        },
+        {
+          "DATUM": "30.12.2021 23:14:21",
+          "GROESSE": 458,
+          "NAME": "ds_htmlcsv",
+          "TYP": ".json"
+        },
+        {
+          "DATUM": "03.01.2022 12:48:00",
+          "GROESSE": 11207,
+          "NAME": "test_csvstruktur",
+          "TYP": ".py"
+        },
+        {
+          "DATUM": "04.01.2022 18:29:15",
+          "GROESSE": 1645,
+          "NAME": "struktur",
+          "TYP": ".csv"
+        },
+        {
+          "DATUM": "08.11.2021 21:07:53",
+          "GROESSE": 158,
+          "NAME": "_entwicklung_text_tabelle",
+          "TYP": ".md"
+        }
+      ],
+      "PFAD": ".",
+      "TYPANZAHL": 5,
+      "VERZEICHNISANZAHL": 1,
+      "VERZEICHNISLISTE": [
+        "__pycache__"
+      ]
+    },
+    {
+      "DATEIANZAHL": 3,
+      "DATEILISTE": [
+        {
+          "DATUM": "23.02.2022 19:22:04",
+          "GROESSE": 3329,
+          "NAME": "test_funktionen.cpython-38",
+          "TYP": ".pyc"
+        },
+        {
+          "DATUM": "04.01.2022 18:13:37",
+          "GROESSE": 22731,
+          "NAME": "ds_htmlcsv.cpython-38",
+          "TYP": ".pyc"
+        },
+        {
+          "DATUM": "02.01.2022 21:55:39",
+          "GROESSE": 3332,
+          "NAME": "ds_test_funktionen.cpython-38",
+          "TYP": ".pyc"
+        }
+      ],
+      "PFAD": "./__pycache__",
+      "TYPANZAHL": 1,
+      "VERZEICHNISANZAHL": 0,
+      "VERZEICHNISLISTE": []
+    }
+  ]
+}

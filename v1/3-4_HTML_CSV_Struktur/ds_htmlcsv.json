@@ -1,0 +1,29 @@
+{
+  "BEFEHLE": [
+    [
+      "ERFASSEN",
+      {
+        "JSON": "./struktur.json",
+        "ZIEL": "."
+      }
+    ],
+    [
+      "HTML",
+      {
+        "HTML": "./struktur.html",
+        "JSON": "./struktur.json",
+        "TEXT": "Beispiel",
+        "TITEL": "Struktur"
+      }
+    ],
+    [
+      "CSV",
+      {
+        "CSV": "./struktur.csv",
+        "JSON": "./struktur.json",
+        "TEXT": "Beispiel",
+        "TITEL": "Struktur"
+      }
+    ]
+  ]
+}
