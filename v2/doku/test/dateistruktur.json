@@ -1,0 +1,66 @@
+{
+  "DASTJSON": "DATEISTRUKTUR",
+  "DATEIINFO": {
+    "pfad1/Datei_11.txa": [
+      "27.05.2022 15:01:13",
+      10
+    ],
+    "pfad1/Datei_12.txb": [
+      "27.05.2022 15:00:36",
+      13
+    ],
+    "pfad1/Datei_13.txc": [
+      "27.05.2022 15:00:59",
+      15
+    ],
+    "pfad2/Datei_21.txa": [
+      "27.05.2022 15:02:01",
+      20
+    ],
+    "pfad2/Datei_22.txb": [
+      "27.05.2022 15:02:11",
+      21
+    ],
+    "pfad3/Datei_31.txa": [
+      "27.05.2022 15:07:12",
+      24
+    ],
+    "pfad3/Datei_32.txb": [
+      "27.05.2022 15:04:04",
+      22
+    ],
+    "pfad3/Datei_33.txc": [
+      "27.05.2022 15:04:16",
+      23
+    ],
+    "pfad3/Datei_34.txa": [
+      "27.05.2022 15:07:53",
+      26
+    ]
+  },
+  "DATEILISTE": [
+    "./dastaldo/daster/quelle/pfad1/Datei_11.txa",
+    "./dastaldo/daster/quelle/pfad1/Datei_12.txb",
+    "./dastaldo/daster/quelle/pfad1/Datei_13.txc",
+    "./dastaldo/daster/quelle/pfad2/Datei_21.txa",
+    "./dastaldo/daster/quelle/pfad2/Datei_22.txb",
+    "./dastaldo/daster/quelle/pfad3/Datei_31.txa",
+    "./dastaldo/daster/quelle/pfad3/Datei_32.txb",
+    "./dastaldo/daster/quelle/pfad3/Datei_33.txc",
+    "./dastaldo/daster/quelle/pfad3/Datei_34.txa"
+  ],
+  "DATUM": "01.06.2022 21:37:05",
+  "JSONPFAD": "./dastaldo/daster/quell_st.json",
+  "STAMMPFAD": "./dastaldo/daster/quelle",
+  "TYPENLISTE": [
+    ".txa",
+    ".txb",
+    ".txc"
+  ],
+  "VERZEICHNISLISTE": [
+    "./dastaldo/daster/quelle/pfad1",
+    "./dastaldo/daster/quelle/pfad2",
+    "./dastaldo/daster/quelle/pfad3",
+    "./dastaldo/daster/quelle"
+  ]
+}

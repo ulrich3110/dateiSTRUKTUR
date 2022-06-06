@@ -1,0 +1,98 @@
+{
+  "DASTJSON": "DATEISTRUKTUR",
+  "DATEIINFO": {
+    "er_quell_st.json": [
+      "05.06.2022 15:03:04",
+      1462
+    ],
+    "er_ziel_st.json": [
+      "05.06.2022 15:02:02",
+      1939
+    ],
+    "sc_quell_or.json": [
+      "05.06.2022 13:45:02",
+      6926
+    ],
+    "sc_quell_st.json": [
+      "05.06.2022 13:45:02",
+      7402
+    ],
+    "sc_quelle.csv": [
+      "05.06.2022 13:45:02",
+      6536
+    ],
+    "sh_quell_or.json": [
+      "04.06.2022 14:13:07",
+      6655
+    ],
+    "sh_quell_st.json": [
+      "04.06.2022 14:13:07",
+      7055
+    ],
+    "sh_quelle.html": [
+      "04.06.2022 14:13:07",
+      13147
+    ],
+    "so_quell_or.json": [
+      "04.06.2022 14:12:31",
+      6655
+    ],
+    "so_quell_st.json": [
+      "04.06.2022 14:12:31",
+      7055
+    ],
+    "vg_quell1_st.json": [
+      "06.06.2022 11:57:29",
+      10336
+    ],
+    "vg_quell2_st.json": [
+      "06.06.2022 11:54:31",
+      10328
+    ],
+    "vg_vergleich1.json": [
+      "06.06.2022 11:57:29",
+      4090
+    ],
+    "vg_vergleich2.json": [
+      "06.06.2022 11:54:31",
+      3996
+    ],
+    "vg_ziel1_st.json": [
+      "06.06.2022 11:57:29",
+      10336
+    ],
+    "vg_ziel2_st.json": [
+      "06.06.2022 11:54:31",
+      10447
+    ]
+  },
+  "DATEILISTE": [
+    "./doku/run/er_quell_st.json",
+    "./doku/run/er_ziel_st.json",
+    "./doku/run/sc_quell_or.json",
+    "./doku/run/sc_quell_st.json",
+    "./doku/run/sc_quelle.csv",
+    "./doku/run/sh_quell_or.json",
+    "./doku/run/sh_quell_st.json",
+    "./doku/run/sh_quelle.html",
+    "./doku/run/so_quell_or.json",
+    "./doku/run/so_quell_st.json",
+    "./doku/run/vg_quell1_st.json",
+    "./doku/run/vg_quell2_st.json",
+    "./doku/run/vg_vergleich1.json",
+    "./doku/run/vg_vergleich2.json",
+    "./doku/run/vg_ziel1_st.json",
+    "./doku/run/vg_ziel2_st.json"
+  ],
+  "DATUM": "06.06.2022 11:57:31",
+  "JSONPFAD": "./doku/run/vg_quell2_st.json",
+  "STAMMPFAD": "./doku/run",
+  "TYPENLISTE": [
+    ".csv",
+    ".html",
+    ".json"
+  ],
+  "VERZEICHNISLISTE": [
+    "./doku/run"
+  ]
+}

@@ -1,0 +1,40 @@
+Zeile,Kategorie,Text,Anzahl,Verzeichnisnamen,Dateiname,Dateityp,Datum/Uhrzeit,Groesse (bytes)
+1,Titel,Test DASTSCOB 1,,,,,,
+2,Beschrieb,Struktur von Test 1: Script DASTSCOB,,,,,,
+3,Hauptverzeichnis,,,./dastaldo/daster/quelle,,,,
+4,Datum / Uhrzeit,,,,,,01.06.2022 21:37:05,
+5,Anzahl Verzeichnisse,,4,,,,,
+6,Anzahl Dateien,,9,,,,,
+7,Anzahl Dateitypen,,3,,,,,
+8,Leerzeile,---,---,---,---,---,---,---
+9,Verzeichnis,,,Hauptverzeichnis,,,,
+10,Anzahl Verzeichnisse,,3,,,,,
+11,Verzeichnis #1,,,pfad1,,,,
+12,Verzeichnis #2,,,pfad2,,,,
+13,Verzeichnis #3,,,pfad3,,,,
+14,Anzahl Dateien,,0,,,,,
+15,Anzahl Dateitypen,,0,,,,,
+16,Leerzeile,---,---,---,---,---,---,---
+17,Verzeichnis,,,pfad1,,,,
+18,Anzahl Verzeichnisse,,0,,,,,
+19,Anzahl Dateien,,3,,,,,
+20,Anzahl Dateitypen,,3,,,,,
+21,Datei #1,,,,Datei_11,.txa,27.05.2022 15:01:13,10
+22,Datei #2,,,,Datei_12,.txb,27.05.2022 15:00:36,13
+23,Datei #3,,,,Datei_13,.txc,27.05.2022 15:00:59,15
+24,Leerzeile,---,---,---,---,---,---,---
+25,Verzeichnis,,,pfad2,,,,
+26,Anzahl Verzeichnisse,,0,,,,,
+27,Anzahl Dateien,,2,,,,,
+28,Anzahl Dateitypen,,2,,,,,
+29,Datei #1,,,,Datei_21,.txa,27.05.2022 15:02:01,20
+30,Datei #2,,,,Datei_22,.txb,27.05.2022 15:02:11,21
+31,Leerzeile,---,---,---,---,---,---,---
+32,Verzeichnis,,,pfad3,,,,
+33,Anzahl Verzeichnisse,,0,,,,,
+34,Anzahl Dateien,,4,,,,,
+35,Anzahl Dateitypen,,3,,,,,
+36,Datei #1,,,,Datei_31,.txa,27.05.2022 15:07:12,24
+37,Datei #2,,,,Datei_32,.txb,27.05.2022 15:04:04,22
+38,Datei #3,,,,Datei_33,.txc,27.05.2022 15:04:16,23
+39,Datei #4,,,,Datei_34,.txa,27.05.2022 15:07:53,26

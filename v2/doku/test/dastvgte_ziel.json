@@ -1,0 +1,89 @@
+{
+  "DASTJSON": "DATEISTRUKTUR",
+  "DATEIINFO": {
+    "Datei_01.txe": [
+      "05.06.2022 13:59:45",
+      15
+    ],
+    "pfad2/Datei_21.txa": [
+      "27.05.2022 15:02:01",
+      20
+    ],
+    "pfad2/Datei_22.txb": [
+      "27.05.2022 15:02:11",
+      21
+    ],
+    "pfad3/Datei_31.txa": [
+      "27.05.2022 15:07:12",
+      24
+    ],
+    "pfad3/Datei_32.txb": [
+      "05.06.2022 13:54:43",
+      26
+    ],
+    "pfad3/Datei_33.txa": [
+      "27.05.2022 15:04:16",
+      23
+    ],
+    "pfad3/Datei_35.txb": [
+      "05.06.2022 13:59:04",
+      24
+    ],
+    "pfad4/Datei_41.txa": [
+      "05.06.2022 13:58:14",
+      22
+    ],
+    "pfad4/Datei_42.txb": [
+      "05.06.2022 13:58:24",
+      21
+    ],
+    "pfad4/Datei_43.txc": [
+      "05.06.2022 13:58:35",
+      22
+    ],
+    "pfad4/Datei_44.txd": [
+      "05.06.2022 13:58:48",
+      22
+    ],
+    "pfad5/Datei_51.txe": [
+      "05.06.2022 14:00:27",
+      23
+    ],
+    "pfad5/Datei_52.txe": [
+      "05.06.2022 14:00:38",
+      22
+    ]
+  },
+  "DATEILISTE": [
+    "./doku/test/ziel/Datei_01.txe",
+    "./doku/test/ziel/pfad2/Datei_21.txa",
+    "./doku/test/ziel/pfad2/Datei_22.txb",
+    "./doku/test/ziel/pfad3/Datei_31.txa",
+    "./doku/test/ziel/pfad3/Datei_32.txb",
+    "./doku/test/ziel/pfad3/Datei_33.txa",
+    "./doku/test/ziel/pfad3/Datei_35.txb",
+    "./doku/test/ziel/pfad4/Datei_41.txa",
+    "./doku/test/ziel/pfad4/Datei_42.txb",
+    "./doku/test/ziel/pfad4/Datei_43.txc",
+    "./doku/test/ziel/pfad4/Datei_44.txd",
+    "./doku/test/ziel/pfad5/Datei_51.txe",
+    "./doku/test/ziel/pfad5/Datei_52.txe"
+  ],
+  "DATUM": "05.06.2022 15:02:02",
+  "JSONPFAD": "./doku/run/er_ziel_st.json",
+  "STAMMPFAD": "./doku/test/ziel",
+  "TYPENLISTE": [
+    ".txa",
+    ".txb",
+    ".txc",
+    ".txd",
+    ".txe"
+  ],
+  "VERZEICHNISLISTE": [
+    "./doku/test/ziel/pfad2",
+    "./doku/test/ziel/pfad3",
+    "./doku/test/ziel/pfad4",
+    "./doku/test/ziel/pfad5",
+    "./doku/test/ziel"
+  ]
+}

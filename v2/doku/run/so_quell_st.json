@@ -1,0 +1,313 @@
+{
+  "DASTJSON": "DATEISTRUKTUR",
+  "DATEIINFO": {
+    "07_HTML-Vergleich/_darstellung_vergleich.md": [
+      "06.11.2021 13:42:41",
+      787
+    ],
+    "07_HTML-Vergleich/_entwicklung_vergleich_text_tabelle.md": [
+      "08.11.2021 21:08:53",
+      145
+    ],
+    "09_GUI/_entwicklung_gui.md": [
+      "08.11.2021 21:09:08",
+      689
+    ],
+    "10_Webapp/_entwicklung_webapp.md": [
+      "08.11.2021 21:09:25",
+      429
+    ],
+    "__pycache__/dast02ob.cpython-38.pyc": [
+      "15.05.2022 22:47:11",
+      3379
+    ],
+    "__pycache__/dast__fn.cpython-38.pyc": [
+      "14.05.2022 18:47:11",
+      3529
+    ],
+    "__pycache__/dastalfn.cpython-38.pyc": [
+      "30.05.2022 21:06:13",
+      4254
+    ],
+    "__pycache__/dasterob.cpython-38.pyc": [
+      "28.05.2022 23:30:11",
+      3891
+    ],
+    "__pycache__/dastshob.cpython-38.pyc": [
+      "04.06.2022 11:20:15",
+      5349
+    ],
+    "__pycache__/dastsoob.cpython-38.pyc": [
+      "04.06.2022 12:14:13",
+      4228
+    ],
+    "_v1/dastalfn_alt.py": [
+      "14.05.2022 18:28:46",
+      4921
+    ],
+    "_v1/ordnen.py": [
+      "26.05.2022 14:49:48",
+      5281
+    ],
+    "_v1/test_vergl_funkt.py": [
+      "14.05.2022 19:31:57",
+      2949
+    ],
+    "dastaldo.txt": [
+      "28.05.2022 14:53:45",
+      2013
+    ],
+    "dastalfn.py": [
+      "30.05.2022 21:06:10",
+      6034
+    ],
+    "dastalte.py": [
+      "04.06.2022 13:46:23",
+      7129
+    ],
+    "dasterob.py": [
+      "28.05.2022 23:30:08",
+      5762
+    ],
+    "dasterte.py": [
+      "04.06.2022 13:52:34",
+      13673
+    ],
+    "dastrucm.py": [
+      "04.06.2022 14:12:26",
+      9734
+    ],
+    "dastscob.py": [
+      "16.05.2022 20:27:20",
+      8098
+    ],
+    "dastscte.py": [
+      "16.05.2022 20:27:28",
+      11630
+    ],
+    "dastshob.py": [
+      "04.06.2022 11:20:13",
+      8679
+    ],
+    "dastshte.py": [
+      "04.06.2022 13:53:42",
+      15591
+    ],
+    "dastsoob.py": [
+      "04.06.2022 10:49:25",
+      7694
+    ],
+    "dastsote.py": [
+      "04.06.2022 13:54:47",
+      16956
+    ],
+    "dastvgob.py": [
+      "14.05.2022 20:21:19",
+      6518
+    ],
+    "dastvgte.py": [
+      "02.04.2022 14:25:48",
+      10870
+    ],
+    "doku/run/do_quell_or.json": [
+      "04.06.2022 14:07:24",
+      6654
+    ],
+    "doku/run/er_quell_st.json": [
+      "04.06.2022 14:12:29",
+      1462
+    ],
+    "doku/run/sc_quell_or.json": [
+      "04.06.2022 14:07:10",
+      6476
+    ],
+    "doku/run/sc_quell_st.json": [
+      "04.06.2022 14:07:10",
+      6820
+    ],
+    "doku/run/sh_quell_or.json": [
+      "04.06.2022 14:07:32",
+      6654
+    ],
+    "doku/run/sh_quell_st.json": [
+      "04.06.2022 14:07:32",
+      7054
+    ],
+    "doku/run/sh_quelle.html": [
+      "04.06.2022 14:07:32",
+      13146
+    ],
+    "doku/run/so_quell_st.json": [
+      "04.06.2022 14:07:24",
+      7054
+    ],
+    "doku/test/dastalte.csv": [
+      "04.06.2022 13:46:24",
+      27
+    ],
+    "doku/test/dastalte.json": [
+      "04.06.2022 13:46:24",
+      65
+    ],
+    "doku/test/dastalte.txt": [
+      "04.06.2022 13:46:24",
+      50
+    ],
+    "doku/test/dasterte.json": [
+      "04.06.2022 13:52:36",
+      1460
+    ],
+    "doku/test/dastshte.html": [
+      "04.06.2022 13:55:59",
+      2935
+    ],
+    "doku/test/dastso.json": [
+      "04.06.2022 13:54:52",
+      1395
+    ],
+    "doku/test/dastvgte_quelle.json": [
+      "08.05.2022 12:22:53",
+      468
+    ],
+    "doku/test/dastvgte_vergleich.json": [
+      "08.05.2022 12:22:53",
+      694
+    ],
+    "doku/test/dastvgte_ziel.json": [
+      "08.05.2022 12:22:53",
+      556
+    ],
+    "doku/test/dateistruktur.json": [
+      "01.06.2022 21:37:05",
+      1550
+    ],
+    "doku/test/quelle/pfad1/Datei_11.txa": [
+      "27.05.2022 15:01:13",
+      10
+    ],
+    "doku/test/quelle/pfad1/Datei_12.txb": [
+      "27.05.2022 15:00:36",
+      13
+    ],
+    "doku/test/quelle/pfad1/Datei_13.txc": [
+      "27.05.2022 15:00:59",
+      15
+    ],
+    "doku/test/quelle/pfad2/Datei_21.txa": [
+      "27.05.2022 15:02:01",
+      20
+    ],
+    "doku/test/quelle/pfad2/Datei_22.txb": [
+      "27.05.2022 15:02:11",
+      21
+    ],
+    "doku/test/quelle/pfad3/Datei_31.txa": [
+      "27.05.2022 15:07:12",
+      24
+    ],
+    "doku/test/quelle/pfad3/Datei_32.txb": [
+      "27.05.2022 15:04:04",
+      22
+    ],
+    "doku/test/quelle/pfad3/Datei_33.txc": [
+      "27.05.2022 15:04:16",
+      23
+    ],
+    "doku/test/quelle/pfad3/Datei_34.txa": [
+      "27.05.2022 15:07:53",
+      26
+    ],
+    "doku/test/strukturausgabe.json": [
+      "04.06.2022 10:42:32",
+      1395
+    ]
+  },
+  "DATEILISTE": [
+    "./07_HTML-Vergleich/_darstellung_vergleich.md",
+    "./07_HTML-Vergleich/_entwicklung_vergleich_text_tabelle.md",
+    "./09_GUI/_entwicklung_gui.md",
+    "./10_Webapp/_entwicklung_webapp.md",
+    "./__pycache__/dast02ob.cpython-38.pyc",
+    "./__pycache__/dast__fn.cpython-38.pyc",
+    "./__pycache__/dastalfn.cpython-38.pyc",
+    "./__pycache__/dasterob.cpython-38.pyc",
+    "./__pycache__/dastshob.cpython-38.pyc",
+    "./__pycache__/dastsoob.cpython-38.pyc",
+    "./_v1/dastalfn_alt.py",
+    "./_v1/ordnen.py",
+    "./_v1/test_vergl_funkt.py",
+    "./dastaldo.txt",
+    "./dastalfn.py",
+    "./dastalte.py",
+    "./dasterob.py",
+    "./dasterte.py",
+    "./dastrucm.py",
+    "./dastscob.py",
+    "./dastscte.py",
+    "./dastshob.py",
+    "./dastshte.py",
+    "./dastsoob.py",
+    "./dastsote.py",
+    "./dastvgob.py",
+    "./dastvgte.py",
+    "./doku/run/do_quell_or.json",
+    "./doku/run/er_quell_st.json",
+    "./doku/run/sc_quell_or.json",
+    "./doku/run/sc_quell_st.json",
+    "./doku/run/sh_quell_or.json",
+    "./doku/run/sh_quell_st.json",
+    "./doku/run/sh_quelle.html",
+    "./doku/run/so_quell_st.json",
+    "./doku/test/dastalte.csv",
+    "./doku/test/dastalte.json",
+    "./doku/test/dastalte.txt",
+    "./doku/test/dasterte.json",
+    "./doku/test/dastshte.html",
+    "./doku/test/dastso.json",
+    "./doku/test/dastvgte_quelle.json",
+    "./doku/test/dastvgte_vergleich.json",
+    "./doku/test/dastvgte_ziel.json",
+    "./doku/test/dateistruktur.json",
+    "./doku/test/quelle/pfad1/Datei_11.txa",
+    "./doku/test/quelle/pfad1/Datei_12.txb",
+    "./doku/test/quelle/pfad1/Datei_13.txc",
+    "./doku/test/quelle/pfad2/Datei_21.txa",
+    "./doku/test/quelle/pfad2/Datei_22.txb",
+    "./doku/test/quelle/pfad3/Datei_31.txa",
+    "./doku/test/quelle/pfad3/Datei_32.txb",
+    "./doku/test/quelle/pfad3/Datei_33.txc",
+    "./doku/test/quelle/pfad3/Datei_34.txa",
+    "./doku/test/strukturausgabe.json"
+  ],
+  "DATUM": "04.06.2022 14:12:31",
+  "JSONPFAD": "./doku/run/so_quell_st.json",
+  "STAMMPFAD": ".",
+  "TYPENLISTE": [
+    ".csv",
+    ".html",
+    ".json",
+    ".md",
+    ".py",
+    ".pyc",
+    ".txa",
+    ".txb",
+    ".txc",
+    ".txt"
+  ],
+  "VERZEICHNISLISTE": [
+    "./07_HTML-Vergleich",
+    "./08_CSV-Vergleich",
+    "./09_GUI",
+    "./10_Webapp",
+    "./__pycache__",
+    "./_v1",
+    "./doku",
+    "./doku/run",
+    "./doku/test",
+    "./doku/test/quelle",
+    "./doku/test/quelle/pfad1",
+    "./doku/test/quelle/pfad2",
+    "./doku/test/quelle/pfad3",
+    "."
+  ]
+}

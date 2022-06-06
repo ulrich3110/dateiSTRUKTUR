@@ -1,0 +1,66 @@
+{
+  "DASTJSON": "DATEISTRUKTUR",
+  "DATEIINFO": {
+    "pfad1/Datei_11.txa": [
+      "27.05.2022 15:01:13",
+      10
+    ],
+    "pfad1/Datei_12.txb": [
+      "27.05.2022 15:00:36",
+      13
+    ],
+    "pfad1/Datei_13.txc": [
+      "27.05.2022 15:00:59",
+      15
+    ],
+    "pfad2/Datei_21.txa": [
+      "27.05.2022 15:02:01",
+      20
+    ],
+    "pfad2/Datei_22.txb": [
+      "27.05.2022 15:02:11",
+      21
+    ],
+    "pfad3/Datei_31.txa": [
+      "27.05.2022 15:07:12",
+      24
+    ],
+    "pfad3/Datei_32.txb": [
+      "27.05.2022 15:04:04",
+      22
+    ],
+    "pfad3/Datei_33.txc": [
+      "27.05.2022 15:04:16",
+      23
+    ],
+    "pfad3/Datei_34.txa": [
+      "27.05.2022 15:07:53",
+      26
+    ]
+  },
+  "DATEILISTE": [
+    "./doku/test/quelle/pfad1/Datei_11.txa",
+    "./doku/test/quelle/pfad1/Datei_12.txb",
+    "./doku/test/quelle/pfad1/Datei_13.txc",
+    "./doku/test/quelle/pfad2/Datei_21.txa",
+    "./doku/test/quelle/pfad2/Datei_22.txb",
+    "./doku/test/quelle/pfad3/Datei_31.txa",
+    "./doku/test/quelle/pfad3/Datei_32.txb",
+    "./doku/test/quelle/pfad3/Datei_33.txc",
+    "./doku/test/quelle/pfad3/Datei_34.txa"
+  ],
+  "DATUM": "05.06.2022 15:03:04",
+  "JSONPFAD": "./doku/run/er_quell_st.json",
+  "STAMMPFAD": "./doku/test/quelle",
+  "TYPENLISTE": [
+    ".txa",
+    ".txb",
+    ".txc"
+  ],
+  "VERZEICHNISLISTE": [
+    "./doku/test/quelle/pfad1",
+    "./doku/test/quelle/pfad2",
+    "./doku/test/quelle/pfad3",
+    "./doku/test/quelle"
+  ]
+}

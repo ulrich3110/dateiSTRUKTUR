@@ -1,0 +1,203 @@
+{
+  "DASTJSON": "DATEISTRUKTUR",
+  "DATEIINFO": {
+    "dastalte.csv": [
+      "04.06.2022 13:46:24",
+      27
+    ],
+    "dastalte.json": [
+      "04.06.2022 13:46:24",
+      65
+    ],
+    "dastalte.txt": [
+      "04.06.2022 13:46:24",
+      50
+    ],
+    "dasterte.json": [
+      "04.06.2022 13:52:36",
+      1460
+    ],
+    "dastscte.csv": [
+      "05.06.2022 12:29:36",
+      1584
+    ],
+    "dastshte.html": [
+      "05.06.2022 12:15:35",
+      2935
+    ],
+    "dastso.json": [
+      "04.06.2022 13:54:52",
+      1395
+    ],
+    "dastvgte_diff.json": [
+      "06.06.2022 11:44:41",
+      1414
+    ],
+    "dastvgte_quelle.json": [
+      "05.06.2022 15:03:04",
+      1462
+    ],
+    "dastvgte_ziel.json": [
+      "05.06.2022 15:02:02",
+      1939
+    ],
+    "dateistruktur.json": [
+      "01.06.2022 21:37:05",
+      1550
+    ],
+    "quelle/pfad1/Datei_11.txa": [
+      "27.05.2022 15:01:13",
+      10
+    ],
+    "quelle/pfad1/Datei_12.txb": [
+      "27.05.2022 15:00:36",
+      13
+    ],
+    "quelle/pfad1/Datei_13.txc": [
+      "27.05.2022 15:00:59",
+      15
+    ],
+    "quelle/pfad2/Datei_21.txa": [
+      "27.05.2022 15:02:01",
+      20
+    ],
+    "quelle/pfad2/Datei_22.txb": [
+      "27.05.2022 15:02:11",
+      21
+    ],
+    "quelle/pfad3/Datei_31.txa": [
+      "27.05.2022 15:07:12",
+      24
+    ],
+    "quelle/pfad3/Datei_32.txb": [
+      "27.05.2022 15:04:04",
+      22
+    ],
+    "quelle/pfad3/Datei_33.txc": [
+      "27.05.2022 15:04:16",
+      23
+    ],
+    "quelle/pfad3/Datei_34.txa": [
+      "27.05.2022 15:07:53",
+      26
+    ],
+    "strukturausgabe.json": [
+      "04.06.2022 10:42:32",
+      1395
+    ],
+    "ziel/Datei_01.txe": [
+      "05.06.2022 13:59:45",
+      15
+    ],
+    "ziel/pfad2/Datei_21.txa": [
+      "27.05.2022 15:02:01",
+      20
+    ],
+    "ziel/pfad2/Datei_22.txb": [
+      "27.05.2022 15:02:11",
+      21
+    ],
+    "ziel/pfad3/Datei_31.txa": [
+      "27.05.2022 15:07:12",
+      24
+    ],
+    "ziel/pfad3/Datei_32.txb": [
+      "05.06.2022 13:54:43",
+      26
+    ],
+    "ziel/pfad3/Datei_33.txa": [
+      "27.05.2022 15:04:16",
+      23
+    ],
+    "ziel/pfad3/Datei_35.txb": [
+      "05.06.2022 13:59:04",
+      24
+    ],
+    "ziel/pfad4/Datei_41.txa": [
+      "05.06.2022 13:58:14",
+      22
+    ],
+    "ziel/pfad4/Datei_42.txb": [
+      "05.06.2022 13:58:24",
+      21
+    ],
+    "ziel/pfad4/Datei_43.txc": [
+      "05.06.2022 13:58:35",
+      22
+    ],
+    "ziel/pfad4/Datei_44.txd": [
+      "05.06.2022 13:58:48",
+      22
+    ],
+    "ziel/pfad5/Datei_51.txe": [
+      "05.06.2022 14:00:27",
+      23
+    ],
+    "ziel/pfad5/Datei_52.txe": [
+      "05.06.2022 14:00:38",
+      22
+    ]
+  },
+  "DATEILISTE": [
+    "./doku/test/dastalte.csv",
+    "./doku/test/dastalte.json",
+    "./doku/test/dastalte.txt",
+    "./doku/test/dasterte.json",
+    "./doku/test/dastscte.csv",
+    "./doku/test/dastshte.html",
+    "./doku/test/dastso.json",
+    "./doku/test/dastvgte_diff.json",
+    "./doku/test/dastvgte_quelle.json",
+    "./doku/test/dastvgte_ziel.json",
+    "./doku/test/dateistruktur.json",
+    "./doku/test/quelle/pfad1/Datei_11.txa",
+    "./doku/test/quelle/pfad1/Datei_12.txb",
+    "./doku/test/quelle/pfad1/Datei_13.txc",
+    "./doku/test/quelle/pfad2/Datei_21.txa",
+    "./doku/test/quelle/pfad2/Datei_22.txb",
+    "./doku/test/quelle/pfad3/Datei_31.txa",
+    "./doku/test/quelle/pfad3/Datei_32.txb",
+    "./doku/test/quelle/pfad3/Datei_33.txc",
+    "./doku/test/quelle/pfad3/Datei_34.txa",
+    "./doku/test/strukturausgabe.json",
+    "./doku/test/ziel/Datei_01.txe",
+    "./doku/test/ziel/pfad2/Datei_21.txa",
+    "./doku/test/ziel/pfad2/Datei_22.txb",
+    "./doku/test/ziel/pfad3/Datei_31.txa",
+    "./doku/test/ziel/pfad3/Datei_32.txb",
+    "./doku/test/ziel/pfad3/Datei_33.txa",
+    "./doku/test/ziel/pfad3/Datei_35.txb",
+    "./doku/test/ziel/pfad4/Datei_41.txa",
+    "./doku/test/ziel/pfad4/Datei_42.txb",
+    "./doku/test/ziel/pfad4/Datei_43.txc",
+    "./doku/test/ziel/pfad4/Datei_44.txd",
+    "./doku/test/ziel/pfad5/Datei_51.txe",
+    "./doku/test/ziel/pfad5/Datei_52.txe"
+  ],
+  "DATUM": "06.06.2022 11:57:31",
+  "JSONPFAD": "./doku/run/vg_ziel2_st.json",
+  "STAMMPFAD": "./doku/test",
+  "TYPENLISTE": [
+    ".csv",
+    ".html",
+    ".json",
+    ".txa",
+    ".txb",
+    ".txc",
+    ".txd",
+    ".txe",
+    ".txt"
+  ],
+  "VERZEICHNISLISTE": [
+    "./doku/test/quelle",
+    "./doku/test/quelle/pfad1",
+    "./doku/test/quelle/pfad2",
+    "./doku/test/quelle/pfad3",
+    "./doku/test/ziel",
+    "./doku/test/ziel/pfad2",
+    "./doku/test/ziel/pfad3",
+    "./doku/test/ziel/pfad4",
+    "./doku/test/ziel/pfad5",
+    "./doku/test"
+  ]
+}

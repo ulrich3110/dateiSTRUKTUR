@@ -1,0 +1,149 @@
+Zeile,Kategorie,Text,Anzahl,Verzeichnisnamen,Dateiname,Dateityp,Datum/Uhrzeit,Groesse (bytes)
+1,Titel,Aktuelles Verzeichnis,,,,,,
+2,Beschrieb,CSV Beispiel,,,,,,
+3,Hauptverzeichnis,,,.,,,,
+4,Datum / Uhrzeit,,,,,,05.06.2022 13:45:02,
+5,Anzahl Verzeichnisse,,14,,,,,
+6,Anzahl Dateien,,58,,,,,
+7,Anzahl Dateitypen,,10,,,,,
+8,Leerzeile,---,---,---,---,---,---,---
+9,Verzeichnis,,,Hauptverzeichnis,,,,
+10,Anzahl Verzeichnisse,,7,,,,,
+11,Verzeichnis #1,,,07_HTML-Vergleich,,,,
+12,Verzeichnis #2,,,08_CSV-Vergleich,,,,
+13,Verzeichnis #3,,,09_GUI,,,,
+14,Verzeichnis #4,,,10_Webapp,,,,
+15,Verzeichnis #5,,,__pycache__,,,,
+16,Verzeichnis #6,,,_v1,,,,
+17,Verzeichnis #7,,,doku,,,,
+18,Anzahl Dateien,,15,,,,,
+19,Anzahl Dateitypen,,2,,,,,
+20,Datei #1,,,,dastaldo,.txt,28.05.2022 14:53:45,2013
+21,Datei #2,,,,dastalfn,.py,30.05.2022 21:06:10,6034
+22,Datei #3,,,,dastalte,.py,05.06.2022 13:27:27,7113
+23,Datei #4,,,,dasterob,.py,28.05.2022 23:30:08,5762
+24,Datei #5,,,,dasterte,.py,05.06.2022 13:26:55,13647
+25,Datei #6,,,,dastrucm,.py,05.06.2022 13:45:00,9969
+26,Datei #7,,,,dastscob,.py,05.06.2022 12:25:56,10407
+27,Datei #8,,,,dastscte,.py,05.06.2022 12:29:56,22019
+28,Datei #9,,,,dastshob,.py,04.06.2022 11:20:13,8679
+29,Datei #10,,,,dastshte,.py,04.06.2022 21:26:17,16563
+30,Datei #11,,,,dastsoob,.py,04.06.2022 10:49:25,7694
+31,Datei #12,,,,dastsote,.py,04.06.2022 15:43:09,16931
+32,Datei #13,,,,dastvgob,.py,14.05.2022 20:21:19,6518
+33,Datei #14,,,,dastvgte,.py,05.06.2022 13:41:14,18595
+34,Datei #15,,,,dastvgte_alt,.py,02.04.2022 14:25:48,10870
+35,Leerzeile,---,---,---,---,---,---,---
+36,Verzeichnis,,,07_HTML-Vergleich,,,,
+37,Anzahl Verzeichnisse,,0,,,,,
+38,Anzahl Dateien,,2,,,,,
+39,Anzahl Dateitypen,,1,,,,,
+40,Datei #1,,,,_darstellung_vergleich,.md,06.11.2021 13:42:41,787
+41,Datei #2,,,,_entwicklung_vergleich_text_tabelle,.md,08.11.2021 21:08:53,145
+42,Leerzeile,---,---,---,---,---,---,---
+43,Verzeichnis,,,08_CSV-Vergleich,,,,
+44,Anzahl Verzeichnisse,,0,,,,,
+45,Anzahl Dateien,,0,,,,,
+46,Anzahl Dateitypen,,0,,,,,
+47,Leerzeile,---,---,---,---,---,---,---
+48,Verzeichnis,,,09_GUI,,,,
+49,Anzahl Verzeichnisse,,0,,,,,
+50,Anzahl Dateien,,1,,,,,
+51,Anzahl Dateitypen,,1,,,,,
+52,Datei #1,,,,_entwicklung_gui,.md,08.11.2021 21:09:08,689
+53,Leerzeile,---,---,---,---,---,---,---
+54,Verzeichnis,,,10_Webapp,,,,
+55,Anzahl Verzeichnisse,,0,,,,,
+56,Anzahl Dateien,,1,,,,,
+57,Anzahl Dateitypen,,1,,,,,
+58,Datei #1,,,,_entwicklung_webapp,.md,08.11.2021 21:09:25,429
+59,Leerzeile,---,---,---,---,---,---,---
+60,Verzeichnis,,,__pycache__,,,,
+61,Anzahl Verzeichnisse,,0,,,,,
+62,Anzahl Dateien,,7,,,,,
+63,Anzahl Dateitypen,,1,,,,,
+64,Datei #1,,,,dast02ob.cpython-38,.pyc,15.05.2022 22:47:11,3379
+65,Datei #2,,,,dast__fn.cpython-38,.pyc,14.05.2022 18:47:11,3529
+66,Datei #3,,,,dastalfn.cpython-38,.pyc,30.05.2022 21:06:13,4254
+67,Datei #4,,,,dasterob.cpython-38,.pyc,28.05.2022 23:30:11,3891
+68,Datei #5,,,,dastscob.cpython-38,.pyc,05.06.2022 12:27:20,5083
+69,Datei #6,,,,dastshob.cpython-38,.pyc,04.06.2022 11:20:15,5349
+70,Datei #7,,,,dastsoob.cpython-38,.pyc,04.06.2022 12:14:13,4228
+71,Leerzeile,---,---,---,---,---,---,---
+72,Verzeichnis,,,_v1,,,,
+73,Anzahl Verzeichnisse,,0,,,,,
+74,Anzahl Dateien,,3,,,,,
+75,Anzahl Dateitypen,,1,,,,,
+76,Datei #1,,,,dastalfn_alt,.py,14.05.2022 18:28:46,4921
+77,Datei #2,,,,ordnen,.py,26.05.2022 14:49:48,5281
+78,Datei #3,,,,test_vergl_funkt,.py,14.05.2022 19:31:57,2949
+79,Leerzeile,---,---,---,---,---,---,---
+80,Verzeichnis,,,doku,,,,
+81,Anzahl Verzeichnisse,,2,,,,,
+82,Verzeichnis #1,,,run,,,,
+83,Verzeichnis #2,,,test,,,,
+84,Anzahl Dateien,,0,,,,,
+85,Anzahl Dateitypen,,0,,,,,
+86,Leerzeile,---,---,---,---,---,---,---
+87,Verzeichnis,,,doku/run,,,,
+88,Anzahl Verzeichnisse,,0,,,,,
+89,Anzahl Dateien,,8,,,,,
+90,Anzahl Dateitypen,,2,,,,,
+91,Datei #1,,,,er_quell_st,.json,04.06.2022 14:12:29,1462
+92,Datei #2,,,,sc_quell_or,.json,05.06.2022 13:44:47,6926
+93,Datei #3,,,,sc_quell_st,.json,05.06.2022 13:44:47,7402
+94,Datei #4,,,,sh_quell_or,.json,04.06.2022 14:13:07,6655
+95,Datei #5,,,,sh_quell_st,.json,04.06.2022 14:13:07,7055
+96,Datei #6,,,,sh_quelle,.html,04.06.2022 14:13:07,13147
+97,Datei #7,,,,so_quell_or,.json,04.06.2022 14:12:31,6655
+98,Datei #8,,,,so_quell_st,.json,04.06.2022 14:12:31,7055
+99,Leerzeile,---,---,---,---,---,---,---
+100,Verzeichnis,,,doku/test,,,,
+101,Anzahl Verzeichnisse,,1,,,,,
+102,Verzeichnis #1,,,quelle,,,,
+103,Anzahl Dateien,,12,,,,,
+104,Anzahl Dateitypen,,4,,,,,
+105,Datei #1,,,,dastalte,.csv,04.06.2022 13:46:24,27
+106,Datei #2,,,,dastalte,.json,04.06.2022 13:46:24,65
+107,Datei #3,,,,dastalte,.txt,04.06.2022 13:46:24,50
+108,Datei #4,,,,dasterte,.json,04.06.2022 13:52:36,1460
+109,Datei #5,,,,dastscte,.csv,05.06.2022 12:29:36,1584
+110,Datei #6,,,,dastshte,.html,05.06.2022 12:15:35,2935
+111,Datei #7,,,,dastso,.json,04.06.2022 13:54:52,1395
+112,Datei #8,,,,dastvgte_quelle,.json,08.05.2022 12:22:53,468
+113,Datei #9,,,,dastvgte_vergleich,.json,08.05.2022 12:22:53,694
+114,Datei #10,,,,dastvgte_ziel,.json,08.05.2022 12:22:53,556
+115,Datei #11,,,,dateistruktur,.json,01.06.2022 21:37:05,1550
+116,Datei #12,,,,strukturausgabe,.json,04.06.2022 10:42:32,1395
+117,Leerzeile,---,---,---,---,---,---,---
+118,Verzeichnis,,,doku/test/quelle,,,,
+119,Anzahl Verzeichnisse,,3,,,,,
+120,Verzeichnis #1,,,pfad1,,,,
+121,Verzeichnis #2,,,pfad2,,,,
+122,Verzeichnis #3,,,pfad3,,,,
+123,Anzahl Dateien,,0,,,,,
+124,Anzahl Dateitypen,,0,,,,,
+125,Leerzeile,---,---,---,---,---,---,---
+126,Verzeichnis,,,doku/test/quelle/pfad1,,,,
+127,Anzahl Verzeichnisse,,0,,,,,
+128,Anzahl Dateien,,3,,,,,
+129,Anzahl Dateitypen,,3,,,,,
+130,Datei #1,,,,Datei_11,.txa,27.05.2022 15:01:13,10
+131,Datei #2,,,,Datei_12,.txb,27.05.2022 15:00:36,13
+132,Datei #3,,,,Datei_13,.txc,27.05.2022 15:00:59,15
+133,Leerzeile,---,---,---,---,---,---,---
+134,Verzeichnis,,,doku/test/quelle/pfad2,,,,
+135,Anzahl Verzeichnisse,,0,,,,,
+136,Anzahl Dateien,,2,,,,,
+137,Anzahl Dateitypen,,2,,,,,
+138,Datei #1,,,,Datei_21,.txa,27.05.2022 15:02:01,20
+139,Datei #2,,,,Datei_22,.txb,27.05.2022 15:02:11,21
+140,Leerzeile,---,---,---,---,---,---,---
+141,Verzeichnis,,,doku/test/quelle/pfad3,,,,
+142,Anzahl Verzeichnisse,,0,,,,,
+143,Anzahl Dateien,,4,,,,,
+144,Anzahl Dateitypen,,3,,,,,
+145,Datei #1,,,,Datei_31,.txa,27.05.2022 15:07:12,24
+146,Datei #2,,,,Datei_32,.txb,27.05.2022 15:04:04,22
+147,Datei #3,,,,Datei_33,.txc,27.05.2022 15:04:16,23
+148,Datei #4,,,,Datei_34,.txa,27.05.2022 15:07:53,26

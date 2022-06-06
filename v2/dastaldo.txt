@@ -1,0 +1,68 @@
+KONZEPT
+- daster..  Struktur erfassen und als DATEISTRUKTUR Json speichern;
+- dastso..  DATEISTRUKTUR Json laden, für die Ausgabe strukturieren und
+            als STRUKTURAUSGABE Json speichern;
+- dastsh..  STRUKTURAUSGABE Json laden und ein HTML Dokument daraus
+            erstellen;
+- dastsc..  STRUKTURAUSGABE Json laden und eine CSV Tabelle daraus
+            erstellen;
+- dastvg..  2 DATEISTRUKTUR Json laden, vergleichen und die Unterschiede
+            als VERGLEICH Json speichern;
+- dastvo..  VERGLEICH Json laden, für die Ausgabe strukturieren und als
+            VERGLEICHAUSGABE Json speichern;
+- dastvh..  VERGLEICHAUSGABE Json laden und ein HTML Dokument daraus
+            erstellen;
+- dastvc..  VERGLEICHAUSGABE Json laden und eine CSV Tabelle daraus
+            erstellen;
+
+JSON-DATEIEN
+- DATEISTRUKUR = Erfasste Datei-Struktur mit dasterob;
+- STRUKTURAUSGABE = Geordnete Datei-Struktur mit dastsoob;
+- VERGLEICHSTRUKTUR = Unterschiede zweier Datei-Strukturen mit dastvgob;
+- VERGLEICHAUSGABE = Geordnete Unterschiede mit dastvoob;
+
+
+DATEIKONVENTION
+DATEINAMEN = dastxxyy
+- dast = dateiSTRUKTUR
+- xx   = Etappe:
+         - kn = Konzeption
+         - er = Struktur erfassen
+         - so = Struktur ordnen für Ausgabe
+         - sh = Struktur HTML Ausgabe
+         - sc = Struktur CSV Ausgabe
+         - vg = Strukturen vergleichen
+         - vo = Vergleich ordnen für Ausgabe
+         - vh = HTML Ausgabe
+         - vc = CSV Ausgabe
+         - gu = Desktopanwendung mit GUI
+         - we = Web-Applikation
+         - al = Alle Etappen
+         - ru = Startprogramm
+- yy   = Inhalt:
+         - cm = Kommandozeile
+         - gu = Desktopanwendung (GUI)
+         - ob = Objektmodul
+         - fn = Funktionsmodul
+         - ts = Testmodul
+         - do = Dokumentation
+
+
+PROGRAMM-SCRIPT KONVENTION
+BEZEICHNUNG STRUKTUREN
+- f_funktion
+- KONSTANTE
+- m_methode
+- Objekt
+
+BEZEICHNUNG VARIABELN
+- bl_bool
+- dc_dictionairy
+- fl_float
+- in_integer
+- ls_liste
+- mn_menge
+- ob_objekt
+- tp_tuple
+- tx_text
+- vl_werte
