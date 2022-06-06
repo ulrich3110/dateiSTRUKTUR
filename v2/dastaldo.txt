@@ -1,19 +1,45 @@
 KONZEPT
+- dastrucm  Im Terminlafenster ausführbares Progamm mit allen Modulen;
+
 - daster..  Struktur erfassen und als DATEISTRUKTUR Json speichern;
+        ob  Objektmodul
+        te  Testmodul
+
 - dastso..  DATEISTRUKTUR Json laden, für die Ausgabe strukturieren und
             als STRUKTURAUSGABE Json speichern;
+        ob  Objektmodul
+        te  Testmodul
+
 - dastsh..  STRUKTURAUSGABE Json laden und ein HTML Dokument daraus
             erstellen;
+        ob  Objektmodul
+        te  Testmodul
+
 - dastsc..  STRUKTURAUSGABE Json laden und eine CSV Tabelle daraus
             erstellen;
+        ob  Objektmodul
+        te  Testmodul
+
 - dastvg..  2 DATEISTRUKTUR Json laden, vergleichen und die Unterschiede
             als VERGLEICH Json speichern;
+        ob  Objektmodul
+        te  Testmodul
+
 - dastvo..  VERGLEICH Json laden, für die Ausgabe strukturieren und als
             VERGLEICHAUSGABE Json speichern;
+        ob  Objektmodul
+        te  Testmodul
+
 - dastvh..  VERGLEICHAUSGABE Json laden und ein HTML Dokument daraus
             erstellen;
+        ob  Objektmodul
+        te  Testmodul
+
 - dastvc..  VERGLEICHAUSGABE Json laden und eine CSV Tabelle daraus
             erstellen;
+        ob  Objektmodul
+        te  Testmodul
+
 
 JSON-DATEIEN
 - DATEISTRUKUR = Erfasste Datei-Struktur mit dasterob;
