@@ -23,7 +23,7 @@ Datei-Strukturen dokumentieren und vergleichen
 * Nachvollziehbare Entwicklung zur Dokumentation
 * Die Entwicklung laufend veröffentlichen
 
-# Entwicklungsstand
+# Entwicklung
 * v1: Erste Entwicklung, wurde abgebrochen, da sich die Datenstruktur als nicht tauglich für den Vergleich herausstellte
 * v2: Zweite Entwicklung, Test getrieben, mit neuer Datenstruktur. Die Entwicklung wird in den Test dokumentiert. In der Datei `dastaldo.txt` sind die Konventionen und Bezeichnungen definiert.
 
