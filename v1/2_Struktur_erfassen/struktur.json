@@ -1,0 +1,118 @@
+{
+  "DATEIANZAHL": 12,
+  "DATEILISTE": [
+    "./__pycache__/test_funktionen.cpython-38.pyc",
+    "./__pycache__/ds_erfassen.cpython-38.pyc",
+    "./__pycache__/ds_test_funktionen.cpython-38.pyc",
+    "./struktur.json",
+    "./test_verzeichnis.py",
+    "./test_dateistruktur.py",
+    "./_entwicklung_struktur_erfassen.md",
+    "./ds_erfassen.py",
+    "./test_funktionen.py",
+    "./ds_erfassen.json",
+    "./test_runjson.py",
+    "./test_dateiinfo.py"
+  ],
+  "DATUM": "23.02.2022 19:19:52",
+  "STAMMPFAD": ".",
+  "TYPANZAHL": 4,
+  "VERZEICHNISANZAHL": 2,
+  "VERZEICHNISLISTE": [
+    "./__pycache__"
+  ],
+  "VERZEICHNISSE": [
+    {
+      "DATEIANZAHL": 9,
+      "DATEILISTE": [
+        {
+          "DATUM": "04.01.2022 18:26:21",
+          "GROESSE": 2659,
+          "NAME": "struktur",
+          "TYP": ".json"
+        },
+        {
+          "DATUM": "23.02.2022 19:19:43",
+          "GROESSE": 9432,
+          "NAME": "test_verzeichnis",
+          "TYP": ".py"
+        },
+        {
+          "DATUM": "02.01.2022 22:19:14",
+          "GROESSE": 19399,
+          "NAME": "test_dateistruktur",
+          "TYP": ".py"
+        },
+        {
+          "DATUM": "12.11.2021 21:25:03",
+          "GROESSE": 1253,
+          "NAME": "_entwicklung_struktur_erfassen",
+          "TYP": ".md"
+        },
+        {
+          "DATUM": "30.12.2021 23:04:02",
+          "GROESSE": 15051,
+          "NAME": "ds_erfassen",
+          "TYP": ".py"
+        },
+        {
+          "DATUM": "02.01.2022 21:50:28",
+          "GROESSE": 3719,
+          "NAME": "test_funktionen",
+          "TYP": ".py"
+        },
+        {
+          "DATUM": "30.12.2021 23:14:17",
+          "GROESSE": 123,
+          "NAME": "ds_erfassen",
+          "TYP": ".json"
+        },
+        {
+          "DATUM": "23.02.2022 19:19:52",
+          "GROESSE": 3088,
+          "NAME": "test_runjson",
+          "TYP": ".py"
+        },
+        {
+          "DATUM": "02.01.2022 22:17:46",
+          "GROESSE": 5466,
+          "NAME": "test_dateiinfo",
+          "TYP": ".py"
+        }
+      ],
+      "PFAD": ".",
+      "TYPANZAHL": 3,
+      "VERZEICHNISANZAHL": 1,
+      "VERZEICHNISLISTE": [
+        "__pycache__"
+      ]
+    },
+    {
+      "DATEIANZAHL": 3,
+      "DATEILISTE": [
+        {
+          "DATUM": "23.02.2022 19:19:43",
+          "GROESSE": 3325,
+          "NAME": "test_funktionen.cpython-38",
+          "TYP": ".pyc"
+        },
+        {
+          "DATUM": "30.12.2021 23:14:52",
+          "GROESSE": 9875,
+          "NAME": "ds_erfassen.cpython-38",
+          "TYP": ".pyc"
+        },
+        {
+          "DATUM": "02.01.2022 22:17:47",
+          "GROESSE": 3328,
+          "NAME": "ds_test_funktionen.cpython-38",
+          "TYP": ".pyc"
+        }
+      ],
+      "PFAD": "./__pycache__",
+      "TYPANZAHL": 1,
+      "VERZEICHNISANZAHL": 0,
+      "VERZEICHNISLISTE": []
+    }
+  ]
+}

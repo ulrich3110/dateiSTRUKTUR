@@ -1,0 +1,11 @@
+{
+  "BEFEHLE": [
+    [
+      "ERFASSEN",
+      {
+        "JSON": "./struktur.json",
+        "ZIEL": "."
+      }
+    ]
+  ]
+}
