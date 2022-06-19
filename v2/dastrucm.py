@@ -11,6 +11,7 @@ from dastsoob import *
 from dastshob import *
 from dastscob import *
 from dastvgob import *
+from dastvhob import *
 
 '''
 dastrucm.py - dateiSTRUKTUR, Startprogramm, Kommandozeile
@@ -168,6 +169,73 @@ class RunTerm():
                         "VERGL": "{0}vg_vergleich2.json".format(tx_p)
                     }
                 ]
+            },
+            "8": {
+                "TITEL": "HTML Vergleich von '.' mit sich selber",
+                "BEFEHLE": [
+                    {
+                        "BEFEHL": "ERFASSEN",
+                        "QUELLE": ".",
+                        "JSON": "{0}vh_quell1_st.json".format(tx_p)
+                    },
+                    {
+                        "BEFEHL": "ERFASSEN",
+                        "QUELLE": ".",
+                        "JSON": "{0}vh_ziel1_st.json".format(tx_p)
+                    },
+                    {
+                        "BEFEHL": "VERGLEICHEN",
+                        "QUELLE": "{0}vh_quell1_st.json".format(tx_p),
+                        "ZIEL": "{0}vh_ziel1_st.json".format(tx_p),
+                        "VERGL": "{0}vh_vergleich1.json".format(tx_p)
+                    },
+                    {
+                        "BEFEHL": "HTMLVERGLEICH",
+                        "VERGL": "{0}vh_vergleich1.json".format(tx_p),
+                        "HTML": "{0}vh_vergleich1.html".format(tx_p),
+                        "TITEL": "".join([
+                            "Aktuelles Verzeichnis mit sich selber ",
+                            "vergleichen"
+                        ]),
+                        "TEXT": "".join([
+                            "HTML Beispiel des Vergleichs des ",
+                            "aktuellen Verzeichnisses mit sich selber."
+                        ])
+                    }
+                ]
+            },
+            "9": {
+                "TITEL": "HTML Vergleich './doku/run' & './doku/test'",
+                "BEFEHLE": [
+                    {
+                        "BEFEHL": "ERFASSEN",
+                        "QUELLE": "./doku/run",
+                        "JSON": "{0}vh_quell2_st.json".format(tx_p)
+                    },
+                    {
+                        "BEFEHL": "ERFASSEN",
+                        "QUELLE": "./doku/test",
+                        "JSON": "{0}vh_ziel2_st.json".format(tx_p)
+                    },
+                    {
+                        "BEFEHL": "VERGLEICHEN",
+                        "QUELLE": "{0}vh_quell2_st.json".format(tx_p),
+                        "ZIEL": "{0}vh_ziel2_st.json".format(tx_p),
+                        "VERGL": "{0}vh_vergleich2.json".format(tx_p)
+                    },
+                    {
+                        "BEFEHL": "HTMLVERGLEICH",
+                        "VERGL": "{0}vh_vergleich2.json".format(tx_p),
+                        "HTML": "{0}vh_vergleich2.html".format(tx_p),
+                        "TITEL": "".join([
+                            "Verzeichnis run und test vergleichen"
+                        ]),
+                        "TEXT": "".join([
+                            "HTML Beispiel des Vergleichs der ",
+                            "Verzeichnisse run und test des Programms"
+                        ])
+                    }
+                ]
             }
         }
 
@@ -284,6 +352,27 @@ class RunTerm():
                 ob_vergl.m_analize()
                 # JSON speichern
                 ob_vergl.m_savejson()
+            elif dc_args["BEFEHL"] == "HTMLVERGLEICH":
+                print("# {0}.m_run HTMLVERGLEICH #".format(
+                    self.tx_objname
+                ))
+                # HTML Verlgeichsobjekt erzeugen
+                ob_htmlvg = HtmlVergleich()
+                # Variablen setzen
+                ob_htmlvg.tx_jsonpfad = dc_args["VERGL"]
+                ob_htmlvg.tx_htmlpfad = dc_args["HTML"]
+                ob_htmlvg.tx_titel = dc_args["TITEL"]
+                ob_htmlvg.tx_text = dc_args["TEXT"]
+                # Vergleich laden
+                ob_htmlvg.m_loadjsonvg()
+                # HTML erzeugen
+                ob_htmlvg.m_anfang()
+                ob_htmlvg.m_zusammenfassung()
+                ob_htmlvg.m_namvertyp()
+                ob_htmlvg.m_dateiinfo()
+                ob_htmlvg.m_ende()
+                # HTML speichern
+                ob_htmlvg.m_save()
 
 
 if __name__ == '__main__':

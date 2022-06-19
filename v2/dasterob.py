@@ -34,7 +34,7 @@ class DateiStruktur():
 
     def __init__(self):
         ''' Initieren '''
-        self.tx_objname = "DateiStrukturNeu"
+        self.tx_objname = "DateiStruktur"
         print("# {0}.__init__ #".format(self.tx_objname))
         self.m_clear()
 

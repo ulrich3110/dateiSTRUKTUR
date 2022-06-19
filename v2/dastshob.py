@@ -34,7 +34,7 @@ class HtmlStruktur():
 
     def __init__(self):
         ''' Initieren '''
-        self.tx_objname = "HtmlStrukturNeu"
+        self.tx_objname = "HtmlStruktur"
         print("# {0}.__init__ #".format(self.tx_objname))
         self.m_clear()
 
@@ -179,7 +179,8 @@ class HtmlStruktur():
                 self.tx_html = "".join([
                     self.tx_html,
                     '<table><tr>',
-                    '<th id="left">Verzeichnisname</th>',
+                    '<th style = "text-align: left">',
+                    'Verzeichnisname</th>',
                     '</tr>'
                 ])
                 # Verzeichnisliste durchlaufen
@@ -188,7 +189,7 @@ class HtmlStruktur():
                     self.tx_html = "".join([
                         self.tx_html,
                         '<tr>',
-                        '<td id="left">', tx_verz, '</td>',
+                        '<td>', tx_verz, '</td>',
                         '</tr>'
                     ])
                 # Tabellen Ende Verzeichnisliste
@@ -209,10 +210,12 @@ class HtmlStruktur():
                 self.tx_html = "".join([
                     self.tx_html,
                     '<table><tr>',
-                    '<th id="left">Dateiname</th>',
-                    '<th id="left">Dateityp</th>',
-                    '<th id="left"><small>Datum/Uhrzeit</small></th>',
-                    '<th id="right"><small>Groesse (bytes)</small></th>',
+                    '<th style = "text-align: left">Dateiname</th>',
+                    '<th style = "text-align: left">Dateityp</th>',
+                    '<th style = "text-align: left"><small>',
+                    'Datum/Uhrzeit</small></th>',
+                    '<th style = "text-align: right"><small>',
+                    'Groesse (bytes)</small></th>',
                     '</tr>'
                 ])
                 # Dateiliste durchlaufen
@@ -225,12 +228,12 @@ class HtmlStruktur():
                     self.tx_html = "".join([
                         self.tx_html,
                         '<tr>',
-                        '<td id="left">', tx_name, '</td>',
-                        '<td id="left">', tx_typ, '</td>',
-                        '<td id="left"><small>', ls_info[0],
+                        '<td>', tx_name, '</td>',
+                        '<td>', tx_typ, '</td>',
+                        '<td><small>', ls_info[0],
                         '</small></td>',
-                        '<td id="right"><small>', tx_groesse,
-                        '</small></td>',
+                        '<td style = "text-align: right"><small>',
+                        tx_groesse, '</small></td>',
                         '</tr>'
                     ])
                 # Tabellen Ende
