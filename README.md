@@ -8,7 +8,7 @@ Datei-Strukturen dokumentieren und vergleichen
 * Beispiel für eine Python Entwicklung im Rahmen des Python Coaching
   * Entwicklung Terminalbasiert
   * Erweiterung mit GUI
-  * Erweiterung als Online Applikation
+  * ~~Erweiterung als Online Applikation~~
 
 # Pflichtenheft
 * Erfassen von Verzeichnis-Strukturen (siehe pyOS Entwicklungen) inklusive Änderungsdatum und Grösse von Dateien
