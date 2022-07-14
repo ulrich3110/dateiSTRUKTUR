@@ -25,7 +25,12 @@ Datei-Strukturen dokumentieren und vergleichen
 
 # Entwicklung
 * v1: Erste Entwicklung, wurde abgebrochen, da sich die Datenstruktur als nicht tauglich für den Vergleich herausstellte
-* v2: Zweite Entwicklung, Test getrieben, mit neuer Datenstruktur. Die Entwicklung wird in den Test dokumentiert. In der Datei `dastaldo.txt` sind die Konventionen und Bezeichnungen definiert.
+* v2: Zweite Entwicklung, Test getrieben, mit neuer Datenstruktur. Die Entwicklung wird in den Test-Scripts dokumentiert. In der Datei `dastaldo.txt` sind die Konventionen und die Bezeichnungen definiert.
+  * Die terminalbasierte Entwicklung ist abgeschlossen
+  * In der Datei `dastaldo.txt` ist Bezeichnungskonvention der Module beschrieben
+  * In den Testmodulen sind die Ojbektmodule dokumentiert
+  * Das Modul `dastrucm.py` macht einige Beispiele
+  * Im Ordner `doku` liegen die Unterordner `test` für die Tests und `run` für die Beispiele von `dastrucm.py`
 
 # Projekt Webseite
 [erasand.ch / DATEISTRUKTUR](https://www.erasand.ch/#dokudatstrkt)
