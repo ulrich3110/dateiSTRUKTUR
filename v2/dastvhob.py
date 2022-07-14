@@ -306,8 +306,8 @@ class HtmlVergleich():
         self.tx_html = "".join([
             self.tx_html,
             '<tr>',
-            '<td colspan="3">Gleiche Dateipfade mit ',
-            'unterschiedlicher Dateigrösse / Datum</td>',
+            '<td colspan="3"><b>Gleiche Dateipfade mit ',
+            'unterschiedlicher Dateigrösse / Datum</b></td>',
             '</tr>'
         ])
         # Unterschiedliche Datei-Info durchlaufen

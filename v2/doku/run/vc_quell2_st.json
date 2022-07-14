@@ -1,0 +1,184 @@
+{
+  "DASTJSON": "DATEISTRUKTUR",
+  "DATEIINFO": {
+    ".~lock.vc_vergleich1.csv#": [
+      "14.07.2022 16:42:51",
+      78
+    ],
+    "er_quell_st.json": [
+      "05.06.2022 15:03:04",
+      1462
+    ],
+    "er_ziel_st.json": [
+      "05.06.2022 15:02:02",
+      1939
+    ],
+    "sc_quell_or.json": [
+      "05.06.2022 13:45:02",
+      6926
+    ],
+    "sc_quell_st.json": [
+      "05.06.2022 13:45:02",
+      7402
+    ],
+    "sc_quelle.csv": [
+      "05.06.2022 13:45:02",
+      6536
+    ],
+    "sh_quell_or.json": [
+      "04.06.2022 14:13:07",
+      6655
+    ],
+    "sh_quell_st.json": [
+      "04.06.2022 14:13:07",
+      7055
+    ],
+    "sh_quelle.html": [
+      "04.06.2022 14:13:07",
+      13147
+    ],
+    "so_quell_or.json": [
+      "04.06.2022 14:12:31",
+      6655
+    ],
+    "so_quell_st.json": [
+      "04.06.2022 14:12:31",
+      7055
+    ],
+    "vc_quell1_st.json": [
+      "14.07.2022 17:20:18",
+      12009
+    ],
+    "vc_quell2_st.json": [
+      "14.07.2022 16:40:05",
+      3792
+    ],
+    "vc_vergleich1.csv": [
+      "14.07.2022 17:20:18",
+      11104
+    ],
+    "vc_vergleich1.json": [
+      "14.07.2022 17:20:18",
+      4476
+    ],
+    "vc_vergleich2.csv": [
+      "14.07.2022 16:40:05",
+      2863
+    ],
+    "vc_vergleich2.json": [
+      "14.07.2022 16:40:05",
+      2794
+    ],
+    "vc_ziel1_st.json": [
+      "14.07.2022 17:20:18",
+      12008
+    ],
+    "vc_ziel2_st.json": [
+      "14.07.2022 16:40:05",
+      4919
+    ],
+    "vg_quell1_st.json": [
+      "06.06.2022 11:57:29",
+      10336
+    ],
+    "vg_quell2_st.json": [
+      "06.06.2022 11:57:31",
+      2024
+    ],
+    "vg_vergleich1.json": [
+      "06.06.2022 11:57:29",
+      4090
+    ],
+    "vg_vergleich2.json": [
+      "06.06.2022 11:57:31",
+      2320
+    ],
+    "vg_ziel1_st.json": [
+      "06.06.2022 11:57:29",
+      10336
+    ],
+    "vg_ziel2_st.json": [
+      "06.06.2022 11:57:31",
+      4594
+    ],
+    "vh_quell1_st.json": [
+      "19.06.2022 18:01:58",
+      10343
+    ],
+    "vh_quell2_st.json": [
+      "19.06.2022 18:02:33",
+      2796
+    ],
+    "vh_vergleich1.html": [
+      "19.06.2022 18:01:58",
+      5764
+    ],
+    "vh_vergleich1.json": [
+      "19.06.2022 18:01:58",
+      3995
+    ],
+    "vh_vergleich2.html": [
+      "19.06.2022 18:02:33",
+      4310
+    ],
+    "vh_vergleich2.json": [
+      "19.06.2022 18:02:33",
+      2564
+    ],
+    "vh_ziel1_st.json": [
+      "19.06.2022 18:01:58",
+      10342
+    ],
+    "vh_ziel2_st.json": [
+      "19.06.2022 18:02:33",
+      4912
+    ]
+  },
+  "DATEILISTE": [
+    "./doku/run/.~lock.vc_vergleich1.csv#",
+    "./doku/run/er_quell_st.json",
+    "./doku/run/er_ziel_st.json",
+    "./doku/run/sc_quell_or.json",
+    "./doku/run/sc_quell_st.json",
+    "./doku/run/sc_quelle.csv",
+    "./doku/run/sh_quell_or.json",
+    "./doku/run/sh_quell_st.json",
+    "./doku/run/sh_quelle.html",
+    "./doku/run/so_quell_or.json",
+    "./doku/run/so_quell_st.json",
+    "./doku/run/vc_quell1_st.json",
+    "./doku/run/vc_quell2_st.json",
+    "./doku/run/vc_vergleich1.csv",
+    "./doku/run/vc_vergleich1.json",
+    "./doku/run/vc_vergleich2.csv",
+    "./doku/run/vc_vergleich2.json",
+    "./doku/run/vc_ziel1_st.json",
+    "./doku/run/vc_ziel2_st.json",
+    "./doku/run/vg_quell1_st.json",
+    "./doku/run/vg_quell2_st.json",
+    "./doku/run/vg_vergleich1.json",
+    "./doku/run/vg_vergleich2.json",
+    "./doku/run/vg_ziel1_st.json",
+    "./doku/run/vg_ziel2_st.json",
+    "./doku/run/vh_quell1_st.json",
+    "./doku/run/vh_quell2_st.json",
+    "./doku/run/vh_vergleich1.html",
+    "./doku/run/vh_vergleich1.json",
+    "./doku/run/vh_vergleich2.html",
+    "./doku/run/vh_vergleich2.json",
+    "./doku/run/vh_ziel1_st.json",
+    "./doku/run/vh_ziel2_st.json"
+  ],
+  "DATUM": "14.07.2022 17:20:19",
+  "JSONPFAD": "./doku/run/vc_quell2_st.json",
+  "STAMMPFAD": "./doku/run",
+  "TYPENLISTE": [
+    ".csv",
+    ".csv#",
+    ".html",
+    ".json"
+  ],
+  "VERZEICHNISLISTE": [
+    "./doku/run"
+  ]
+}

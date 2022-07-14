@@ -12,6 +12,7 @@ from dastshob import *
 from dastscob import *
 from dastvgob import *
 from dastvhob import *
+from dastvcob import *
 
 '''
 dastrucm.py - dateiSTRUKTUR, Startprogramm, Kommandozeile
@@ -236,6 +237,73 @@ class RunTerm():
                         ])
                     }
                 ]
+            },
+            "a": {
+                "TITEL": "CSV Vergleich von '.' mit sich selber",
+                "BEFEHLE": [
+                    {
+                        "BEFEHL": "ERFASSEN",
+                        "QUELLE": ".",
+                        "JSON": "{0}vc_quell1_st.json".format(tx_p)
+                    },
+                    {
+                        "BEFEHL": "ERFASSEN",
+                        "QUELLE": ".",
+                        "JSON": "{0}vc_ziel1_st.json".format(tx_p)
+                    },
+                    {
+                        "BEFEHL": "VERGLEICHEN",
+                        "QUELLE": "{0}vc_quell1_st.json".format(tx_p),
+                        "ZIEL": "{0}vc_ziel1_st.json".format(tx_p),
+                        "VERGL": "{0}vc_vergleich1.json".format(tx_p)
+                    },
+                    {
+                        "BEFEHL": "CSVVERGLEICH",
+                        "VERGL": "{0}vc_vergleich1.json".format(tx_p),
+                        "CSV": "{0}vc_vergleich1.csv".format(tx_p),
+                        "TITEL": "".join([
+                            "Aktuelles Verzeichnis mit sich selber ",
+                            "vergleichen"
+                        ]),
+                        "TEXT": "".join([
+                            "CSV Beispiel des Vergleichs des ",
+                            "aktuellen Verzeichnisses mit sich selber."
+                        ])
+                    }
+                ]
+            },
+            "b": {
+                "TITEL": "CSV Vergleich './doku/run' & './doku/test'",
+                "BEFEHLE": [
+                    {
+                        "BEFEHL": "ERFASSEN",
+                        "QUELLE": "./doku/run",
+                        "JSON": "{0}vc_quell2_st.json".format(tx_p)
+                    },
+                    {
+                        "BEFEHL": "ERFASSEN",
+                        "QUELLE": "./doku/test",
+                        "JSON": "{0}vc_ziel2_st.json".format(tx_p)
+                    },
+                    {
+                        "BEFEHL": "VERGLEICHEN",
+                        "QUELLE": "{0}vc_quell2_st.json".format(tx_p),
+                        "ZIEL": "{0}vc_ziel2_st.json".format(tx_p),
+                        "VERGL": "{0}vc_vergleich2.json".format(tx_p)
+                    },
+                    {
+                        "BEFEHL": "CSVVERGLEICH",
+                        "VERGL": "{0}vc_vergleich2.json".format(tx_p),
+                        "CSV": "{0}vc_vergleich2.csv".format(tx_p),
+                        "TITEL": "".join([
+                            "Verzeichnis run und test vergleichen"
+                        ]),
+                        "TEXT": "".join([
+                            "CSV Beispiel des Vergleichs der ",
+                            "Verzeichnisse run und test des Programms"
+                        ])
+                    }
+                ]
             }
         }
 
@@ -373,6 +441,26 @@ class RunTerm():
                 ob_htmlvg.m_ende()
                 # HTML speichern
                 ob_htmlvg.m_save()
+            elif dc_args["BEFEHL"] == "CSVVERGLEICH":
+                print("# {0}.m_run CSVVERGLEICH #".format(
+                    self.tx_objname
+                ))
+                # HTML Verlgeichsobjekt erzeugen
+                ob_csvvg = CsvVergleich()
+                # Variablen setzen
+                ob_csvvg.tx_jsonpfad = dc_args["VERGL"]
+                ob_csvvg.tx_csvpfad = dc_args["CSV"]
+                ob_csvvg.tx_titel = dc_args["TITEL"]
+                ob_csvvg.tx_text = dc_args["TEXT"]
+                # Vergleich laden
+                ob_csvvg.m_loadjsonvg()
+                # CSV erzeugen
+                ob_csvvg.m_anfang()
+                ob_csvvg.m_zusammenfassung()
+                ob_csvvg.m_namvertyp()
+                ob_csvvg.m_dateiinfo()
+                # CSV speichern
+                ob_csvvg.m_save()
 
 
 if __name__ == '__main__':

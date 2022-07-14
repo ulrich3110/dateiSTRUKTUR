@@ -46,7 +46,7 @@ class Test_CsvStruktur():
     .m_verzeichnisse()    HTML Datei-Struktur Verzeichnis
     VARIABELN
     .tx_jsonpfad          Pfad der Json Ausgabestruktur
-    .tx_csvpfad           Pfad der HTML Datei
+    .tx_csvpfad           Pfad der CSV Datei
     .tx_titel             Dokumententitel
     .tx_text              Dokuemntebeschreibung
     .dc_ausgabe           Wörterbuch mit der Ausgabestruktur
@@ -462,10 +462,9 @@ class Test_CsvStruktur():
         self.ob_test.ls_csv = ls_v
         ls_r = self.ob_test.ls_csv
         # Test & Vergleich
-        bl_t = ls_r == ls_v
         tx_test = "Test Attribut ls_csv"
-        self.in_anzerr = f_test_einzeln(tx_test, bl_t, ls_v, ls_r,
-                                        self.in_anzerr)
+        self.in_anzerr = f_test_liste(tx_test, ls_v, ls_r,
+                                      self.in_anzerr)
 
     def m_test_loadjsonor(self):
         ''' Teste geordnetes Json laden Methode '''

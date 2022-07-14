@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-from dastvhob import *
+from dastvcob import *
 from dastalfn import *
 
 '''
-dastvhte.py - dateiSTRUKTUR, Vergleich HTML Ausgabe, Testmodul
+dastscte.py - dateiSTRUKTUR, Vergleich CSV Ausgabe, Testmodul
 Copyright (c) Andreas Ulrich, <http://erasand.ch>, <andreas@erasand.ch>
 
 LIZENZ
@@ -25,13 +25,13 @@ DEUTSCHE ÜBERSETZUNG: <http://www.gnu.de/documents/gpl-3.0.de.html>
 '''
 
 
-class Test_HtmlVergleich():
+class Test_CsvVergleich():
     '''
     KONZEPT
      JSON Unterschiede-Struktur vom Objekt Vergleich() laden und
-     als HTML Dokument speichern.
+     als CSV Tabelle speichern.
     OBJEKT
-    HtmlVergleich()
+    CsvVergleich()
     METHODEN
     .__init__()           Initialisieren
     .__str__()            Eingebaute String-Funktion
@@ -39,80 +39,84 @@ class Test_HtmlVergleich():
     .m_get_dc()           Daten als Wörterbuch zurückgeben
     .m_set_dc(Wörterbuch) Daten mit einem Wörterbuch hinzufügen
     .m_loadjsonvg()       Vergleich-Struktur JSON laden
-    .m_anfang()           HTML Vergleich Anfang
-    .m_zusammenfassung()  HTML Zusammenfassung
-    .m_namvertyp()        HTML Namen, Verzeichnisse, Typen Vergleich
-    .m_dateiinfo()        HTML Vergleich unterschiedlicher Datei-Info
-    .m_ende()             HTML Vergleich Ende
-    .m_save()             HTML Vergleich speichern
+    .m_anfang()           CSV Vergleich Anfang
+    .m_zusammenfassung()  CSV Zusammenfassung
+    .m_namvertyp()        CSV Namen, Verzeichnisse, Typen Vergleich
+    .m_dateiinfo()        CSV Vergleich unterschiedlicher Datei-Info
+    .m_ende()             CSV Vergleich Ende
+    .m_save()             CSV Vergleich speichern
     VARIABELN
     .tx_jsonpfad          Pfad der Json Vergleich-Struktur
-    .tx_htmlpfad          Pfad der HTML Datei
+    .tx_csvpfad           Pfad der CSV Datei
     .tx_titel             Dokumententitel
     .tx_text              Dokuemntebeschreibung
     .dc_vergleich         Wörterbuch mit der Vergleich-Struktur
-    .tx_html              HTML Text
+    .ls_csv               Tabelle als Liste im CSV Format
     BEMERKUNGEN
      In Test_HtmlStruktur.m_get_..() Methoden sind Beispiel Strukturen
      dem oben erwähnten Variabeln definiert.
-    DARSTELLUNG HTML
-     [TITEL]
-     [Text]
-     -
-     +--------------------+---------------------+---------------------+
-     |                    | Quelle              | Ziel                |
-     +--------------------+---------------------+---------------------+
-     |Pfad                |[quellpfad]          |[zielpfad]           |
-     +--------------------+---------------------+---------------------+
-     |Erfassungsdatum     |[tt.mm.jjjj ss:mm:sk]|[tt.mm.jjjj ss:mm:sk]|
-     +--------------------+---------------------+---------------------+
-     |Anzahl Dateien      |[x]                  |[x]                  |
-     +--------------------+---------------------+---------------------+
-     |Anzahl Verzeichniss.|[x]                  |[x]                  |
-     +--------------------+---------------------+---------------------+
-     |Anzahl Typen        |[x]                  |[x]                  |
-     +--------------------+---------------------+---------------------+
-     |Vergleich nach Dateinamen                                       |
-     +--------------------+-------------------------------------------+
-     |Gemeinsame Dateien  |[pfad/name.erw]                            |
-     |                    |[...]                                      |
-     +--------------------+---------------------+---------------------+
-     |Dateien nur Quelle  |[pfad/name.erw]      |                     |
-     |                    |[...]                |                     |
-     +--------------------+---------------------+---------------------+
-     |Dateien nur Ziel    |                     |[pfad/name.erw]      |
-     |                    |                     |[...]                |
-     +--------------------+---------------------+---------------------+
-     |Vergleich nach Verzeichnisnamen                                 |
-     +--------------------+---------------------+---------------------+
-     |Gemeinsame Verzeich.|[pfad]               |[pfad]               |
-     |                    |[...]                |[...]                |
-     +--------------------+---------------------+---------------------+
-     |Verzeich. nur Quelle|[pfad]               |                     |
-     |                    |[...]                |                     |
-     +--------------------+---------------------+---------------------+
-     |Verzeichn. nur Ziel |                     |[pfad]               |
-     |                    |                     |[...]                |
-     +--------------------+---------------------+---------------------+
-     |Vergleich nach Dateitypen                                       |
-     +--------------------+---------------------+---------------------+
-     |Gemeinsame Typen    |[.typ]               |[.typ]               |
-     |                    |[...]                |[...]                |
-     +--------------------+---------------------+---------------------+
-     |Typen nur in Quelle |[.typ]               |                     |
-     |                    |[...]                |                     |
-     +--------------------+---------------------+---------------------+
-     |Typen nur im Ziel   |                     |[.typ]               |
-     |                    |                     |[...]                |
-     +--------------------+---------------------+---------------------+
-     |Gleiche Dateipfade mit unterschiedlicher Dateigrösse / Datum    |
-     +--------------------+---------------------+---------------------+
-     |[pfad/name.typ]     |[x] bytes            |[x] bytes            |
-     |                    |[tt.mm.jjjj ss:mm:sk]|[tt.mm.jjjj ss:mm:sk]|
-     +--------------------+---------------------+---------------------+
-     |[...]               |[...] bytes          |[...] bytes          |
-     |                    |[...]                |[...]                |
-     +--------------------+---------------------+---------------------+
+    DARSTELLUNG TABELLE
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |Zeil.|Kate.|Text |A.Qu.|A.Zi.|P.Qu.|P.Zi.|D.Qu.|D.Zi.|Gr.Q.|Gr.Z.|
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |1    |Tite.|[...]|     |     |     |     |     |     |     |     |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |2    |Besc.|[...]|     |     |     |     |     |     |     |     |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |3    |Pfad.|     |     |     |[...]|[...]|     |     |     |     |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |4    |Datum|     |     |     |     |     |[...]|[...]|     |     |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |5    |Anz.Verzei.|[x]  |[x]  |     |     |     |     |     |     |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |6    |Anz.Dateien|[x]  |[x]  |     |     |     |     |     |     |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |7    |Anz.Typen  |[x]  |[x]  |     |     |     |     |     |     |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |8    |Leer |---  |---  |---  |---  |---  |---  |---  |---  |---  |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |9    |Vergleich nach Dateinamen    |     |     |     |     |     |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |10   |Gemeinsam  |     |     |[...]|[...]|     |     |     |     |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |11   |Nur Quelle |     |     |[...]|     |     |     |     |     |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |12   |Nur Ziel   |     |     |     |[...]|     |     |     |     |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |13   |Vergleich nach Verzeichnisnamen    |     |     |     |     |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |14   |Gemeinsam  |     |     |[...]|[...]|     |     |     |     |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |..   |Gemeinsam  |     |     |[...]|[...]|     |     |     |     |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |..   |Nur Quelle |     |     |[...]|     |     |     |     |     |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |..   |Nur Quelle |     |     |[...]|     |     |     |     |     |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |..   |Nur Ziel   |     |     |     |[...]|     |     |     |     |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |..   |Nur Ziel   |     |     |     |[...]|     |     |     |     |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |..   |Vergleich nach Typen   |     |     |     |     |     |     |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |..   |Gemeinsam  |     |     |[...]|[...]|     |     |     |     |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |..   |Gemeinsam  |     |     |[...]|[...]|     |     |     |     |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |..   |Nur Quelle |     |     |[...]|     |     |     |     |     |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |..   |Nur Quelle |     |     |[...]|     |     |     |     |     |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |..   |Nur Ziel   |     |     |     |[...]|     |     |     |     |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |..   |Nur Ziel   |     |     |     |[...]|     |     |     |     |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |..   |Gleiche Dateipfade mit untersch. Grösse/Datum  |     |     |
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |..   |     |     |     |     |[...]|[...]|[...]|[...]|[...]|[...]|
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+     |..   |     |     |     |     |[...]|[...]|[...]|[...]|[...]|[...]|
+     +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
     '''
 
     def __init__(self, in_anzerr):
@@ -120,24 +124,23 @@ class Test_HtmlVergleich():
         # Anzahl Fehler
         self.in_anzerr = in_anzerr
         # Test Objekt
-        self.ob_test = HtmlVergleich()
+        self.ob_test = CsvVergleich()
         # Tests
         self.m_test_str()
         self.m_test_clear()
         self.m_test_setdc()
         self.m_test_getdc()
         self.m_test_txjsonpfad()
-        self.m_test_txhtmlpfad()
+        self.m_test_txcsvpfad()
         self.m_test_txtitel()
         self.m_test_txtext()
         self.m_test_dcvergleich()
-        self.m_test_txhtml()
+        self.m_test_lscsv()
         self.m_test_loadjsonvg()
         self.m_test_anfang()
         self.m_test_zusammenfassung()
         self.m_test_namvertyp()
         self.m_test_dateiinfo()
-        self.m_test_ende()
         self.m_test_save()
 
     def m_get_diff(self):
@@ -261,28 +264,28 @@ class Test_HtmlVergleich():
 
         dc_d = {
             "JSONPFAD": "./doku/test/strukturvergleich.json",
-            "HTMLPFAD": "./doku/test/dastvhte.html",
-            "TITEL": "Test DASTVHOB 1",
-            "TEXT": "Struktur von Test 1: Script DASTVHOB",
+            "CSVPFAD": "./doku/test/dastvcte.csv",
+            "TITEL": "Test DASTVHOB 2",
+            "TEXT": "Struktur von Test 2: Script DASTVCOB",
             "VERGLEICHJSON": self.m_get_diff(),
-            "HTML": "<!DOCTYPE html><html></html>"
+            "CSV": [["A", "B"], ["a1", "b1"], ["a2", "b2"]]
         }
         return(dc_d)
 
     def m_get_data_liste(self, dc_daten):
         ''' Wörterbuch Daten als Liste zurückgeben '''
         tx_jsonpfad = dc_daten["JSONPFAD"]
-        tx_htmlpfad = dc_daten["HTMLPFAD"]
+        tx_csvpfad = dc_daten["CSVPFAD"]
         tx_titel = dc_daten["TITEL"]
         tx_text = dc_daten["TEXT"]
-        tx_html = dc_daten["HTML"]
+        tx_csv = dc_daten["CSV"]
         ls_vergleichliste = self.m_get_diff_liste(
             dc_daten["VERGLEICHJSON"]
         )
         # Gesamtliste zurückgeben
-        ls_daten = [tx_jsonpfad, tx_htmlpfad, tx_titel, tx_text]
+        ls_daten = [tx_jsonpfad, tx_csvpfad, tx_titel, tx_text]
         ls_daten.extend(ls_vergleichliste)
-        ls_daten.append(tx_html)
+        ls_daten.append(tx_csv)
         return(ls_daten)
 
     def m_test_str(self):
@@ -353,17 +356,17 @@ class Test_HtmlVergleich():
         self.in_anzerr = f_test_einzeln(tx_test, bl_t, tx_v, tx_r,
                                         self.in_anzerr)
 
-    def m_test_txhtmlpfad(self):
-        ''' Teste HTML Pfad '''
+    def m_test_txcsvpfad(self):
+        ''' Teste CSV Pfad '''
         # Vorgabe
         dc_daten = self.m_get_data()
-        tx_v = dc_daten["HTMLPFAD"]
+        tx_v = dc_daten["CSVPFAD"]
         # Resultat
-        self.ob_test.tx_htmlpfad = tx_v
-        tx_r = self.ob_test.tx_htmlpfad
+        self.ob_test.tx_csvpfad = tx_v
+        tx_r = self.ob_test.tx_csvpfad
         # Test & Vergleich
         bl_t = tx_r == tx_v
-        tx_test = "Test Attribut tx_htmlpfad"
+        tx_test = "Test Attribut tx_csvpfad"
         self.in_anzerr = f_test_einzeln(tx_test, bl_t, tx_v, tx_r,
                                         self.in_anzerr)
 
@@ -410,25 +413,25 @@ class Test_HtmlVergleich():
         self.in_anzerr = f_test_liste(tx_test, ls_v, ls_r,
                                       self.in_anzerr)
 
-    def m_test_txhtml(self):
-        ''' Teste HTML Text '''
+    def m_test_lscsv(self):
+        ''' Teste CSV Liste '''
         # Vorgabe
         dc_daten = self.m_get_data()
-        tx_v = dc_daten["HTML"]
+        ls_v = dc_daten["CSV"]
         # Resultat
-        self.ob_test.tx_html = tx_v
-        tx_r = self.ob_test.tx_html
+        self.ob_test.ls_csv = ls_v
+        ls_r = self.ob_test.ls_csv
         # Test & Vergleich
-        bl_t = tx_r == tx_v
-        tx_test = "Test Attribut tx_html"
-        self.in_anzerr = f_test_einzeln(tx_test, bl_t, tx_v, tx_r,
-                                        self.in_anzerr)
+        tx_test = "Test Attribut ls_csv"
+        self.in_anzerr = f_test_liste(tx_test, ls_v, ls_r,
+                                      self.in_anzerr)
 
     def m_test_loadjsonvg(self):
         ''' Teste Methode Verlgeich Json laden '''
         # Vorgabe
         dc_daten = self.m_get_data()
         dc_daten["VERGLEICHJSON"] = {}
+        dc_daten["CSV"] = []
         self.ob_test.m_set_dc(dc_daten)
         # Resultat
         self.ob_test.m_loadjsonvg()
@@ -444,10 +447,14 @@ class Test_HtmlVergleich():
     def m_test_anfang(self):
         ''' Teste Anfang Methode '''
         # Vorgabe
-        tx_v = '<!DOCTYPE html><html>'
+        tx_v = str(['Zeile', 'Kategorie', 'Text', 'Anzahl Quelle',
+                    'Anzahl Ziel', 'Pfad Quelle', 'Pfad Ziel',
+                    'Datum/Uhrzeit Quelle', 'Datum/Uhrzeit Ziel',
+                    'Groesse Quelle (bytes)', 'Groesse Ziel (bytes)'])
         # Resultat
         self.ob_test.m_anfang()
-        tx_r = self.ob_test.tx_html
+        ls_r = self.ob_test.ls_csv
+        tx_r = str(ls_r)
         # Test & Vergleich
         bl_t = tx_v in tx_r
         tx_test = "Test Methode m_anfang"
@@ -457,28 +464,39 @@ class Test_HtmlVergleich():
     def m_test_zusammenfassung(self):
         ''' Teste Vergleich Zusammenfassung Methode '''
         # Vorgabe
-        tx_v = '<td>Erfassungsdatum</td>'
+        tx_v1 = str([1, 'Titel', 'Test DASTVHOB 2', '', '', '', '', '',
+                    '', '', ''])
+        tx_v2 = str([2, 'Beschrieb',
+                     'Struktur von Test 2: Script DASTVCOB', '', '', '',
+                     '', '', '', '', ''])
         # Resultat
         self.ob_test.m_zusammenfassung()
-        tx_r = self.ob_test.tx_html
+        ls_r = self.ob_test.ls_csv
+        tx_r = str(ls_r)
         # Test & Vergleich
-        bl_t = tx_v in tx_r
-        tx_test = "Test Methode m_zusammenfassung"
-        self.in_anzerr = f_test_einzeln(tx_test, bl_t, tx_v, tx_r,
+        bl_t = tx_v1 in tx_r
+        tx_test = "Test Methode m_zusammenfassung: Titel"
+        self.in_anzerr = f_test_einzeln(tx_test, bl_t, tx_v1, tx_r,
+                                        self.in_anzerr)
+        bl_t = tx_v2 in tx_r
+        tx_test = "Test Methode m_zusammenfassung: Beschrieb"
+        self.in_anzerr = f_test_einzeln(tx_test, bl_t, tx_v2, tx_r,
                                         self.in_anzerr)
 
     def m_test_namvertyp(self):
-        ''' Teste Namen Verzeichnisse Typen Vergleich Methode '''
+        ''' Teste Teste Namen Verzeichnisse Typen Vergleich Methode '''
         # Vorgabe
-        tx_v1 = ''.join(['<td colspan="3"><b>',
-                        'Vergleich nach Dateipfaden</b></td>'])
-        tx_v2 = ''.join(['<td colspan="3"><b>',
-                        'Vergleich nach Verzeichnispfaden</b></td>'])
-        tx_v3 = ''.join(['<td colspan="3"><b>',
-                        'Vergleich nach Dateitypen</b></td>'])
+        tx_v1 = str([10, 'Gemeinsame Dateipfade', '', '', '',
+                     'pfad2/Datei_21.txa', 'pfad2/Datei_21.txa',
+                     '', '', '', ''])
+        tx_v2 = str([29, 'Gemeinsame Verzeichnispfade', '', '', '',
+                     '.', '.', '', '', '', ''])
+        tx_v3 = str([36, 'Gemeinsame Dateitypen', '', '', '', '.txa',
+                     '.txa', '', '', '', ''])
         # Resultat
         self.ob_test.m_namvertyp()
-        tx_r = self.ob_test.tx_html
+        ls_r = self.ob_test.ls_csv
+        tx_r = str(ls_r)
         # Test & Vergleich Dateipfade
         bl_t1 = tx_v1 in tx_r
         tx_test = "Test Methode m_namvertyp:Dateipfade"
@@ -498,28 +516,16 @@ class Test_HtmlVergleich():
     def m_test_dateiinfo(self):
         ''' Teste Dateitypen Vergleich Methode '''
         # Vorgabe
-        tx_v = ''.join(['<td colspan="3">',
-                        '<b>Gleiche Dateipfade mit unterschiedlicher ',
-                        'Dateigrösse / Datum</b></td>'])
+        tx_v = str([43, '', '', '', '', 'pfad3/Datei_32.txb',
+                    'pfad3/Datei_32.txb', '27.05.2022 15:04:04',
+                    '05.06.2022 13:54:43', 22, 26])
         # Resultat
         self.ob_test.m_dateiinfo()
-        tx_r = self.ob_test.tx_html
+        ls_r = self.ob_test.ls_csv
+        tx_r = str(ls_r)
         # Test & Vergleich
         bl_t = tx_v in tx_r
         tx_test = "Test Methode m_dateiinfo"
-        self.in_anzerr = f_test_einzeln(tx_test, bl_t, tx_v, tx_r,
-                                        self.in_anzerr)
-
-    def m_test_ende(self):
-        ''' Teste Ende Methode '''
-        # Vorgabe
-        tx_v = '</body></html>'
-        # Resultat
-        self.ob_test.m_ende()
-        tx_r = self.ob_test.tx_html
-        # Test & Vergleich
-        bl_t = tx_v in tx_r
-        tx_test = "Test Methode m_ende"
         self.in_anzerr = f_test_einzeln(tx_test, bl_t, tx_v, tx_r,
                                         self.in_anzerr)
 
@@ -541,11 +547,11 @@ if __name__ == '__main__':
     Test Hauptprogamm
     '''
     # Titel
-    print("# DASTVHTE #")
+    print("# DASTVCTE #")
     # Anzahl Fehler
     in_anzerr = 0
     # DateiStruktur Objekt testen
-    ob_test = Test_HtmlVergleich(in_anzerr)
+    ob_test = Test_CsvVergleich(in_anzerr)
     in_anzerr = ob_test.in_anzerr
     # Zusammenfassung
     print("# ANZAHL FEHLER: {0}".format(in_anzerr))
