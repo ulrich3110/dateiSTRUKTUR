@@ -24,8 +24,8 @@ Datei-Strukturen dokumentieren und vergleichen;
 * Die Entwicklung laufend veröffentlichen;
 
 # Entwicklung
-* v1: Erste Entwicklung, wurde abgebrochen, da sich die Datenstruktur als nicht tauglich für den Vergleich herausstellte;
-* v2: Zweite Entwicklung, Test getrieben, mit neuer Datenstruktur. Die Entwicklung wird in den Test-Scripts dokumentiert. In der Datei `dastaldo.txt` sind die Konventionen und die Bezeichnungen definiert;
+* `v1`: Erste Entwicklung, wurde abgebrochen, da sich die Datenstruktur als nicht tauglich für den Vergleich herausstellte;
+* `v2`: Zweite Entwicklung, Test getrieben, mit neuer Datenstruktur. Die Entwicklung wird in den Test-Scripts dokumentiert. In der Datei `dastaldo.txt` sind die Konventionen und die Bezeichnungen definiert;
   * Die terminalbasierte Entwicklung ist abgeschlossen;
   * In der Datei `dastaldo.txt` ist Bezeichnungskonvention der Module beschrieben;
   * In den Testmodulen sind die Objektmodule dokumentiert;
